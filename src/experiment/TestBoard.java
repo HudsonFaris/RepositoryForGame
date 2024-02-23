@@ -9,19 +9,19 @@ public class TestBoard {
 	
 	
 	public TestBoard() {
-		//nothing constructotr
+		//Blank
 	}
 	
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
-		
+		//Blank
 	}
 	
 	public TestBoardCell getCell(int row, int col) {
-		return null;
+		return null; //Not entirely sure what to return here. 
 	}
 	
 	public Set<TestBoardCell> getTargets() {
-		return null;
+		return targets;
 		//maybe hashtable return new HashSet<>();
 	}
 }
