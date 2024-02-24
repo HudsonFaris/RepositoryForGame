@@ -1,21 +1,21 @@
 package experiment;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class TestBoardCell {
 	private int row;
 	private int col;
-	Set<TestBoardCell> adjacencyList;
+	private Set<TestBoardCell> adjList;
 	private boolean isRoom;
 	private boolean isOccupied;
-	
-	
 	
 	
 	public TestBoardCell(int row, int col) {
 		this.row = row;
 		this.col = col;
-		
+		this.adjList = new HashSet<>();
+		// just initialization for now
 	}
 	
 	public void addAdjanecy(TestBoardCell cell) {
@@ -23,15 +23,15 @@ public class TestBoardCell {
 	}
 	
 	public Set<TestBoardCell> getAdjList() {
-		return adjacencyList;
+		return new HashSet<>(); // return empty set for now
 	}
 	
 	public void setRoom(boolean room) {
 		//Blank
 	}
 	
-	public boolean getRoom() {
-		return true;
+	public boolean isRoom() {
+		return false; // default to false for failure
 	}
 	
 	public void setOccupied(boolean occupied) {
@@ -39,7 +39,7 @@ public class TestBoardCell {
 	}
 	
 	public boolean getOccupied() {
-		return isOccupied;
+		return false; // default to false for failure
 	}
 }
 
