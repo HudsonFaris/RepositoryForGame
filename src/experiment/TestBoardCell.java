@@ -38,28 +38,36 @@ public class TestBoardCell {
 		// just initialization for now
 	}
 	
-	public void addAdjanecy(TestBoardCell cell) {
-		//Blank
+	public void addAdjacency(TestBoardCell cell) {
+		adjList.add(cell);
 	}
 	
 	public Set<TestBoardCell> getAdjList() {
-		return new HashSet<>(); // return empty set for now
+		return adjList;
 	}
 	
 	public void setRoom(boolean room) {
-		//Blank
+		isRoom = room;
 	}
 	
 	public boolean isRoom() {
-		return false; // default to false for failure
+		return isRoom;
 	}
 	
 	public void setOccupied(boolean occupied) {
-		//Blank
+		isOccupied = occupied;
 	}
 	
 	public boolean getOccupied() {
-		return false; // default to false for failure
+		return isOccupied; 
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return col;
 	}
 }
 

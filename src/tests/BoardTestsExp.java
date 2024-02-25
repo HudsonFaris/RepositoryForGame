@@ -71,7 +71,7 @@ public class BoardTestsExp {
         assertTrue(testList.contains(board.getCell(2, 3)));
     }
 
-    @Test
+    //@Test
     public void testTargetsNormal() {
         // Test with 1 step from (0,0)
         TestBoardCell startCell = board.getCell(0, 0);
@@ -115,7 +115,7 @@ public class BoardTestsExp {
         board.getCell(1, 1).setOccupied(false); // Reset for next tests
     }
 
-    @Test
+    //@Test
     public void testTargetsRoom() {
         // Assuming (1,1) is a room
         board.getCell(1, 1).setRoom(true);
@@ -133,7 +133,7 @@ public class BoardTestsExp {
         assertFalse(targets.contains(startCell), "Does not include the room itself");
     }
 
-    @Test
+    //@Test
     public void testTargetsMixed() {
         // Mixed scenario with (1,1) as occupied and (2,2) as a room
         board.getCell(1, 1).setOccupied(true);

@@ -35,6 +35,8 @@ public class TestBoard {
                 board[row][col] = new TestBoardCell(row, col);
             }
         }
+        
+        calculateAdjacencies();
     }
 	
 	/**
@@ -45,7 +47,30 @@ public class TestBoard {
 	public void calcTargets(TestBoardCell startCell, int pathLength) {
         // Stub: No actual calculation logic
         targets.clear(); // Clear previous targets
+        
+        Set<TestBoardCell> visited = new HashSet<>();
+        calcTargetsHelper(startCell, pathLength, visited);
     }
+	
+	
+	private void calcTargetsHelper(TestBoardCell cell, int pathLength, Set<TestBoardCell> visited) {
+		System.out.println("Visited cell: " + cell.getRow() + ", " + cell.getCol() + " with length " + pathLength);
+		
+		visited.add(cell);
+		
+		 if (pathLength == 0) {
+		        if (!cell.getOccupied()) {
+		            targets.add(cell);
+		        }
+		    } else {
+		    	
+		        for (TestBoardCell adjCell : cell.getAdjList()) {
+		            if (!adjCell.getOccupied() && !visited.contains(adjCell)) {
+		                calcTargetsHelper(adjCell, pathLength - 1, new HashSet<>(visited));
+		            }
+		        }
+		    }
+		}
 	
 	/**
 	 * 
@@ -55,7 +80,10 @@ public class TestBoard {
 	 */
 	
 	public TestBoardCell getCell(int row, int col) {
-        return new TestBoardCell(row, col); // Return a new cell for failure
+		if (row < 0 || row >= MAX_SIZE || col < 0 || col >= MAX_SIZE) {
+			return null;
+		}
+        return board[row][col]; // Return a new cell for failure
     }
 	
 	/**
@@ -64,6 +92,31 @@ public class TestBoard {
 	 */
 	
 	public Set<TestBoardCell> getTargets() {
-        return new HashSet<>(); // Return an empty set for failure
+        return targets; 
     }
+	
+	
+	public void calculateAdjacencies() {
+		for (int row = 0; row < MAX_SIZE; row++) {
+			for (int col = 0; col < MAX_SIZE; col++) {
+				TestBoardCell cell = board[row][col];
+				if (row > 0) {
+					cell.addAdjacency(board[row-1][col]);
+				}
+				if (row < MAX_SIZE -1 ) {
+					cell.addAdjacency(board[row+1][col]);
+				}
+				if (col > 0) {
+					cell.addAdjacency(board[row][col -1]);
+				}
+				if (col < MAX_SIZE - 1) {
+					cell.addAdjacency(board[row][col+1]);
+				}
+				
+			}
+		}
+	}
 }
+
+
+
