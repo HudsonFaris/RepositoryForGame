@@ -1,3 +1,17 @@
+/**
+ * TestBoardCell Class - This class holds many tests/getters/setters functions that don't do anything at the moment. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 2/24/2024
+ * 
+ */
+
+
+
+
 package experiment;
 
 import java.util.HashSet;
@@ -9,6 +23,12 @@ public class TestBoardCell {
 	private Set<TestBoardCell> adjList;
 	private boolean isRoom;
 	private boolean isOccupied;
+	
+	/**
+	 * 
+	 * @param row
+	 * @param col
+	 */
 	
 	
 	public TestBoardCell(int row, int col) {

@@ -1,3 +1,16 @@
+/**
+ * BoardTestsExp Class - This class includes all the tests for a 4x4 made. Testing normal
+ * cells and edge cases
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 2/24/2024
+ * 
+ */
+
+
 package tests;
 
 import java.util.Set;
