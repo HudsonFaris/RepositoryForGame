@@ -1,0 +1,59 @@
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C13A-2, dated 2/24/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of this assignment C13A-2, dated 2/24/2024.
+
+
+
+commit f622645
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:14:47 2024 -0700
+
+    Added readme to project
+
+commit 9f8a635
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:08:59 2024 -0700
+
+    Added final comments/headers for classes
+
+commit 84119b2
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 17:45:35 2024 -0700
+
+    finished tests
+
+commit 068f2e6
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 16:59:26 2024 -0700
+
+    errors really fixed now, adding tests
+
+commit 4d9a523
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 16:28:18 2024 -0700
+
+    fixed errors, adding tests
+
+
+commit 838cna0
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 24:22:18 2024 -0700
+	
+    Added supporting classes with empty functions
+
+commit ac7146u
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 23:49:01 2024 -0700
+	
+    Added Tests class with initial tests
+
+commit abf1c3e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 19:51:53 2024 -0700
+
+    Changed JUnit Location to be included with path
+
+commit d951fb1
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 16:00:58 2024 -0700
+
+    Initial Commit
