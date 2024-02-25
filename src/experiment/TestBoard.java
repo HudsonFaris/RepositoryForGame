@@ -54,23 +54,25 @@ public class TestBoard {
 	
 	
 	private void calcTargetsHelper(TestBoardCell cell, int pathLength, Set<TestBoardCell> visited) {
-		System.out.println("Visited cell: " + cell.getRow() + ", " + cell.getCol() + " with length " + pathLength);
 		
 		visited.add(cell);
-		
-		 if (pathLength == 0) {
-		        if (!cell.getOccupied()) {
-		            targets.add(cell);
-		        }
-		    } else {
-		    	
-		        for (TestBoardCell adjCell : cell.getAdjList()) {
-		            if (!adjCell.getOccupied() && !visited.contains(adjCell)) {
-		                calcTargetsHelper(adjCell, pathLength - 1, new HashSet<>(visited));
-		            }
-		        }
-		    }
-		}
+
+	    if (cell.isRoom() && !cell.getOccupied()) {
+	        targets.add(cell);
+	        System.out.println("Added room cell to targets: " + cell.getRow() + ", " + cell.getCol());
+	    } else if (pathLength == 0) {
+	        if (!cell.getOccupied()) {
+	            targets.add(cell);
+	        }
+	    } else {
+	        for (TestBoardCell adjCell : cell.getAdjList()) {
+	            if (!visited.contains(adjCell) && !adjCell.getOccupied()) {
+	                calcTargetsHelper(adjCell, pathLength - 1, visited);
+	            }
+	        }
+	    }
+	    visited.remove(cell); // Backtrack
+	}
 	
 	/**
 	 * 
