@@ -19,7 +19,9 @@ import java.util.HashSet;
 public class TestBoard {
 	private TestBoardCell[][] board;
 	private Set<TestBoardCell> targets;
-	private static final int MAX_SIZE = 20;
+	final static int COLS = 4;
+	final static int ROWS = 4;
+	
 	
 	
 	/**
@@ -27,11 +29,11 @@ public class TestBoard {
 	 */
 	
 	public TestBoard() {
-		board = new TestBoardCell[MAX_SIZE][MAX_SIZE];
+		board = new TestBoardCell[ROWS][COLS];
         targets = new HashSet<>();
         // Initialize the board with cells
-        for (int row = 0; row < MAX_SIZE; row++) {
-            for (int col = 0; col < MAX_SIZE; col++) {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
                 board[row][col] = new TestBoardCell(row, col);
             }
         }
@@ -45,33 +47,33 @@ public class TestBoard {
 	 * @param pathLength
 	 */
 	public void calcTargets(TestBoardCell startCell, int pathLength) {
-        // Stub: No actual calculation logic
-        targets.clear(); // Clear previous targets
-        
-        Set<TestBoardCell> visited = new HashSet<>();
-        calcTargetsHelper(startCell, pathLength, visited);
-    }
+		targets.clear(); // Clear previous targets
+	    Set<TestBoardCell> visited = new HashSet<>();
+	    visited.add(startCell); // Add start cell to visited
+	    calcTargetsHelper(startCell, pathLength, visited);
+	}
 	
 	
 	private void calcTargetsHelper(TestBoardCell cell, int pathLength, Set<TestBoardCell> visited) {
+		if (cell.getOccupied()) {
+			return;
+		}
 		
-		visited.add(cell);
+		visited.add(cell); // Add the current cell to visited
 
-	    if (cell.isRoom() && !cell.getOccupied()) {
-	        targets.add(cell);
-	        System.out.println("Added room cell to targets: " + cell.getRow() + ", " + cell.getCol());
-	    } else if (pathLength == 0) {
-	        if (!cell.getOccupied()) {
-	            targets.add(cell);
-	        }
+	    if (pathLength == 0) {
+	        targets.add(cell); // Add to targets if pathLength is zero
+	        return;
 	    } else {
+	        // Iterate over each adjacent cell
 	        for (TestBoardCell adjCell : cell.getAdjList()) {
-	            if (!visited.contains(adjCell) && !adjCell.getOccupied()) {
-	                calcTargetsHelper(adjCell, pathLength - 1, visited);
+	            if (!visited.contains(adjCell)) {
+	                Set<TestBoardCell> newVisited = new HashSet<>(visited); // Create a new visited set for each path
+	                newVisited.add(adjCell); // Add adjacent cell to the new visited set
+	                calcTargetsHelper(adjCell, pathLength - 1, newVisited);
 	            }
 	        }
 	    }
-	    visited.remove(cell); // Backtrack
 	}
 	
 	/**
@@ -82,7 +84,7 @@ public class TestBoard {
 	 */
 	
 	public TestBoardCell getCell(int row, int col) {
-		if (row < 0 || row >= MAX_SIZE || col < 0 || col >= MAX_SIZE) {
+		if (row < 0 || row >= ROWS || col < 0 || col >= COLS) {
 			return null;
 		}
         return board[row][col]; // Return a new cell for failure
@@ -99,19 +101,19 @@ public class TestBoard {
 	
 	
 	public void calculateAdjacencies() {
-		for (int row = 0; row < MAX_SIZE; row++) {
-			for (int col = 0; col < MAX_SIZE; col++) {
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLS; col++) {
 				TestBoardCell cell = board[row][col];
 				if (row > 0) {
 					cell.addAdjacency(board[row-1][col]);
 				}
-				if (row < MAX_SIZE -1 ) {
+				if (row < ROWS -1 ) {
 					cell.addAdjacency(board[row+1][col]);
 				}
 				if (col > 0) {
 					cell.addAdjacency(board[row][col -1]);
 				}
-				if (col < MAX_SIZE - 1) {
+				if (col < COLS - 1) {
 					cell.addAdjacency(board[row][col+1]);
 				}
 				

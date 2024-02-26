@@ -35,6 +35,7 @@ public class TestBoardCell {
 		this.row = row;
 		this.col = col;
 		this.adjList = new HashSet<>();
+		
 		// just initialization for now
 	}
 	
@@ -48,11 +49,11 @@ public class TestBoardCell {
 	
 	public void setRoom(boolean room) {
         isRoom = room;
-        System.out.println("Set room: " + room + " on " + System.identityHashCode(this));
+        //System.out.println("Set room: " + room + " on " + System.identityHashCode(this));
     }
 
     public boolean isRoom() {
-        System.out.println("Checking room: " + isRoom + " on " + System.identityHashCode(this));
+        //System.out.println("Checking room: " + isRoom + " on " + System.identityHashCode(this));
         return isRoom;
     }
 	

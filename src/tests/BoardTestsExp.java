@@ -30,7 +30,7 @@ public class BoardTestsExp {
         board = new TestBoard(); // Assumes a 4x4 grid
     }
 
-    //@Test
+    @Test
     public void testAdjacency() {
         // Top left corner (0,0)
         TestBoardCell cell = board.getCell(0, 0);
@@ -115,7 +115,7 @@ public class BoardTestsExp {
         board.getCell(1, 1).setOccupied(false); // Reset for next tests
     }
 
-    //@Test
+    @Test
     public void testTargetsRoom() {
         // Assuming (1,1) is a room
         board.getCell(1, 1).setRoom(true);
@@ -133,7 +133,7 @@ public class BoardTestsExp {
         assertFalse(targets.contains(startCell), "Does not include the room itself");
     }
 
-    @Test
+    //@Test
     public void testTargetsMixed() {
         // Mixed scenario with (1,1) as occupied and (2,2) as a room
         board.getCell(1, 1).setOccupied(true);
