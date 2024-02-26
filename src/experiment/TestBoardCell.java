@@ -48,17 +48,19 @@ public class TestBoardCell {
 	}
 	
 	public void setRoom(boolean room) {
+		//System.out.println("Cell at (" + row + "," + col + ") set as Room: " + room);
         isRoom = room;
-        //System.out.println("Set room: " + room + " on " + System.identityHashCode(this));
+        
     }
 
     public boolean isRoom() {
-        //System.out.println("Checking room: " + isRoom + " on " + System.identityHashCode(this));
+        
         return isRoom;
     }
 	
 	public void setOccupied(boolean occupied) {
 		isOccupied = occupied;
+		//System.out.println("Cell at (" + row + "," + col + ") set as Occupied: " + occupied);
 	}
 	
 	public boolean getOccupied() {

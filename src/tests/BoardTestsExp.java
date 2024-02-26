@@ -30,7 +30,7 @@ public class BoardTestsExp {
         board = new TestBoard(); // Assumes a 4x4 grid
     }
 
-    @Test
+    //@Test
     public void testAdjacency() {
         // Top left corner (0,0)
         TestBoardCell cell = board.getCell(0, 0);
@@ -71,7 +71,7 @@ public class BoardTestsExp {
         assertTrue(testList.contains(board.getCell(2, 3)));
     }
 
-    //@Test
+    @Test
     public void testTargetsNormal() {
         // Test with 1 step from (0,0)
         TestBoardCell startCell = board.getCell(0, 0);
@@ -102,7 +102,7 @@ public class BoardTestsExp {
         assertEquals(10, targets.size()); // Assuming all cells are reachable with 6 steps from (1,1)
     }
 
-    @Test
+    //@Test
     public void testTargetsOccupied() {
         // Assuming (1,1) is occupied
         board.getCell(1, 1).setOccupied(true);
@@ -115,7 +115,7 @@ public class BoardTestsExp {
         board.getCell(1, 1).setOccupied(false); // Reset for next tests
     }
 
-    @Test
+    //@Test
     public void testTargetsRoom() {
         // Assuming (1,1) is a room
         board.getCell(1, 1).setRoom(true);

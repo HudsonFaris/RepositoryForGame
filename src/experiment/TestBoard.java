@@ -49,7 +49,7 @@ public class TestBoard {
 	public void calcTargets(TestBoardCell startCell, int pathLength) {
 		targets.clear(); // Clear previous targets
 	    Set<TestBoardCell> visited = new HashSet<>();
-	    visited.add(startCell); // Add start cell to visited
+	    visited.add(startCell); //Add start cell to visited
 	    calcTargetsHelper(startCell, pathLength, visited);
 	}
 	
@@ -59,22 +59,27 @@ public class TestBoard {
 			return;
 		}
 		
-		visited.add(cell); // Add the current cell to visited
+		
+		visited.add(cell); //Add the current cell to visited
+		
+		 if (pathLength == 0) {
+		        if (!targets.contains(cell)) {
+		            System.out.println("Adding to targets: " + cell.getRow() + "," + cell.getCol());
+		            targets.add(cell); //Add to targets if path is zero
+		             
+		        }
+		        return;
+		    }
 
-	    if (pathLength == 0) {
-	        targets.add(cell); // Add to targets if pathLength is zero
-	        return;
-	    } else {
-	        // Iterate over each adjacent cell
-	        for (TestBoardCell adjCell : cell.getAdjList()) {
-	            if (!visited.contains(adjCell)) {
-	                Set<TestBoardCell> newVisited = new HashSet<>(visited); // Create a new visited set for each path
-	                newVisited.add(adjCell); // Add adjacent cell to the new visited set
-	                calcTargetsHelper(adjCell, pathLength - 1, newVisited);
-	            }
-	        }
-	    }
-	}
+		    // Iterate over each adjacent cell
+		    for (TestBoardCell adjCell : cell.getAdjList()) {
+		        if (!visited.contains(adjCell)) {
+		            Set<TestBoardCell> newVisited = new HashSet<>(visited); //Create a new visited set for each path
+		            System.out.println("Visiting: " + adjCell.getRow() + "," + adjCell.getCol() + " with pathLength: " + (pathLength - 1));
+		            calcTargetsHelper(adjCell, pathLength - 1, newVisited);
+		        }
+		    }
+		}
 	
 	/**
 	 * 
@@ -107,7 +112,7 @@ public class TestBoard {
 				if (row > 0) {
 					cell.addAdjacency(board[row-1][col]);
 				}
-				if (row < ROWS -1 ) {
+				if (row < ROWS - 1 ) {
 					cell.addAdjacency(board[row+1][col]);
 				}
 				if (col > 0) {
