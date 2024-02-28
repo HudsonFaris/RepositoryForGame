@@ -30,7 +30,7 @@ public class BoardTestsExp {
         board = new TestBoard(); // Assumes a 4x4 grid
     }
 
-    //@Test
+    @Test
     public void testAdjacency() {
         // Top left corner (0,0)
         TestBoardCell cell = board.getCell(0, 0);
@@ -78,7 +78,7 @@ public class BoardTestsExp {
         board.calcTargets(startCell, 1);
         Set<TestBoardCell> targets = board.getTargets();
         assertEquals(2, targets.size());
-
+    
         // Test with 2 steps from (0,0)
         board.calcTargets(startCell, 2);
         targets = board.getTargets();
