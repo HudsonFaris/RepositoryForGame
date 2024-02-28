@@ -21,8 +21,8 @@ public class TestBoardCell {
 	private int row;
 	private int col;
 	private Set<TestBoardCell> adjList;
-	private boolean isRoom;
-	private boolean isOccupied;
+	private boolean isRoom = false;
+	private boolean isOccupied = false;
 	
 	/**
 	 * 
