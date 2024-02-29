@@ -50,8 +50,7 @@ public class TestBoardCell {
 	
 	public void setRoom(boolean room) {
         isRoom = room;
-        System.out.println(isRoom);
-        
+       
     }
 
     public boolean isRoom() {
@@ -60,7 +59,6 @@ public class TestBoardCell {
 	
 	public void setOccupied(boolean occupied) {
 		isOccupied = occupied;
-		System.out.println(isOccupied);
 	
 	}
 	

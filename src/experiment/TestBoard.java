@@ -1,5 +1,6 @@
 package experiment;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ public class TestBoard {
         targets = new HashSet<>();
         visited = new HashSet<>();
         initBoard();
+        
     }
 
     private void initBoard() {
@@ -50,15 +52,16 @@ public class TestBoard {
         visited.clear();
         visited.add(startCell);
         findAllTargets(startCell, pathLength);
+        
      
     }
 
+    
     private void findAllTargets(TestBoardCell thisCell, int numSteps) {
+    	
         // If only one step left, add the adjacent cells to targets and return
     	
     	 if (numSteps == 0) {
-    		 System.out.println(thisCell.isRoom());
-    		 System.out.println(thisCell.isOccupied());
     	        // Add this cell to targets if it's not the start cell, not occupied, and either a room or a regular cell
     		 if ((thisCell.isRoom() || !thisCell.isOccupied())) {
                  targets.add(thisCell);
