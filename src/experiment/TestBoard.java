@@ -50,16 +50,39 @@ public class TestBoard {
     }
 
     private void findAllTargets(TestBoardCell thisCell, int numSteps) {
-        for (TestBoardCell adjCell : thisCell.getAdjList()) {
-            if (visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) continue;
-            visited.add(adjCell);
-            if (numSteps == 1 || adjCell.isRoom()) {
-                targets.add(adjCell);
-            } else {
-                findAllTargets(adjCell, numSteps - 1);
+        if (numSteps == 1) {
+            // When numSteps is 1, add all valid adjacent cells to targets
+            for (TestBoardCell adjCell : thisCell.getAdjList()) {
+                if (!adjCell.getOccupied() || adjCell.isRoom()) { // Add if not occupied or is a room
+                	 System.out.println("Adding to targets: [" + adjCell.getRow() + "][" + adjCell.getCol() + "]"); // Debug line
+                    targets.add(adjCell);
+                }
             }
-            visited.remove(adjCell);
+         // Debugging output, if needed
+            System.out.println("Current Cell: [" + thisCell.getRow() + "][" + thisCell.getCol() + "]");
+            System.out.print("Adjacent Cells: ");
+            for (TestBoardCell adj : thisCell.getAdjList()) {
+                System.out.print("(" + adj.getRow() + "," + adj.getCol() + ") ");
+            }
+            System.out.println();
+        } else {
+            // For numSteps greater than 1, use the existing logic
+            for (TestBoardCell adjCell : thisCell.getAdjList()) {
+                if (visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) continue;
+
+                visited.add(adjCell);
+                findAllTargets(adjCell, numSteps - 1);
+                visited.remove(adjCell);
+            }
         }
+
+        
+        
+        System.out.print("Current Targets: ");
+        for (TestBoardCell target : targets) {
+            System.out.print("(" + target.getRow() + "," + target.getCol() + ") ");
+        }
+        System.out.println();
     }
 
     public Set<TestBoardCell> getTargets() {
