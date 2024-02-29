@@ -21,8 +21,9 @@ public class TestBoardCell {
 	private int row;
 	private int col;
 	private Set<TestBoardCell> adjList;
-	private boolean isRoom = false;
-	private boolean isOccupied = false;
+	
+	private boolean isRoom;
+	private boolean isOccupied;
 	
 	/**
 	 * 
@@ -48,22 +49,22 @@ public class TestBoardCell {
 	}
 	
 	public void setRoom(boolean room) {
-		//System.out.println("Cell at (" + row + "," + col + ") set as Room: " + room);
         isRoom = room;
+        System.out.println(isRoom);
         
     }
 
     public boolean isRoom() {
-        
-        return isRoom;
+         return isRoom;
     }
 	
 	public void setOccupied(boolean occupied) {
 		isOccupied = occupied;
-		//System.out.println("Cell at (" + row + "," + col + ") set as Occupied: " + occupied);
+		System.out.println(isOccupied);
+	
 	}
 	
-	public boolean getOccupied() {
+	public boolean isOccupied() {
 		return isOccupied; 
 	}
 	
@@ -74,6 +75,7 @@ public class TestBoardCell {
 	public int getCol() {
 		return col;
 	}
+	
 }
 
 
