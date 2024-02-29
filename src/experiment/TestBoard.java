@@ -41,47 +41,35 @@ public class TestBoard {
     public TestBoardCell getCell(int row, int col) {
         return grid[row][col];
     }
-
+    
     public void calcTargets(TestBoardCell startCell, int pathLength) {
-        targets.clear();
-        
+    	
+    	targets.clear(); // Clear targets only at the beginning of the calculation
         visited.clear();
         visited.add(startCell);
         findAllTargets(startCell, pathLength);
     }
 
     private void findAllTargets(TestBoardCell thisCell, int numSteps) {
-        for (TestBoardCell adjCell : thisCell.getAdjList()) {
-            if (visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) continue;
-
-            // Add to visited if not the last step
-            if (numSteps != 1) {
-                visited.add(adjCell);
-            }
-
-            if (numSteps == 1 || adjCell.isRoom()) {
-                // Add to targets only if it's not already in targets
-                if (!targets.contains(adjCell)) {
+        // If only one step left, add the adjacent cells to targets and return
+        if (numSteps == 1) {
+            for (TestBoardCell adjCell : thisCell.getAdjList()) {
+                if (!visited.contains(adjCell)) {
                     targets.add(adjCell);
-
-                    // Debug information
-                    System.out.println("Adding to targets: [" + adjCell.getRow() + "][" + adjCell.getCol() + "]");
                 }
-            } else {
-                findAllTargets(adjCell, numSteps - 1);
             }
-
-            // Remove from visited if this cell was added to visited
-            if (numSteps != 1) {
-                visited.remove(adjCell);
-            }
-    
-        
-        System.out.print("Current Targets: ");
-        for (TestBoardCell target : targets) {
-            System.out.print("(" + target.getRow() + "," + target.getCol() + ") ");
+            return;
         }
-        System.out.println();
+
+        // Recursively search for targets in adjacent cells
+        for (TestBoardCell adjCell : thisCell.getAdjList()) {
+            // Skip if the cell has already been visited
+            if (visited.contains(adjCell)) continue;
+
+            // Add the cell to the visited set and perform the recursive call
+            visited.add(adjCell);
+            findAllTargets(adjCell, numSteps - 1);
+            visited.remove(adjCell); // Remove the cell from visited set after the recursive call
         }
     }
 
