@@ -44,45 +44,45 @@ public class TestBoard {
 
     public void calcTargets(TestBoardCell startCell, int pathLength) {
         targets.clear();
+        
         visited.clear();
         visited.add(startCell);
         findAllTargets(startCell, pathLength);
     }
 
     private void findAllTargets(TestBoardCell thisCell, int numSteps) {
-        if (numSteps == 1) {
-            // When numSteps is 1, add all valid adjacent cells to targets
-            for (TestBoardCell adjCell : thisCell.getAdjList()) {
-                if (!adjCell.getOccupied() || adjCell.isRoom()) { // Add if not occupied or is a room
-                	 System.out.println("Adding to targets: [" + adjCell.getRow() + "][" + adjCell.getCol() + "]"); // Debug line
-                    targets.add(adjCell);
-                }
-            }
-         // Debugging output, if needed
-            System.out.println("Current Cell: [" + thisCell.getRow() + "][" + thisCell.getCol() + "]");
-            System.out.print("Adjacent Cells: ");
-            for (TestBoardCell adj : thisCell.getAdjList()) {
-                System.out.print("(" + adj.getRow() + "," + adj.getCol() + ") ");
-            }
-            System.out.println();
-        } else {
-            // For numSteps greater than 1, use the existing logic
-            for (TestBoardCell adjCell : thisCell.getAdjList()) {
-                if (visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) continue;
+        for (TestBoardCell adjCell : thisCell.getAdjList()) {
+            if (visited.contains(adjCell) || (adjCell.getOccupied() && !adjCell.isRoom())) continue;
 
+            // Add to visited if not the last step
+            if (numSteps != 1) {
                 visited.add(adjCell);
+            }
+
+            if (numSteps == 1 || adjCell.isRoom()) {
+                // Add to targets only if it's not already in targets
+                if (!targets.contains(adjCell)) {
+                    targets.add(adjCell);
+
+                    // Debug information
+                    System.out.println("Adding to targets: [" + adjCell.getRow() + "][" + adjCell.getCol() + "]");
+                }
+            } else {
                 findAllTargets(adjCell, numSteps - 1);
+            }
+
+            // Remove from visited if this cell was added to visited
+            if (numSteps != 1) {
                 visited.remove(adjCell);
             }
-        }
-
-        
+    
         
         System.out.print("Current Targets: ");
         for (TestBoardCell target : targets) {
             System.out.print("(" + target.getRow() + "," + target.getCol() + ") ");
         }
         System.out.println();
+        }
     }
 
     public Set<TestBoardCell> getTargets() {
