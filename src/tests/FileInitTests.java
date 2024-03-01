@@ -1,5 +1,16 @@
 package tests;
 
+/**
+ * FileInitTests Class - This class includes our own tests that follow the prompt guidelines. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/1/2024
+ * 
+ */
+
 import static org.junit.Assert.*;
 
 import java.util.List;

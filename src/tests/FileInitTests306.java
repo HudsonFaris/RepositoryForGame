@@ -1,11 +1,17 @@
+
 package tests;
 
-/*
- * This program tests that config files are loaded properly.
+/**
+ * FileInitTests306 Class - This class uses the given tests to test boards. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/1/2024
+ * 
  */
 
-// Doing a static import allows me to write assertEquals rather than
-// Assert.assertEquals
 import static org.junit.Assert.*;
 
 import org.junit.Assert;

@@ -1,5 +1,17 @@
 package clueGame;
 
+/**
+ * Board Class - This class holds a board constructor and configs for loading files. It has getters/setters
+ * relevant to the board interacting with other things. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/1/2024
+ * 
+ */
+
 import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,6 +31,10 @@ public class Board {
     private Map<Character, Room> roomMap;
     private static Board theInstance = new Board();
 
+    
+    /**
+     * Constructor Singleton Pattern
+     */
     private Board() {
         super();
         grid = new ArrayList<>();
@@ -33,12 +49,14 @@ public class Board {
         return theInstance;
     }
 
+    
+    //Calls intialization. 
     public void initialize() {
         try {
             loadSetupConfig();
             loadLayoutConfig();
         } catch (BadConfigFormatException e) {
-            System.out.println("wtf");
+            System.out.println("Test");
             e.printStackTrace();
         }
     }
@@ -79,6 +97,11 @@ public class Board {
         this.setupConfigFile = setupConfigFile;
     }
 
+    
+    /**
+     * Takes in reader and splits lines. Basically creates the roomMap. 
+     * @throws BadConfigFormatException
+     */
     public void loadSetupConfig() throws BadConfigFormatException {
         // Initialize roomMap or other necessary fields
         try (BufferedReader reader = new BufferedReader(new FileReader(setupConfigFile))) {
@@ -98,6 +121,11 @@ public class Board {
         }
     }
 
+    
+    /**
+     * Handles the layout by splitting and adding each cell to it's appropriate location. 
+     * @throws BadConfigFormatException
+     */
     public void loadLayoutConfig() throws BadConfigFormatException {
         try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))) {
             String line;
@@ -124,6 +152,14 @@ public class Board {
         }
     }
     
+    
+    /**
+     * Creates the boardCell and holds DoorDirections. 
+     * @param row
+     * @param column
+     * @param cellValue
+     * @return
+     */
     private BoardCell createBoardCell(int row, int column, String cellValue) {
         char initial = cellValue.charAt(0);
         DoorDirection doorDirection = DoorDirection.NONE;

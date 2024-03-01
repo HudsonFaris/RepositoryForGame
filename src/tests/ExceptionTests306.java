@@ -1,8 +1,14 @@
 package tests;
 
-/*
- * This program tests that, when loading config files, exceptions 
- * are thrown appropriately.
+/**
+ * ExceptionTests306 Class - This class tests that when loading configs, throws exceptions appropriately. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/1/2024
+ * 
  */
 
 import java.io.FileNotFoundException;

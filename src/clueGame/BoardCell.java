@@ -1,5 +1,17 @@
 package clueGame;
 
+/**
+ * BoardCell Class - This class holds the boardCell constructor and any relevant getters/setters.
+ * It also holds any properties a cell could hold. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/1/2024
+ * 
+ */
+
 import java.util.Set;
 
 
@@ -14,6 +26,15 @@ public class BoardCell {
  	private Set<BoardCell> adjList;
  	private boolean isDoorway;
 
+ 	
+ 	/**
+ 	 * Constructor
+ 	 * @param row
+ 	 * @param column
+ 	 * @param initial
+ 	 * @param doorDirection
+ 	 * @param isDoorway
+ 	 */
  	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway) {
         this.row = row;
         this.column = column;
