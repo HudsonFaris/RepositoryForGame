@@ -1,11 +1,12 @@
 /**
- * TestBoardCell Class - This class holds many tests/getters/setters functions that don't do anything at the moment. 
+ * TestBoardCell Class - Holding many getters/setters for private variables.  This creates cell/room and their aspects
+ * different stages. 
  * 
  * @author Hudson Faris
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 2/24/2024
+ * Date: 2/29/2024
  * 
  */
 
@@ -25,21 +26,23 @@ public class TestBoardCell {
 	private boolean isRoom;
 	private boolean isOccupied;
 	
+	
+	
 	/**
-	 * 
+	 * Creates adjList hashset and constructor for cells. 
 	 * @param row
 	 * @param col
 	 */
-	
 	
 	public TestBoardCell(int row, int col) {
 		this.row = row;
 		this.col = col;
 		this.adjList = new HashSet<>();
 		
-		// just initialization for now
+		
 	}
 	
+	//All getters/setters
 	public void addAdjacency(TestBoardCell cell) {
 		adjList.add(cell);
 	}
@@ -49,7 +52,7 @@ public class TestBoardCell {
 	}
 	
 	public void setRoom(boolean room) {
-        isRoom = room;
+        isRoom= room;
        
     }
 

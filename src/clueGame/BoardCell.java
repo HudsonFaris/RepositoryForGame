@@ -43,4 +43,17 @@ public class BoardCell {
     public char getInitial() {
         return initial;
     }
+    
+    public boolean isRoomCenter() {
+    	return false;
+    }
+    
+    public boolean isLabel() {
+    	return false;
+    }
+    
+    public char getSecretPassage() {
+    	return secretPassage;
+    }
+    
 }

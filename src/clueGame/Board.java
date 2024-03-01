@@ -60,7 +60,7 @@ public class Board {
 
     // Method to get a room by initial
     public Room getRoom(char initial) {
-        return roomMap.get(initial);
+        return new Room("");
     }
     
 
@@ -153,6 +153,16 @@ public class Board {
 
         return new BoardCell(row, column, initial, doorDirection, isDoorway);
     }
+    
+    public BoardCell getCell(int numRows, int numCols) {
+    	return new BoardCell(50, 50);
+    }
+    
+    public Room getRoom(BoardCell cell) {
+    	return new Room("");
+    }
+    
+   
 
 }
 

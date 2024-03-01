@@ -1,58 +1,125 @@
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C13A-2, dated 2/24/2024.
-I, Sam Bangapadang, certify that I participated equitably in the creation of this assignment C13A-2, dated 2/24/2024.
+commit a0eded429d39c4106036cd1c99db9e7c302cedee
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 29 14:53:45 2024 -0700
 
+    Added all classes for package clueGame and coded skeleton without tests. Current tests run without error
 
+commit 48999a6e915718077d24c466a237ceb114fa09e7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 29 12:54:32 2024 -0700
 
-commit f622645
+    Changed tests so they are possible for mixed
+
+commit 35dfd742441fafea818f44c7fd840961713f5dc7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 21:14:58 2024 -0700
+
+    Changed test on normal (possibly correct) and working on final test
+
+commit 4dc656bcbbda5bd0fccdfb4bbc47c903e2d9a773
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 20:23:18 2024 -0700
+
+    Reverted test changes for debugging
+
+commit ce321c57c4edfda2a9147bcb0c1242a7b6a6808b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 20:15:26 2024 -0700
+
+    Reverted changes, back to basic, still issue
+
+commit 1443bb641be156d89333e4ee95cbe9adb0f1d61b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 18:15:31 2024 -0700
+
+    More debugging, issue highlighted of deleteing targets for some reason
+
+commit 548280e9f95aa120b36bf8504fdac6aafa1c1778
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 17:12:07 2024 -0700
+
+    Debugging for Normal Tests
+
+commit 622df928c529eac486988f39407ec8d8e6788ace
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 15:34:41 2024 -0700
+
+    Restructured Code (fixed issue with occupied)
+
+commit 486f5b118f04b5490ed4cb41d8337c82449d7a61
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 13:05:03 2024 -0700
+
+    Added comments to clarify new code
+
+commit fe84e97149dc3f3231c4e99244d782156d5b0a30
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 21:16:53 2024 -0700
+
+    Small checks for testTargetsNormal
+
+commit 3f96f0fa12fdab3e90e7d209e04d2f7911cc0475
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 20:38:14 2024 -0700
+
+    Changed MAX_SIZE to COLS=4 and ROWS=4 which fixed fails
+    in both testTargetOccupied() and testTargetsRoom()
+
+commit 67c40e4adcdcf114628e28f5df2e8b0c95f2feb9
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 15:32:14 2024 -0700
+
+    Trying mixed targets/w room. Current error on address of true being assigned in different areas
+
+commit f339e457cb18f6f111bed03c99ca71bd51eae705
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 14:57:11 2024 -0700
+
+    Made testTargetsOccupied() work, included adjacency list function and added proper function to calcTargets
+
+commit f4b06fd9d79206fc98f2a8218a47662147106a61
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:21:36 2024 -0700
+
+    Added gitlog to project
+
+commit f622645d73087dd872485a5825cd4f822138ace7
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
 Date:   Sat Feb 24 23:14:47 2024 -0700
 
     Added readme to project
 
-commit 9f8a635
+commit 9f8a63571e3221c4551c3c1cb4006512c765f59f
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
 Date:   Sat Feb 24 23:08:59 2024 -0700
 
     Added final comments/headers for classes
 
-commit 84119b2
+commit 84119b25a16b4a0195e213c6aa16f295b2f5f4ea
 Author: sbangapadang22 <sbangapadang@mines.edu>
 Date:   Sat Feb 24 17:45:35 2024 -0700
 
     finished tests
 
-commit 068f2e6
+commit 068f2e65e80c5222dd49021e5b872f01cbe7e1d4
 Author: sbangapadang22 <sbangapadang@mines.edu>
 Date:   Sat Feb 24 16:59:26 2024 -0700
 
     errors really fixed now, adding tests
 
-commit 4d9a523
+commit 4d9a523cc8ab77b9560444cc550a54ca4fb93511
 Author: sbangapadang22 <sbangapadang@mines.edu>
 Date:   Sat Feb 24 16:28:18 2024 -0700
 
     fixed errors, adding tests
 
-
-commit 838cna0
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 22 24:22:18 2024 -0700
-	
-    Added supporting classes with empty functions
-
-commit ac7146u
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 22 23:49:01 2024 -0700
-	
-    Added Tests class with initial tests
-
-commit abf1c3e
+commit abf1c3ed2107fab8f9568d1ed8ac65e8a2550e9c
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
 Date:   Thu Feb 22 19:51:53 2024 -0700
 
     Changed JUnit Location to be included with path
 
-commit d951fb1
+commit d951fb18ff0ab0374ebc1618d6ceb5fe4edc52cc
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
 Date:   Thu Feb 22 16:00:58 2024 -0700
 
