@@ -4,8 +4,4 @@
 .settings/
 .metadata
 bin/
-/.gitignore
-/clueGame/
-/experiment/
-/readme.txt
-/tests/
+/Tests.txt
