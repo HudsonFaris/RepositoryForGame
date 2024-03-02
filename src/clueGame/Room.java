@@ -29,16 +29,14 @@ public class Room {
         
     }
     
-    
-    
-
 
 
  // Getters and Setters for centerCell and labelCell
     public BoardCell getCenterCell() {
         return centerCell;
     }
-
+    
+    
     public void setCenterCell(BoardCell centerCell) {
         this.centerCell = centerCell;
     }

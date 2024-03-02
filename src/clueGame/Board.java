@@ -157,6 +157,25 @@ public class Board {
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
+        
+        for (List<BoardCell> row : grid) {
+        	for (BoardCell cell : row) {
+        		if (cell.isCenterCell()) {
+        			Room room = roomMap.get(cell.getInitial());
+        			if (room != null) {
+        				room.setCenterCell(cell);
+        			}
+        		}
+        		if (cell.isLabelCell()) {
+        			Room room = roomMap.get(cell.getInitial());
+        			if (room != null) {
+        				room.setLabelCell(cell);
+        			}
+        		}
+        	}
+        }
+        
+        
     }
     
     
@@ -169,6 +188,8 @@ public class Board {
      */
     private BoardCell createBoardCell(int row, int column, String cellValue) {
         char initial = cellValue.charAt(0);
+        boolean isCenterCell = cellValue.length() > 1 && cellValue.charAt(1) == '*';
+        boolean isLabelCell = cellValue.length() > 1 && cellValue.charAt(1) == '#';
         DoorDirection doorDirection = DoorDirection.NONE;
         boolean isDoorway = false;
         cellValue = cellValue.trim();
@@ -196,8 +217,9 @@ public class Board {
             }
         }
 
-        return new BoardCell(row, column, initial, doorDirection, isDoorway);
+        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell);
     }
+    
     
     public BoardCell getCell(int numRows, int numCols) {
     	return grid.get(numRows).get(numCols);
@@ -206,6 +228,7 @@ public class Board {
     public Room getRoom(BoardCell cell) {
     	return new Room("");
     }
+    
     
    
 

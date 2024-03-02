@@ -65,7 +65,7 @@ public class FileInitTests {
         assertFalse("Cell at (0,0) should not be a doorway.", board.getCellAt(0, 0).isDoorway());
     }
 
-    //@Test
+    @Test
     public void testCorrectNumberOfDoorsLoaded() {
         int expectedDoors = 19; // This should be the actual number of doors in your ClueLayout.csv
         int actualDoors = countDoorsInGrid();
@@ -89,14 +89,17 @@ public class FileInitTests {
         assertEquals("Cell initial at (0,0) should match.", 'S', board.getCellAt(0, 0).getInitial());
         // Test other cells as needed
     }
-
+    
+    
     @Test
     public void testRoomCentersAndLabels() {
-        Room Lobby = board.getRoom('L'); // Assuming 'K' is the initial for Kitchen
+        Room Lobby = board.getRoom('L'); // Assuming 'L' is the initial for Lobby
+        
         assertNotNull("Lobby should have a center cell.", Lobby.getCenterCell());
         assertNotNull("Lobby should have a label cell.", Lobby.getLabelCell());
     }
 
+	
     
     
 }

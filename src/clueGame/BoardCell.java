@@ -25,6 +25,8 @@ public class BoardCell {
  	private char secretPassage;
  	private Set<BoardCell> adjList;
  	private boolean isDoorway;
+ 	private boolean isCenterCell;
+ 	private boolean isLabelCell;
 
  	
  	/**
@@ -37,15 +39,26 @@ public class BoardCell {
  	 */
  	
  	
- 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway) {
+ 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell) {
         this.row = row;
         this.column = column;
         this.initial = initial;
         this.doorDirection = doorDirection;
         this.isDoorway = isDoorway;
+        this.isCenterCell = isCenterCell;
+        this.isLabelCell = isLabelCell;
+
         
     }
  	
+ 	
+ 	public boolean isCenterCell() {
+        return this.isCenterCell;
+    }
+ 	
+ 	public boolean isLabelCell() {
+ 		return this.isLabelCell;
+ 	}
  	
  	public void addAdj(BoardCell adj) {
  		adjList.add(adj);
@@ -55,6 +68,7 @@ public class BoardCell {
         this.row = row;
         this.column = column;
     }
+ 	
 
  	public boolean isDoorway() {
         return isDoorway;
