@@ -50,6 +50,8 @@ public class Room {
     }
     
     public String getName() {
+    	System.out.println("test");
+    	System.out.println(name);
     	return name;
     }
     

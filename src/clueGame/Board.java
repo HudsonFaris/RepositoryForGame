@@ -77,6 +77,8 @@ public class Board {
         return roomMap;
     }
 
+    
+    
     // Method to get a room by initial
     public Room getRoom(char initial) {
         return roomMap.get(initial);
@@ -110,18 +112,20 @@ public class Board {
         try (BufferedReader reader = new BufferedReader(new FileReader(setupConfigFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Assuming the format is: "Room, Kitchen, K"
                 String[] tokens = line.split(", ");
-                if (tokens[0].equals("Room")) {
+                if (tokens.length >= 3) { // Make sure there are at least 3 tokens
                     char key = tokens[2].charAt(0);
-                    roomMap.put(key, new Room(tokens[1]));
-                } else {
-                    // Handle other types of lines or throw an exception if the format is unrecognized
+                    if (tokens[0].equals("Room") || tokens[0].equals("Space")) {
+                        roomMap.put(key, new Room(tokens[1]));
+                    } else {
+                        // Handle other types of lines or throw an exception if the format is unrecognized
+                    }
                 }
             }
         } catch (IOException e) {
-            throw new BadConfigFormatException("Cannot read setup config file");
+            throw new BadConfigFormatException("Cannot read setup config file: " + e.getMessage());
         }
+        
     }
 
     
@@ -149,7 +153,6 @@ public class Board {
                 }
                 grid.add(boardRow);
                 row++;
-     
             }
             
             this.row = row;
