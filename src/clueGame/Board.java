@@ -13,6 +13,7 @@ package clueGame;
  */
 
 import java.util.Map;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,8 +25,8 @@ import java.util.Map;
 
 public class Board {
 	private List<List<BoardCell>> grid;
-    private int numRows;
-    private int numColumns;
+    private int row;
+    private int column;
     private String layoutConfigFile;
     private String setupConfigFile;
     private Map<Character, Room> roomMap;
@@ -78,17 +79,19 @@ public class Board {
 
     // Method to get a room by initial
     public Room getRoom(char initial) {
-        return new Room("");
+        return roomMap.get(initial);
     }
     
 
     // Method to get the number of rows
     public int getNumRows() {
-        return grid.size();
+    	return row;
+        
     }
 
     public int getNumColumns() {
         // Assumes that the grid is not jagged and all rows have the same number of columns
+    	//System.out.println(grid.isEmpty() ? 0 : grid.get(0).size());
         return grid.isEmpty() ? 0 : grid.get(0).size();
     }
     
@@ -146,7 +149,11 @@ public class Board {
                 }
                 grid.add(boardRow);
                 row++;
+     
             }
+            
+            this.row = row;
+   
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
@@ -164,21 +171,23 @@ public class Board {
         char initial = cellValue.charAt(0);
         DoorDirection doorDirection = DoorDirection.NONE;
         boolean isDoorway = false;
+        cellValue = cellValue.trim();
 
         if (cellValue.length() > 1) {
+      
             // This assumes the second character indicates the door direction
             isDoorway = true;
             switch (cellValue.charAt(1)) {
-                case 'U':
+                case '^':
                     doorDirection = DoorDirection.UP;
                     break;
-                case 'D':
+                case 'v':
                     doorDirection = DoorDirection.DOWN;
                     break;
-                case 'L':
+                case '<':
                     doorDirection = DoorDirection.LEFT;
                     break;
-                case 'R':
+                case '>':
                     doorDirection = DoorDirection.RIGHT;
                     break;
                 default:
@@ -191,7 +200,7 @@ public class Board {
     }
     
     public BoardCell getCell(int numRows, int numCols) {
-    	return new BoardCell(50, 50);
+    	return grid.get(numRows).get(numCols);
     }
     
     public Room getRoom(BoardCell cell) {

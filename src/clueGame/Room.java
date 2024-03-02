@@ -1,4 +1,5 @@
 package clueGame;
+import java.util.List;
 
 /**
  * Room Class - This class holds the constructor for a room and any getters/setters that are relevant for a room.
@@ -15,6 +16,8 @@ public class Room {
     private String name;
     private BoardCell centerCell;
     private BoardCell labelCell;
+
+    
     
     
     /**
@@ -26,6 +29,11 @@ public class Room {
         
     }
     
+    
+    
+
+
+
  // Getters and Setters for centerCell and labelCell
     public BoardCell getCenterCell() {
         return centerCell;

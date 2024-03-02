@@ -35,13 +35,17 @@ public class BoardCell {
  	 * @param doorDirection
  	 * @param isDoorway
  	 */
+ 	
+ 	
  	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway) {
         this.row = row;
         this.column = column;
         this.initial = initial;
         this.doorDirection = doorDirection;
         this.isDoorway = isDoorway;
+        
     }
+ 	
  	
  	public void addAdj(BoardCell adj) {
  		adjList.add(adj);
@@ -66,15 +70,17 @@ public class BoardCell {
     }
     
     public boolean isRoomCenter() {
-    	return false;
+    	return roomCenter;
     }
     
     public boolean isLabel() {
-    	return false;
+    	return roomLabel;
     }
     
     public char getSecretPassage() {
     	return secretPassage;
     }
+    
+    
     
 }

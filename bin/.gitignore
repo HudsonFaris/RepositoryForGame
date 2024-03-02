@@ -4,4 +4,5 @@
 .settings/
 .metadata
 bin/
-/Tests.txt
+/tests/
+/clueGame/

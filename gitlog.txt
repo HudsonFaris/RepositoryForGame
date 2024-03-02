@@ -1,3 +1,7 @@
+Hudson Faris, certify that I participated equitably in the creation of assignment C14A-2, dated 3/1/2024.
+Sam Bangapadang, certify that I participated equitably in the creation of assignment C14A-2, dated 3/1/2024.
+
+
 commit 2d1e6ba04994b4ae31621de8b1bfbf0297726e2d
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
 Date:   Fri Mar 1 14:36:02 2024 -0700
