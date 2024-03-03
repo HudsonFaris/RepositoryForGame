@@ -84,11 +84,11 @@ public class BoardCell {
     }
     
     public boolean isRoomCenter() {
-    	return roomCenter;
+    	return isCenterCell;
     }
     
     public boolean isLabel() {
-    	return roomLabel;
+    	return isLabelCell;
     }
     
     public char getSecretPassage() {

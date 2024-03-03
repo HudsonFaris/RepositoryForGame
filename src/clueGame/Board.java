@@ -214,6 +214,10 @@ public class Board {
                 case '>':
                     doorDirection = DoorDirection.RIGHT;
                     break;
+                case '#':
+                	isLabelCell = true;
+                	isDoorway = false;
+                	break;
                 default:
                     isDoorway = false; // Invalid direction, not a doorway
                     break;
@@ -229,7 +233,11 @@ public class Board {
     }
     
     public Room getRoom(BoardCell cell) {
-    	return new Room("");
+        if (cell == null) {
+            return null;
+        }
+        char initial = cell.getInitial();
+        return roomMap.get(initial);
     }
     
     
