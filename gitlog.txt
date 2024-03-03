@@ -1,6 +1,59 @@
-Hudson Faris, certify that I participated equitably in the creation of assignment C14A-2, dated 3/1/2024.
-Sam Bangapadang, certify that I participated equitably in the creation of assignment C14A-2, dated 3/1/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
 
+commit 3deed558dc059f8a0f39a1e31698cd43b7297f35
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:26:51 2024 -0700
+
+    Updated comments and refactored code
+
+commit 9ab66ce5e85a467271d637c1707490663c684eae
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:19:39 2024 -0700
+
+    Added own file for txt
+
+commit f97cee993f87267b8d2e896ea61e5fea7c8d7603
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 19:59:22 2024 -0700
+
+    Fixed last test (i think... it works so who cares)
+
+commit 88e7fc03093b4e905e6474bdd422c08926248c36
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 18:03:20 2024 -0700
+
+    All tests work besides one, the last one is something small and should be easy I'll just do it later
+
+commit ce51f8126e4ba85c67aaf93f9400797479dc8b19
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 17:50:48 2024 -0700
+
+    80% with final test
+
+commit f22dd8c26c62c4769d48df22b839d65ee50abeec
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 16:48:02 2024 -0700
+
+    4/5 Tests pass on given tests
+
+commit a725bd886d6f3e5921078dddf7247bf06a4d70ce
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 15:43:52 2024 -0700
+
+    All unique tests work except CorrectNumberOfDoors (later)
+
+commit 901322d8e22c7c08313d480d081ef4dcbf996673
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 15:07:18 2024 -0700
+
+    Passed 4/6 tests for FileInitTests
+
+commit a8976c764fc31235369a7e2cb28c9e9651dd13d8
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:36:59 2024 -0700
+
+    Updated gitlog
 
 commit 2d1e6ba04994b4ae31621de8b1bfbf0297726e2d
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
