@@ -1,0 +1,10 @@
+We tried to make it so we could test for configuration loading heavily.
+Especially in the case of exceptions. 
+We wanted things to be variable for the case of the door count, so we included different examples of that too.
+We also implemented certain rooms because they would be tricky to implement
+on different csv layouts.
+
+We chose the kitchen for extensive testing because
+the kitchen is what drives the house in any situation. 
+
+We chose cell (0, 0) beacuse it's quite simple and easy to check things for. 

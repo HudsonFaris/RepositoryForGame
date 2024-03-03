@@ -1,0 +1,14 @@
+
+// Rooms and room cards
+Room, Supper Room, S
+Room, Break Room, B
+Room, Lobby, L
+Room, Mailroom, M
+Room, Garden, G
+Room, Jockey Room, J
+Room, Pantry, P
+Room, Hidden Compartment, H
+Room, Auditorium, A
+// other spaces on board
+Space, Unused, X
+Space, Walkway, W
