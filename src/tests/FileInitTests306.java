@@ -15,6 +15,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,12 @@ public class FileInitTests306 {
 	// time (using @BeforeAll), no need to do setup before each test.
 	private static Board board;
 
+	
+	@AfterAll
+    public static void tearDown() {
+        board.reset();
+    }
+	
 	@BeforeAll
 	public static void setUp() {
 		// Board is singleton, get the only instance

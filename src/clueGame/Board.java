@@ -32,7 +32,13 @@ public class Board {
     private Map<Character, Room> roomMap;
     private static Board theInstance = new Board();
 
-    
+    public void reset() {
+        grid.clear(); // Clear the existing grid
+        roomMap.clear(); // Clear the existing rooms
+     
+        this.row = 0;
+        this.column = 0;
+    }
     /**
      * Constructor Singleton Pattern
      */

@@ -40,6 +40,8 @@ public class BoardCell {
  	 * @param isLabelCell
  	 * @param secretPassage
  	 */
+ 	
+ 	
  	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage) {
         this.row = row;
         this.column = column;

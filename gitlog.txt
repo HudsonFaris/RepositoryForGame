@@ -1,5 +1,13 @@
+
 I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
 I, Hudson Faris, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
+
+
+commit 4de5e18300a6b63ba92f5d827f59bda00851f974
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:32:59 2024 -0700
+
+    Added gitrefactor.txt
 
 commit 3deed558dc059f8a0f39a1e31698cd43b7297f35
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>

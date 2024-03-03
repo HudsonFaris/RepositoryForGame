@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +30,10 @@ public class FileInitTests {
     private static final String SETUP_FILE = "Data/ClueSetup.txt";
     private static Board board;
 
+    @AfterAll
+    public static void tearDown() {
+        board.reset();
+    }
     
     @BeforeEach
     public void setUp() {
@@ -68,21 +73,18 @@ public class FileInitTests {
     @Test
     public void testCorrectNumberOfDoorsLoaded() {
         int expectedDoors = 19; // This should be the actual number of doors in your ClueLayout.csv
-        int actualDoors = countDoorsInGrid();
-        assertEquals("Incorrect number of doors loaded.", expectedDoors, actualDoors);
+        int numDoors = 0;
+		for (int row = 0; row < board.getNumRows(); row++)
+			for (int col = 0; col < board.getNumColumns(); col++) {
+				BoardCell cell = board.getCell(row, col);
+				if (cell.isDoorway())
+					numDoors++;
+			
+			}
+        assertEquals("Incorrect number of doors loaded.", expectedDoors, numDoors);
     }
     
-    private int countDoorsInGrid() {
-        int doorCount = 0;
-        for(List<BoardCell> row : board.getGrid()) {
-            for(BoardCell cell : row) {
-                if(cell.isDoorway()) {
-                    doorCount++;
-                }
-            }
-        }
-        return (doorCount/3); //Loops 3 times, easy fix for that. 
-    }
+    
 
     @Test
     public void testCellInitials() {
