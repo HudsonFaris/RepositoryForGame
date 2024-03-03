@@ -13,14 +13,19 @@ package clueGame;
  */
 
 import java.util.Map;
+import java.util.Set;
+
+import experiment.TestBoardCell;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
 
 
 public class Board {
@@ -29,6 +34,8 @@ public class Board {
     private int column;
     private String layoutConfigFile;
     private String setupConfigFile;
+    private Set<BoardCell> targets;
+    private Set<BoardCell> visited;
     private Map<Character, Room> roomMap;
     private static Board theInstance = new Board();
 
@@ -46,7 +53,11 @@ public class Board {
         super();
         grid = new ArrayList<>();
         roomMap = new HashMap<>();
+        targets = new HashSet<>();
+        visited = new HashSet<>();
     }
+    
+        
     
     public void setLayoutConfigFile(String layoutConfigFile) {
         this.layoutConfigFile = layoutConfigFile;
@@ -55,7 +66,7 @@ public class Board {
     public static Board getInstance() {
         return theInstance;
     }
-
+    
     
     //Calls intialization. 
     public void initialize() {
@@ -162,7 +173,7 @@ public class Board {
             }
             
             this.row = row;
-   
+         
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
@@ -185,7 +196,7 @@ public class Board {
         		}
         	}
         }
-        
+        calculateAdj();
         
     }
     
@@ -252,6 +263,52 @@ public class Board {
         return roomMap.get(initial);
     }
     
+    public void calcTargets(BoardCell startCell, int pathLength) {
+        targets.clear();
+        visited.clear();
+        visited.add(startCell);
+        findAllTargets(startCell, pathLength);
+    }
+
+    private void calculateAdj() {
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumColumns(); col++) {
+                BoardCell cell = getCellAt(row, col);
+                // Check if the cell is not null before proceeding
+                if (cell != null) {
+
+                    // Add adjacent cells, checking bounds
+                    if (row > 0) cell.addAdj(getCellAt(row - 1, col));
+                    if (row < getNumRows() - 1) cell.addAdj(getCellAt(row + 1, col));
+                    if (col > 0) cell.addAdj(getCellAt(row, col - 1));
+                    if (col < getNumColumns() - 1) cell.addAdj(getCellAt(row, col + 1));
+                }
+            }
+        }
+    }
+    
+   
+    
+    // Recursive method to find all targets
+    private void findAllTargets(BoardCell thisCell, int numSteps) {
+        if (numSteps == 0) {
+            targets.add(thisCell);
+            return;
+        }
+
+        for (BoardCell adjCell : thisCell.getAdjList()) { //Not implemented
+            if (visited.contains(adjCell)) continue;
+
+            visited.add(adjCell);
+            findAllTargets(adjCell, numSteps - 1);
+            visited.remove(adjCell);
+        }
+    }
+
+    public Set<BoardCell> getTargets() {
+        return targets;
+    }
+
     
    
 

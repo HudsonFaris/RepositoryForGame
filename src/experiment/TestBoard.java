@@ -88,7 +88,9 @@ public class TestBoard {
         
      
     }
-
+    
+    
+    
     //Function to clean up method, finds targets. 
     private void findAllTargets(TestBoardCell thisCell, int numSteps) {
     	
