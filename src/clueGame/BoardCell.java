@@ -39,7 +39,7 @@ public class BoardCell {
  	 */
  	
  	
- 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell) {
+ 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage) {
         this.row = row;
         this.column = column;
         this.initial = initial;
@@ -47,6 +47,7 @@ public class BoardCell {
         this.isDoorway = isDoorway;
         this.isCenterCell = isCenterCell;
         this.isLabelCell = isLabelCell;
+        this.secretPassage = secretPassage;
 
         
     }
@@ -92,6 +93,7 @@ public class BoardCell {
     }
     
     public char getSecretPassage() {
+    	System.out.println(secretPassage);
     	return secretPassage;
     }
     

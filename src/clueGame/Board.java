@@ -191,6 +191,8 @@ public class Board {
      */
     private BoardCell createBoardCell(int row, int column, String cellValue) {
         char initial = cellValue.charAt(0);
+        char secretPassage = '\0';
+        
         boolean isCenterCell = cellValue.length() > 1 && cellValue.charAt(1) == '*';
         boolean isLabelCell = cellValue.length() > 1 && cellValue.charAt(1) == '#';
         DoorDirection doorDirection = DoorDirection.NONE;
@@ -198,7 +200,10 @@ public class Board {
         cellValue = cellValue.trim();
 
         if (cellValue.length() > 1) {
-      
+        	char secondChar = cellValue.charAt(1);
+        	if (Character.isLetter(secondChar)) {
+                secretPassage = secondChar;
+        	}
             // This assumes the second character indicates the door direction
             isDoorway = true;
             switch (cellValue.charAt(1)) {
@@ -224,7 +229,7 @@ public class Board {
             }
         }
 
-        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell);
+        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage);
     }
     
     
@@ -244,5 +249,3 @@ public class Board {
    
 
 }
-
-

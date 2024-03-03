@@ -44,7 +44,7 @@ public class FileInitTests306 {
 	}
 	
 
-	//@Test
+	@Test
 	public void testRoomLabels() {
 		// To ensure data is correctly loaded, test retrieving a few rooms
 		// from the hash, including the first and last in the file and a few others
@@ -57,7 +57,7 @@ public class FileInitTests306 {
 
 	
 
-	//@Test
+	@Test
 	public void testBoardDimensions() {
 		// Ensure we have the proper number of rows and columns
 		assertEquals(NUM_ROWS, board.getNumRows());
@@ -68,7 +68,7 @@ public class FileInitTests306 {
 	// two cells that are not a doorway.
 	// These cells are white on the planning spreadsheet
 	
-	//@Test
+	@Test
 	public void FourDoorDirections() {
 		BoardCell cell = board.getCell(8, 7);
 		assertTrue(cell.isDoorway());
@@ -89,7 +89,7 @@ public class FileInitTests306 {
 	
 
 	// Test that we have the correct number of doors
-	//@Test
+	@Test
 	public void testNumberOfDoorways() {
 		int numDoors = 0;
 		for (int row = 0; row < board.getNumRows(); row++)
@@ -104,7 +104,7 @@ public class FileInitTests306 {
 	// Test a few room cells to ensure the room initial is correct.
 	@Test
 	public void testRooms() {
-		/*
+		
 		// just test a standard room location
 		BoardCell cell = board.getCell( 23, 23);
 		Room room = board.getRoom( cell ) ;
@@ -113,10 +113,10 @@ public class FileInitTests306 {
 		assertFalse( cell.isLabel() );
 		assertFalse( cell.isRoomCenter() ) ;
 		assertFalse( cell.isDoorway()) ;
-		*/
+		
 		// this is a label cell to test
-		BoardCell cell = board.getCell(2, 19);
-		Room room = board.getRoom( cell ) ;
+		cell = board.getCell(2, 19);
+		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Lounge" ) ;
 		assertTrue( cell.isLabel() );
