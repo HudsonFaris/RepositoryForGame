@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/1/2024
+ * Date: 3/3/2024
  * 
  */
 
@@ -20,8 +20,6 @@ public class BoardCell {
 	private int column;
 	private char initial;
  	private DoorDirection doorDirection;
- 	private boolean roomLabel;
- 	private boolean roomCenter;
  	private char secretPassage;
  	private Set<BoardCell> adjList;
  	private boolean isDoorway;
@@ -29,16 +27,19 @@ public class BoardCell {
  	private boolean isLabelCell;
 
  	
+ 	
+ 	
  	/**
- 	 * Constructor
+ 	 * Constructor for each cell. 
  	 * @param row
  	 * @param column
  	 * @param initial
  	 * @param doorDirection
  	 * @param isDoorway
+ 	 * @param isCenterCell
+ 	 * @param isLabelCell
+ 	 * @param secretPassage
  	 */
- 	
- 	
  	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage) {
         this.row = row;
         this.column = column;

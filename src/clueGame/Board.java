@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/1/2024
+ * Date: 3/3/2024
  * 
  */
 
@@ -160,7 +160,9 @@ public class Board {
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
-        
+        /*
+         * Added loops to check for initial to set center and label. Not previously made. 
+         */
         for (List<BoardCell> row : grid) {
         	for (BoardCell cell : row) {
         		if (cell.isCenterCell()) {
@@ -220,10 +222,6 @@ public class Board {
                 case '>':
                     doorDirection = DoorDirection.RIGHT;
                     break;
-                case '#':
-                	isLabelCell = true;
-                	isDoorway = false;
-                	break;
                 default:
                     isDoorway = false; // Invalid direction, not a doorway
                     break;
@@ -233,11 +231,13 @@ public class Board {
         return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage);
     }
     
-    
+    //Other get cell for updated test methods
     public BoardCell getCell(int numRows, int numCols) {
     	return grid.get(numRows).get(numCols);
     }
     
+    
+    //Gets initial and uses map to get room
     public Room getRoom(BoardCell cell) {
         if (cell == null) {
             return null;

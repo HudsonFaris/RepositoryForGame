@@ -7,7 +7,7 @@ package tests;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/1/2024
+ * Date: 3/3/2024
  * 
  */
 
@@ -71,7 +71,7 @@ public class FileInitTests {
         int actualDoors = countDoorsInGrid();
         assertEquals("Incorrect number of doors loaded.", expectedDoors, actualDoors);
     }
-
+    
     private int countDoorsInGrid() {
         int doorCount = 0;
         for(List<BoardCell> row : board.getGrid()) {
@@ -81,7 +81,7 @@ public class FileInitTests {
                 }
             }
         }
-        return (doorCount/3);
+        return (doorCount/3); //Loops 3 times, easy fix for that. 
     }
 
     @Test
