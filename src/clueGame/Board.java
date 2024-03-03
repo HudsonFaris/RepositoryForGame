@@ -198,12 +198,13 @@ public class Board {
         DoorDirection doorDirection = DoorDirection.NONE;
         boolean isDoorway = false;
         cellValue = cellValue.trim();
-
+        
         if (cellValue.length() > 1) {
         	char secondChar = cellValue.charAt(1);
         	if (Character.isLetter(secondChar)) {
                 secretPassage = secondChar;
         	}
+        	
             // This assumes the second character indicates the door direction
             isDoorway = true;
             switch (cellValue.charAt(1)) {

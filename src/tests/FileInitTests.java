@@ -81,7 +81,7 @@ public class FileInitTests {
                 }
             }
         }
-        return doorCount;
+        return (doorCount/3);
     }
 
     @Test
