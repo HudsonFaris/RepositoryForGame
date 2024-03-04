@@ -199,7 +199,7 @@ public class Board {
         		}
         	}
         }
-        calculateAdj();
+        calculateAdj(); //Calculate adjacencies
         
     }
     
@@ -220,6 +220,11 @@ public class Board {
         DoorDirection doorDirection = DoorDirection.NONE;
         boolean isDoorway = false;
         cellValue = cellValue.trim();
+        boolean isRoom = false;
+        
+        if (cellValue.charAt(0) != 'W' || cellValue.charAt(0) != 'X') {
+        	isRoom = true;
+        }
         
         if (cellValue.length() > 1) {
         	char secondChar = cellValue.charAt(1);
@@ -248,7 +253,7 @@ public class Board {
             }
         }
 
-        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage);
+        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom);
     }
     
     //Other get cell for updated test methods
@@ -273,12 +278,22 @@ public class Board {
         findAllTargets(startCell, pathLength);
     }
 
+    
+    /**
+     * Calculates adjacent targets for path == 0. Acts as helper function to method above. 
+     */
     private void calculateAdj() {
         for (int row = 0; row < getNumRows(); row++) {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardCell cell = getCellAt(row, col);
                 // Check if the cell is not null before proceeding
                 if (cell != null) {
+                	
+                	//if (cell.isRoomCenter()) {
+                      //  if (cell.getDoorDirection() == DoorDirection.DOWN && (row+1) ==  {
+                        	
+                    //    }
+                    //}
 
                     // Add adjacent cells, checking bounds
                     if (row > 0) cell.addAdj(getCellAt(row - 1, col));
@@ -289,6 +304,29 @@ public class Board {
             }
         }
     }
+    
+    /**
+    private void findDoorwaysIntoRoom(BoardCell roomCenter, int roomRow, int roomCol) {
+        // Check all cells to see if they are doorways that lead into this room
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumColumns(); col++) {
+                BoardCell cell = getCellAt(row, col);
+                if (cell.isDoorway()) {
+                	System.out.println(cell);
+                    // Check if the door direction points to the room center
+                    if ((cell.getDoorDirection() == DoorDirection.DOWN) ||
+                        (cell.getDoorDirection() == DoorDirection.UP && roomRow == row + 1 && roomCol == col) ||
+                        (cell.getDoorDirection() == DoorDirection.RIGHT && roomRow == row && roomCol == col - 1) ||
+                        (cell.getDoorDirection() == DoorDirection.LEFT && roomRow == row && roomCol == col + 1)) {
+                        roomCenter.addAdj(cell); // Add the doorway as an adjacency to the room center
+                        System.out.println(cell);
+                    }
+                }
+            }
+        }
+    }
+    
+    **/
     
    
     
@@ -312,6 +350,13 @@ public class Board {
         return targets;
     }
     
+    
+    /**
+     * Returns set of adjList. 
+     * @param row
+     * @param col
+     * @return
+     */
     public Set<BoardCell> getAdjList(int row, int col) {
         // Retrieve the cell at the specified row and column
         BoardCell cell = getCellAt(row, col);
@@ -324,5 +369,7 @@ public class Board {
             return new HashSet<>();
         }
     }
+    
+    
 
 }
