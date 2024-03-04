@@ -26,8 +26,8 @@ import clueGame.Room;
 
 public class FileInitTests {
     // Assuming these are the paths to your test configuration files
-	private static final String LAYOUT_FILE = "Data/ClueLayout.csv";
-    private static final String SETUP_FILE = "Data/ClueSetup.txt";
+	private static final String LAYOUT_FILE = "ClueLayout.csv";
+    private static final String SETUP_FILE = "ClueSetup.txt";
     private static Board board;
 
     @AfterAll
