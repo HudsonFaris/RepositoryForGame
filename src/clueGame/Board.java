@@ -308,8 +308,18 @@ public class Board {
     public Set<BoardCell> getTargets() {
         return targets;
     }
-
     
-   
+    public Set<BoardCell> getAdjList(int row, int col) {
+        // Retrieve the cell at the specified row and column
+        BoardCell cell = getCellAt(row, col);
+
+        // Return the adjacency list of the cell
+        if (cell != null) {
+            return cell.getAdjList();
+        } else {
+            // If the cell is not found, return an empty set
+            return new HashSet<>();
+        }
+    }
 
 }

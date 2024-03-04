@@ -22,11 +22,11 @@ public class BoardCell {
 	private char initial;
  	private DoorDirection doorDirection;
  	private char secretPassage;
- 	private Set<BoardCell> adjList = new HashSet<>();;
+ 	private Set<BoardCell> adjList = new HashSet<>();
  	private boolean isDoorway;
  	private boolean isCenterCell;
  	private boolean isLabelCell;
-
+ 	private boolean occupied = false; // New property to track if the cell is occupied
  	
  	
  	
@@ -106,9 +106,14 @@ public class BoardCell {
     public Set<BoardCell> getAdjList() {
         return adjList;
     }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
     
-    
-    
+    public boolean isOccupied() {
+        return occupied;
+    }
  
     
 }
