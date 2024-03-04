@@ -4,5 +4,8 @@
 .settings/
 .metadata
 bin/
+<<<<<<< HEAD
 /tests/
 /clueGame/
+=======
+>>>>>>> refs/remotes/origin/main
