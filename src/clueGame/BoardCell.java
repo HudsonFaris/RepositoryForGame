@@ -13,6 +13,7 @@ package clueGame;
  */
 
 import java.util.Set;
+import java.util.HashSet;
 
 
 public class BoardCell {
@@ -21,7 +22,7 @@ public class BoardCell {
 	private char initial;
  	private DoorDirection doorDirection;
  	private char secretPassage;
- 	private Set<BoardCell> adjList;
+ 	private Set<BoardCell> adjList = new HashSet<>();;
  	private boolean isDoorway;
  	private boolean isCenterCell;
  	private boolean isLabelCell;
@@ -98,6 +99,12 @@ public class BoardCell {
     public char getSecretPassage() {
     	System.out.println(secretPassage);
     	return secretPassage;
+    }
+
+
+ // Updated to return the Set of adjacent BoardCells
+    public Set<BoardCell> getAdjList() {
+        return adjList;
     }
     
     

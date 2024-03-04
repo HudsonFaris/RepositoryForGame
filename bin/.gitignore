@@ -4,6 +4,6 @@
 .settings/
 .metadata
 bin/
-/tests/
 /clueGame/
 /experiment/
+/tests/
