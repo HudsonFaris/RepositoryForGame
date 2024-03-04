@@ -114,10 +114,12 @@ public class Board {
         return grid.isEmpty() ? 0 : grid.get(0).size();
     }
     
-    public void setConfigFiles(String layoutConfigFile, String setupConfigFile) {
-        this.layoutConfigFile = layoutConfigFile;
-        this.setupConfigFile = setupConfigFile;
+    public void setConfigFiles(String layoutConfigFileName, String setupConfigFileName) {
+        // Assuming the files are in the project root directory
+        layoutConfigFile = "data/" + layoutConfigFileName;
+        setupConfigFile = "data/" + setupConfigFileName;
     }
+
 
     
     /**
