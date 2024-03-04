@@ -70,6 +70,7 @@ public class Board {
     
     //Calls intialization. 
     public void initialize() {
+    	reset();
         try {
             loadSetupConfig();
             loadLayoutConfig();

@@ -20,6 +20,8 @@ import clueGame.Board;
 
 public class ExceptionTests306 {
 
+	
+	
 	// Test that an exception is thrown for a layout file that does not
 	// have the same number of columns for each row
 	@Test
@@ -28,7 +30,7 @@ public class ExceptionTests306 {
 			// Note that we are using a LOCAL Board variable, because each
 			// test will load different files
 			Board board = Board.getInstance();
-			board.setConfigFiles("ClueLayoutBadColumns306.csv", "ClueSetup306.txt");
+			board.setConfigFiles("Data/ClueLayoutBadColumns306.csv", "Data/ClueSetup306.txt");
 			// Instead of initialize, we call the two load functions directly.
 			// This is necessary because initialize contains a try-catch.
 			board.loadSetupConfig();
@@ -43,7 +45,7 @@ public class ExceptionTests306 {
 	public void testBadRoom() throws BadConfigFormatException, FileNotFoundException {
 		assertThrows(BadConfigFormatException.class, () -> {
 			Board board = Board.getInstance();
-			board.setConfigFiles("ClueLayoutBadRoom306.csv", "ClueSetup306.txt");
+			board.setConfigFiles("Data/ClueLayoutBadRoom306.csv", "Data/ClueSetup306.txt");
 			board.loadSetupConfig();
 			board.loadLayoutConfig();
 		});
@@ -54,7 +56,7 @@ public class ExceptionTests306 {
 	public void testBadRoomFormat() throws BadConfigFormatException, FileNotFoundException {
 		assertThrows(BadConfigFormatException.class, () -> {
 			Board board = Board.getInstance();
-			board.setConfigFiles("ClueLayout306.csv", "ClueSetupBadFormat306.txt");
+			board.setConfigFiles("Data/ClueLayout306.csv", "Data/ClueSetupBadFormat306.txt");
 			board.loadSetupConfig();
 			board.loadLayoutConfig();
 		});

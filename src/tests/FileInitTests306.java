@@ -35,17 +35,13 @@ public class FileInitTests306 {
 	private static Board board;
 
 	
-	@AfterAll
-    public static void tearDown() {
-        board.reset();
-    }
 	
 	@BeforeAll
 	public static void setUp() {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("Data/ClueLayout306.csv", "Data/ClueSetup306.txt");
+		board.setConfigFiles("ClueLayout306.csv", "ClueSetup306.txt");
 		// Initialize will load BOTH config files
 		board.initialize();
 	}
@@ -120,7 +116,7 @@ public class FileInitTests306 {
 		assertFalse( cell.isLabel() );
 		assertFalse( cell.isRoomCenter() ) ;
 		assertFalse( cell.isDoorway()) ;
-		
+
 		// this is a label cell to test
 		cell = board.getCell(2, 19);
 		room = board.getRoom( cell ) ;

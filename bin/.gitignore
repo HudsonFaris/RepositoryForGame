@@ -4,8 +4,5 @@
 .settings/
 .metadata
 bin/
-/clueGame/
-/experiment/
 /tests/
-/Tests.txt
-/gitrefactor.txt
+/clueGame/
