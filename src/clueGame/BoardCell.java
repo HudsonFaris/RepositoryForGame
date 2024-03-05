@@ -111,10 +111,6 @@ public class BoardCell {
 
  // Updated to return the Set of adjacent BoardCells
     public Set<BoardCell> getAdjList() {
-    	for (BoardCell adjCell : adjList) {
-           
-           
-        }
         return adjList;
     }
 

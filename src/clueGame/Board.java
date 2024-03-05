@@ -37,7 +37,6 @@ public class Board {
     private Set<BoardCell> targets;
     private Set<BoardCell> visited;
     private Map<Character, Room> roomMap;
-    private Map<String, int[]> secretPassages;
     private static Board theInstance = new Board();
 
     public void reset() {
@@ -58,7 +57,6 @@ public class Board {
         roomMap = new HashMap<>();
         targets = new HashSet<>();
         visited = new HashSet<>();
-        secretPassages = new HashMap<>();
     }
     
         
@@ -243,13 +241,11 @@ public class Board {
         
         if (cellValue.length() > 1) {
         	char secondChar = cellValue.charAt(1);
-        	if (Character.isLetter(secondChar)) {
+        	if (Character.isLetter(secondChar) && secondChar != 'v') {
         		isSecretPassage = true;
                 secretPassage = secondChar;
-                char one = (char)cellValue.charAt(0);
-                char two = (char)cellValue.charAt(1);
-                String message = String.valueOf(one+ "" + two);
-                secretPassages.put(message, new int[]{row, column});
+
+                
         	}
         	
             // This assumes the second character indicates the door direction
@@ -282,6 +278,7 @@ public class Board {
     }
     
     
+    
     //Gets initial and uses map to get room
     public Room getRoom(BoardCell cell) {
         if (cell == null) {
@@ -297,6 +294,7 @@ public class Board {
         
         visited.add(startCell);
         boolean startInRoom = startCell.isRoomCenter();
+        boolean usedPassage = false;
         findAllTargets(startCell, pathLength, startInRoom);
         
     }
@@ -337,6 +335,20 @@ public class Board {
                 	    	cell.addAdj(adjacentCell);
                 	    }
                 	}
+                	
+                	
+                	
+                	if (cell.isSecretPassage()) {
+                		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
+                        char secretPassageInitial = cell.getSecretPassage(); 
+                        if (secretPassageInitial != '0') { // Check if the initial is valid
+                            BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
+                            if (secretPassageTarget != null) {
+                                origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
+                                
+                            }
+                        }
+                    }
                 	   
                     // If the cell is a room center, check the whole board for doors pointing to it
                 	if (cell.isRoomCenter()) {
@@ -375,6 +387,7 @@ public class Board {
                 	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
                 	                  
                 	                }
+                	                
                 	            }
                 	        
                 	    
@@ -382,20 +395,9 @@ public class Board {
                             }
                         }
                     }
-                    /*
-                    if (cell.isSecretPassage()) {
-                        char firstInitial = cell.getInitial();
-                        BoardCell targetCell = findReversePassage(firstInitial);
-                        if (targetCell != null) {
-                            // Find the room center for the room of the target cell
-                            BoardCell roomCenterCell = findRoomCenter(targetCell);
-                            if (roomCenterCell != null) 
-                                cell.addAdj(roomCenterCell);
-                               
-                            }
-                        }
-                       */ 
+                    
                     }
+                
                     
                 if (cell != null && cell.isDoorway()) {        
                     DoorDirection direction = cell.getDoorDirection();
@@ -437,33 +439,16 @@ public class Board {
         }
         return null; // Return null if no matching room center is found
     }
-    /*
-    private BoardCell findRoomCenter(BoardCell targetCell) {
-        char roomInitial = targetCell.getInitial(); // Assuming getInitial returns the room identifier
-        for (int r = 0; r < getNumRows(); r++) {
-            for (int c = 0; c < getNumColumns(); c++) {
-                BoardCell currentCell = getCellAt(r, c);
-                if (currentCell.isRoomCenter() && currentCell.getInitial() == roomInitial) {
-                    return currentCell; // Return the room center cell
-                }
-            }
+    
+    
+    public char getSecondCharOfSecretPassage(String secretPassage) {
+        // Check if the secret passage string is not null and has at least two characters
+        if (secretPassage != null && secretPassage.length() > 1) {
+            return secretPassage.charAt(1); // Return the second character
         }
-        return null; // Return null if no room center is found
+        return '0'; // Return a null character if the string is too short or null
     }
     
-    private BoardCell findReversePassage(char initial) {
-        // Iterate through the HashMap to find the key that has the second character matching 'initial'
-        for (String key : secretPassages.keySet()) {
-            if (key.charAt(1) == initial) {
-                int[] targetCoords = secretPassages.get(key);
-                // Return the cell at the coordinates of the reversed key
-                return getCellAt(targetCoords[0], targetCoords[1]);
-            }
-        }
-        return null; // If no match found, return null
-    }
-    
-    */
     
    
     
@@ -474,7 +459,7 @@ public class Board {
             return;
         }
 
-        for (BoardCell adjCell : thisCell.getAdjList()) { //Not implemented
+        for (BoardCell adjCell : thisCell.getAdjList()) { 
             if (visited.contains(adjCell)) continue;
 
             visited.add(adjCell);
@@ -497,7 +482,6 @@ public class Board {
     public Set<BoardCell> getAdjList(int row, int col) {
         // Retrieve the cell at the specified row and column
         BoardCell cell = getCellAt(row, col);
-
         // Return the adjacency list of the cell
         if (cell != null) {
             return cell.getAdjList();
