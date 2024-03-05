@@ -294,7 +294,6 @@ public class Board {
         
         visited.add(startCell);
         boolean startInRoom = startCell.isRoomCenter();
-        boolean usedPassage = false;
         findAllTargets(startCell, pathLength, startInRoom);
         
     }
@@ -460,7 +459,7 @@ public class Board {
         }
 
         for (BoardCell adjCell : thisCell.getAdjList()) { 
-            if (visited.contains(adjCell)) continue;
+        	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
 
             visited.add(adjCell);
             findAllTargets(adjCell, numSteps - 1, startInRoom);
