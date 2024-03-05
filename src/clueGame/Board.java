@@ -37,6 +37,7 @@ public class Board {
     private Set<BoardCell> targets;
     private Set<BoardCell> visited;
     private Map<Character, Room> roomMap;
+    public int i = 0;
     private static Board theInstance = new Board();
 
     public void reset() {
@@ -337,17 +338,7 @@ public class Board {
                 	
                 	
                 	
-                	if (cell.isSecretPassage()) {
-                		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
-                        char secretPassageInitial = cell.getSecretPassage(); 
-                        if (secretPassageInitial != '0') { // Check if the initial is valid
-                            BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
-                            if (secretPassageTarget != null) {
-                                origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
-                                
-                            }
-                        }
-                    }
+                	
                 	   
                     // If the cell is a room center, check the whole board for doors pointing to it
                 	if (cell.isRoomCenter()) {
@@ -396,7 +387,17 @@ public class Board {
                     }
                     
                     }
-                
+                if (cell.isSecretPassage()) {
+            		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
+                    char secretPassageInitial = cell.getSecretPassage(); 
+                    if (secretPassageInitial != '0') { // Check if the initial is valid
+                        BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
+                        if (secretPassageTarget != null) {
+                            origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
+                            
+                        }
+                    }
+                }
                     
                 if (cell != null && cell.isDoorway()) {        
                     DoorDirection direction = cell.getDoorDirection();
@@ -455,14 +456,18 @@ public class Board {
     private void findAllTargets(BoardCell thisCell, int numSteps, boolean startInRoom) {
         if (numSteps == 0 || (thisCell.isRoomCenter() && !startInRoom)) {
             targets.add(thisCell);
+            
             return;
         }
+        
+        
+        
 
         for (BoardCell adjCell : thisCell.getAdjList()) { 
         	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
 
             visited.add(adjCell);
-            findAllTargets(adjCell, numSteps - 1, startInRoom);
+            findAllTargets(adjCell, numSteps - 1, false);
             visited.remove(adjCell);
         }
     }
