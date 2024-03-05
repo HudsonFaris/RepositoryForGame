@@ -111,10 +111,26 @@ public class BoardCell {
 
  // Updated to return the Set of adjacent BoardCells
     public Set<BoardCell> getAdjList() {
+    	for (BoardCell adjCell : adjList) {
+           
+           
+        }
         return adjList;
     }
 
-    public void setOccupied(boolean occupied) {
+    public int getCol() {
+		// TODO Auto-generated method stub
+		return column;
+	}
+
+
+	public int getRow() {
+	// TODO Auto-generated method stub
+	return row;
+	}
+
+
+	public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
     

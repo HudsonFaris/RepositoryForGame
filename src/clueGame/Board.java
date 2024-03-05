@@ -43,10 +43,12 @@ public class Board {
     public void reset() {
         grid.clear(); // Clear the existing grid
         roomMap.clear(); // Clear the existing rooms
-     
+        
         this.row = 0;
         this.column = 0;
     }
+    
+    
     /**
      * Constructor Singleton Pattern
      */
@@ -108,6 +110,15 @@ public class Board {
     // Method to get the number of rows
     public int getNumRows() {
     	return row;
+        
+    }
+    public int getRow() {
+    	return row;
+        
+    }
+    
+    public int getCol() {
+    	return column;
         
     }
 
@@ -323,76 +334,52 @@ public class Board {
                 	    	cell.addAdj(adjacentCell);
                 	    }
                 	}
-                
-                	
-                	
-                	
-                    // Add adjacent cells, checking bounds
-                    if (row > 0 && (!cell.isRoom() && cell.isDoorway())) {
-                        cell.addAdj(getCellAt(row - 1, col));
-                        
-                    }
-                    if ((row < getNumRows() - 1) && (!cell.isRoom() && cell.isDoorway())){
-                        cell.addAdj(getCellAt(row + 1, col));
-                       
-                    }
-                    if (row > 0 && (!cell.isRoom() && cell.isDoorway())) {
-                        cell.addAdj(getCellAt(row, col - 1));
-                        
-                    }
-                    if ((row < getNumRows() - 1) && (!cell.isRoom() && cell.isDoorway())){
-                        cell.addAdj(getCellAt(row, col + 1));
-                        
-                    }
+                	   
                     // If the cell is a room center, check the whole board for doors pointing to it
-                    if (cell.isRoomCenter()) {
-                        char roomInitial = cell.getInitial();
-                        for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
-                            for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
-                                BoardCell doorCell = getCellAt(doorRow, doorCol);
-                                if (doorCell.isDoorway()) {         
-                                    DoorDirection direction = doorCell.getDoorDirection();
-                                    if (direction == DoorDirection.UP) {
-                                    	doorCell = getCellAt(doorRow-1, doorCol);
-                                    	
-                                        if (doorCell.getInitial() == roomInitial) {
-                                            cell.addAdj(doorCell);
-                                             
-                                        }
-                                        
-                                    }
-                                    if (direction == DoorDirection.DOWN) {
-                                    	doorCell = getCellAt(doorRow+1, doorCol);
-                                        if (doorCell.getInitial() == roomInitial) {
-                                            cell.addAdj(doorCell);
-                                           
-                                            
-                                        }
-                                        
-                                    }
-                                    if (direction == DoorDirection.RIGHT) {
-                                    	doorCell = getCellAt(doorRow, doorCol+1);
-                                    	
-                                        if (doorCell.getInitial() == roomInitial) {
-                                            cell.addAdj(doorCell);
-                                           
-                                        }
-                                        
-                                    }
-                                    if (direction == DoorDirection.LEFT) {
-                                    	doorCell = getCellAt(doorRow, doorCol-1);
-                                        if (doorCell.getInitial() == roomInitial) {
-                                            cell.addAdj(doorCell);
-                                           
-                                        }
-                                        
-                                    }
-                                    
-                                }
+                	if (cell.isRoomCenter()) {
+                	    char roomInitial = cell.getInitial();
+                	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
+                	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
+                	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
+                	            if (potentialDoorCell.isDoorway()) {
+                	                DoorDirection direction = potentialDoorCell.getDoorDirection();
+                	                BoardCell adjacentCell = null;
+
+                	                switch (direction) {
+                	                    case UP:
+                	                        if (doorRow > 0) {
+                	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case DOWN:
+                	                        if (doorRow < getNumRows() - 1) {
+                	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case RIGHT:
+                	                        if (doorCol < getNumColumns() - 1) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
+                	                        }
+                	                        break;
+                	                    case LEFT:
+                	                        if (doorCol > 0) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
+                	                        }
+                	                        break;
+                	                }
+
+                	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
+                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
+                	                  
+                	                }
+                	            }
+                	        
+                	    
+                	
                             }
                         }
                     }
-                    
+                    /*
                     if (cell.isSecretPassage()) {
                         char firstInitial = cell.getInitial();
                         BoardCell targetCell = findReversePassage(firstInitial);
@@ -404,14 +391,47 @@ public class Board {
                                
                             }
                         }
+                       */ 
                     }
-                   
                     
+                if (cell != null && cell.isDoorway()) {        
+                    DoorDirection direction = cell.getDoorDirection();
+                    char initial;
+
+                    if (direction == DoorDirection.UP && row > 0) {
+                        initial = getCellAt(row-1, col).getInitial();
+                    } else if (direction == DoorDirection.DOWN && row < getNumRows() - 1) {
+                        initial = getCellAt(row+1, col).getInitial();
+                    } else if (direction == DoorDirection.RIGHT && col < getNumColumns() - 1) {
+                        initial = getCellAt(row, col+1).getInitial();
+                    } else if (direction == DoorDirection.LEFT && col > 0) {
+                        initial = getCellAt(row, col-1).getInitial();
+                    } else {
+                        continue;  // Skip to the next iteration if none of the conditions are met
+                    }
+
+                    BoardCell newCell = findRoomCenterByInitial(initial);
+                    if (newCell != null) {
+                        cell.addAdj(newCell);
+                    }
                 }
+            }
             }
         }
     
-    
+    public BoardCell findRoomCenterByInitial(char roomInitial) {
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumColumns(); col++) {
+                BoardCell cell = getCellAt(row, col);
+                if (cell != null && cell.isRoomCenter() && cell.getInitial() == roomInitial) {
+                	
+                    return cell; // Return the room center cell with the matching initial
+                }
+            }
+        }
+        return null; // Return null if no matching room center is found
+    }
+    /*
     private BoardCell findRoomCenter(BoardCell targetCell) {
         char roomInitial = targetCell.getInitial(); // Assuming getInitial returns the room identifier
         for (int r = 0; r < getNumRows(); r++) {
@@ -437,7 +457,7 @@ public class Board {
         return null; // If no match found, return null
     }
     
-    
+    */
     
    
     
