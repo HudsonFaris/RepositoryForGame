@@ -294,8 +294,11 @@ public class Board {
     public void calcTargets(BoardCell startCell, int pathLength) {
         targets.clear();
         visited.clear();
+        
         visited.add(startCell);
-        findAllTargets(startCell, pathLength);
+        boolean startInRoom = startCell.isRoomCenter();
+        findAllTargets(startCell, pathLength, startInRoom);
+        
     }
 
     
@@ -465,8 +468,8 @@ public class Board {
    
     
     // Recursive method to find all targets
-    private void findAllTargets(BoardCell thisCell, int numSteps) {
-        if (numSteps == 0 || thisCell.isRoomCenter()) {
+    private void findAllTargets(BoardCell thisCell, int numSteps, boolean startInRoom) {
+        if (numSteps == 0 || (thisCell.isRoomCenter() && !startInRoom)) {
             targets.add(thisCell);
             return;
         }
@@ -475,7 +478,7 @@ public class Board {
             if (visited.contains(adjCell)) continue;
 
             visited.add(adjCell);
-            findAllTargets(adjCell, numSteps - 1);
+            findAllTargets(adjCell, numSteps - 1, startInRoom);
             visited.remove(adjCell);
         }
     }
