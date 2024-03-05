@@ -28,6 +28,7 @@ public class BoardCell {
  	private boolean isLabelCell;
  	private boolean occupied = false; // New property to track if the cell is occupied
  	private boolean isRoom;
+ 	private boolean isSecretPassage;
  	
  	
  	
@@ -44,7 +45,7 @@ public class BoardCell {
  	 */
  	
  	
- 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage, boolean isRoom) {
+ 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage, boolean isRoom, boolean isSecretPassage) {
         this.row = row;
         this.column = column;
         this.initial = initial;
@@ -54,6 +55,7 @@ public class BoardCell {
         this.isLabelCell = isLabelCell;
         this.secretPassage = secretPassage;
         this.isRoom = isRoom;
+        this.isSecretPassage = isSecretPassage;
 
         
     }
@@ -100,6 +102,10 @@ public class BoardCell {
     
     public char getSecretPassage() {
     	return secretPassage;
+    }
+    
+    public boolean isSecretPassage() {
+    	return isSecretPassage;
     }
 
 

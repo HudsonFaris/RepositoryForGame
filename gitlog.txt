@@ -1,7 +1,68 @@
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C15A-2, dated 3/4/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C15A-2, dated 3/4/2024.
 
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C15A-1, dated 3/3/2024.
 
+
+commit 28496dcad5fb9ea1d5210c4202fd65c7e902e60e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 13:11:46 2024 -0700
+
+    Updated comments
+
+commit e88002da96af0070a7764df736837ac9a22fc217
+Merge: 7813843 c5b907a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 11:35:39 2024 -0700
+
+    TEst
+
+commit 781384305622208cdf6e72b3cf5a8c5529af039b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 11:33:29 2024 -0700
+
+    Created a reset method and implemented into instance
+
+commit c5b907a1791b4df8f5b20cc82635940b9f0af0d3
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 23:21:36 2024 -0700
+
+    exception tests fixed
+
+commit f51e6ad2b1efe98c9346c1e93402f02a35cdcd4b
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 23:00:21 2024 -0700
+
+    fixed tests for all now
+
+commit 06163cbfcd672daa02fc7a8ae6768633d42cf119
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 22:43:04 2024 -0700
+
+    okay now tests fr fail
+
+commit 1beeb2e64da203145f59a4f236b5024d6aaf902f
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 22:10:34 2024 -0700
+
+    tests fail now, no errors
+
+commit 43baeaf6838897a6ddaccaedb59a866209b963c5
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 21:02:20 2024 -0700
+
+    getter for adjlist
+
+commit deb63e9caa1dc6f630544d2e39e0084b3b5a260c
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 15:42:52 2024 -0700
+
+    Added new test files and roughly made calculatetargets/adjcalculations but some stuff isn't implemented.
+
+commit 3106aa91c1a97b2880e194a77951ba74c1cbb3c3
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 15:07:33 2024 -0700
+
+    Added teardown @AfterALL to clean up board after group of tests is done to prevent complications
 
 commit 4de5e18300a6b63ba92f5d827f59bda00851f974
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
