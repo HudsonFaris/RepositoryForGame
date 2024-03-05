@@ -415,9 +415,12 @@ public class Board {
                         cell.addAdj(newCell);
                     }
                 }
+                
             }
             }
+        
         }
+    
     
     public BoardCell findRoomCenterByInitial(char roomInitial) {
         for (int row = 0; row < getNumRows(); row++) {
@@ -463,7 +466,7 @@ public class Board {
     
     // Recursive method to find all targets
     private void findAllTargets(BoardCell thisCell, int numSteps) {
-        if (numSteps == 0) {
+        if (numSteps == 0 || thisCell.isRoomCenter()) {
             targets.add(thisCell);
             return;
         }
