@@ -459,9 +459,6 @@ public class Board {
             
             return;
         }
-        
-        
-        
 
         for (BoardCell adjCell : thisCell.getAdjList()) { 
         	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
@@ -493,10 +490,6 @@ public class Board {
             // If the cell is not found, return an empty set
             return new HashSet<>();
         }
-    }
-    
-    
-    
-    
+    }  
 
 }
