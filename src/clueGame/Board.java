@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/3/2024
+ * Date: 3/8/2024
  * 
  */
 
@@ -110,6 +110,8 @@ public class Board {
     public int getNumRows() {
     	return row;
         
+    	
+    	//Getters for each cell
     }
     public int getRow() {
     	return row;
@@ -249,7 +251,7 @@ public class Board {
                 
         	}
         	
-            // This assumes the second character indicates the door direction
+            //Assume the second character indicates the door direction
             isDoorway = true;
             switch (cellValue.charAt(1)) {
                 case '^':
@@ -289,6 +291,8 @@ public class Board {
         return roomMap.get(initial);
     }
     
+    
+    //Initial calctargets method/reset with helper method
     public void calcTargets(BoardCell startCell, int pathLength) {
         targets.clear();
         visited.clear();
@@ -308,7 +312,7 @@ public class Board {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardCell cell = getCellAt(row, col);
                 // Check if the cell is not null before proceeding
-                if (cell != null) {
+                if (cell != null) { //If cell exists, mark it as adjacent cell as long as not 'X' or not room
                 	if ((row > 0)) {
                 	    BoardCell adjacentCell = getCellAt(row-1, col);
                 	    if (adjacentCell != null && !adjacentCell.isRoom() && adjacentCell.getInitial() != 'X') {  // Check that the adjacent cell is not null
@@ -339,8 +343,10 @@ public class Board {
                 	
                 	
                 	
+                	
                 	   
                     // If the cell is a room center, check the whole board for doors pointing to it
+                	//This acts as the room adjacent targets calculator
                 	if (cell.isRoomCenter()) {
                 	    char roomInitial = cell.getInitial();
                 	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
@@ -350,7 +356,7 @@ public class Board {
                 	                DoorDirection direction = potentialDoorCell.getDoorDirection();
                 	                BoardCell adjacentCell = null;
 
-                	                switch (direction) {
+                	                switch (direction) { //Check door direction
                 	                    case UP:
                 	                        if (doorRow > 0) {
                 	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
@@ -376,17 +382,14 @@ public class Board {
                 	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
                 	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
                 	                  
-                	                }
-                	                
+                	                } 
                 	            }
-                	        
-                	    
-                	
                             }
                         }
                     }
-                    
                     }
+                
+                //If case of secret passage, use helper methods to find corresponding room
                 if (cell.isSecretPassage()) {
             		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
                     char secretPassageInitial = cell.getSecretPassage(); 
@@ -394,11 +397,10 @@ public class Board {
                         BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
                         if (secretPassageTarget != null) {
                             origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
-                            
                         }
                     }
                 }
-                    
+                    //If doorway, consider direction of doorway and how that affects going into rooms
                 if (cell != null && cell.isDoorway()) {        
                     DoorDirection direction = cell.getDoorDirection();
                     char initial;
@@ -419,14 +421,12 @@ public class Board {
                     if (newCell != null) {
                         cell.addAdj(newCell);
                     }
-                }
-                
+                }   
             }
             }
-        
         }
     
-    
+    //Finds room by first initial
     public BoardCell findRoomCenterByInitial(char roomInitial) {
         for (int row = 0; row < getNumRows(); row++) {
             for (int col = 0; col < getNumColumns(); col++) {
@@ -440,7 +440,7 @@ public class Board {
         return null; // Return null if no matching room center is found
     }
     
-    
+    //Gets second char of secret passage to find corresponding cell. 
     public char getSecondCharOfSecretPassage(String secretPassage) {
         // Check if the secret passage string is not null and has at least two characters
         if (secretPassage != null && secretPassage.length() > 1) {

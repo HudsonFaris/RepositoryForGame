@@ -1,7 +1,57 @@
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C15A-2, dated 3/4/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C15A-2, dated 3/4/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C16A, dated 3/8/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C16A, dated 3/8/2024.
 
 
+
+
+
+commit b0a6e6f93c3c5e29c42740b872f067ca22aa2dd7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Mar 7 13:35:42 2024 -0700
+
+    Made our tests work
+
+commit 4f650d8107064a7999491c8400693f04148bd7c9
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 16:19:39 2024 -0700
+
+    9/9 Test passing, passed false for recursive
+
+commit 7c689fbad63aef07cbb9b73c43679dbd085691d8
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 14:25:20 2024 -0700
+
+    Added occupied logic to target calculation, 8/9 tests pass
+
+commit a82d314b04991a7a570b69a8268a85ffbb96fcd1
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 13:38:27 2024 -0700
+
+    Added passage logic and 7/9 tests pass now
+
+commit 85a7841fa6e145b8505b099cb0015c5f6a972014
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 22:07:52 2024 -0700
+
+    6 Tests Pass, added check for starting in room
+
+commit 65601f87084cdba764d9180e87c90c25c31246bb
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 21:55:39 2024 -0700
+
+    5 tests now pass
+
+commit 792cfe03ec8dada5f7983a4e560bf402a739ecb4
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 21:29:32 2024 -0700
+
+    Made 3 tests work
+
+commit bc050308444f32d06e4fce6d4cd1bdf2dc1faf5a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 17:55:47 2024 -0700
+
+    Made one test past after 5 hours
 
 commit 28496dcad5fb9ea1d5210c4202fd65c7e902e60e
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
