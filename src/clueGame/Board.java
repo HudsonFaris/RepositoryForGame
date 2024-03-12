@@ -226,53 +226,29 @@ public class Board {
      * @return
      */
     private BoardCell createBoardCell(int row, int column, String cellValue) {
-        char initial = cellValue.charAt(0);
-        char secretPassage = '0';
-        boolean isCenterCell = cellValue.length() > 1 && cellValue.charAt(1) == '*';
-        boolean isLabelCell = cellValue.length() > 1 && cellValue.charAt(1) == '#';
-        DoorDirection doorDirection = DoorDirection.NONE;
-        boolean isDoorway = false;
-        boolean isSecretPassage = false;
         cellValue = cellValue.trim();
-        boolean isRoom = false;
+        char initial = cellValue.charAt(0);
+        char secondChar = cellValue.length() > 1 ? cellValue.charAt(1) : '0';
+        boolean isRoom = initial != 'W' && initial != 'X';
+        boolean isCenterCell = secondChar == '*';
+        boolean isLabelCell = secondChar == '#';
+        boolean isSecretPassage = Character.isLetter(secondChar) && secondChar != 'v';
+        char secretPassage = isSecretPassage ? secondChar : '0';
         
-        
-        if (cellValue.charAt(0) != 'W' && cellValue.charAt(0) != 'X') {
-        	isRoom = true;
-        }
-        
-        
-        if (cellValue.length() > 1) {
-        	char secondChar = cellValue.charAt(1);
-        	if (Character.isLetter(secondChar) && secondChar != 'v') {
-        		isSecretPassage = true;
-                secretPassage = secondChar;
+        DoorDirection doorDirection = getDoorDirection(secondChar);
+        boolean isDoorway = doorDirection != DoorDirection.NONE;
 
-                
-        	}
-        	
-            //Assume the second character indicates the door direction
-            isDoorway = true;
-            switch (cellValue.charAt(1)) {
-                case '^':
-                    doorDirection = DoorDirection.UP;
-                    break;
-                case 'v':
-                    doorDirection = DoorDirection.DOWN;
-                    break;
-                case '<':
-                    doorDirection = DoorDirection.LEFT;
-                    break;
-                case '>':
-                    doorDirection = DoorDirection.RIGHT;
-                    break;
-                default:
-                    isDoorway = false; // Invalid direction, not a doorway
-                    break;
-            }
-        }
-        
         return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom, isSecretPassage);
+    }
+
+    private DoorDirection getDoorDirection(char secondChar) {
+        switch (secondChar) {
+            case '^': return DoorDirection.UP;
+            case 'v': return DoorDirection.DOWN;
+            case '<': return DoorDirection.LEFT;
+            case '>': return DoorDirection.RIGHT;
+            default:  return DoorDirection.NONE;
+        }
     }
     
     //Other get cell for updated test methods
@@ -459,7 +435,7 @@ public class Board {
             
             return;
         }
-
+        
         for (BoardCell adjCell : thisCell.getAdjList()) { 
         	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
 
