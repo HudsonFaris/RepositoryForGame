@@ -285,6 +285,7 @@ public class Board {
                 BoardCell cell = getCellAt(row, col);
                 // Check if the cell is not null before proceeding
                 if (cell != null) { //If cell exists, mark it as adjacent cell as long as not 'X' or not room
+                	
                 	if ((row > 0)) {
                 	    BoardCell adjacentCell = getCellAt(row-1, col);
                 	    if (adjacentCell != null && !adjacentCell.isRoom() && adjacentCell.getInitial() != 'X') {  // Check that the adjacent cell is not null
@@ -311,54 +312,7 @@ public class Board {
                 	    	cell.addAdj(adjacentCell);
                 	    }
                 	}
-                	
-                	
-                	
-                	
-                	
-                	   
-                    // If the cell is a room center, check the whole board for doors pointing to it
-                	//This acts as the room adjacent targets calculator
-                	if (cell.isRoomCenter()) {
-                	    char roomInitial = cell.getInitial();
-                	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
-                	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
-                	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
-                	            if (potentialDoorCell.isDoorway()) {
-                	                DoorDirection direction = potentialDoorCell.getDoorDirection();
-                	                BoardCell adjacentCell = null;
 
-                	                switch (direction) { //Check door direction
-                	                    case UP:
-                	                        if (doorRow > 0) {
-                	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
-                	                        }
-                	                        break;
-                	                    case DOWN:
-                	                        if (doorRow < getNumRows() - 1) {
-                	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
-                	                        }
-                	                        break;
-                	                    case RIGHT:
-                	                        if (doorCol < getNumColumns() - 1) {
-                	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
-                	                        }
-                	                        break;
-                	                    case LEFT:
-                	                        if (doorCol > 0) {
-                	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
-                	                        }
-                	                        break;
-                	                }
-
-                	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
-                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
-                	                  
-                	                } 
-                	            }
-                            }
-                        }
-                    }
                     }
                 
                 //If case of secret passage, use helper methods to find corresponding room
@@ -373,7 +327,7 @@ public class Board {
                     }
                 }
                     //If doorway, consider direction of doorway and how that affects going into rooms
-                if (cell != null && cell.isDoorway()) {        
+                if (cell.isDoorway()) {        
                     DoorDirection direction = cell.getDoorDirection();
                     char initial;
 
@@ -394,6 +348,47 @@ public class Board {
                         cell.addAdj(newCell);
                     }
                 }   
+                
+                if (cell.isRoomCenter()) {
+            	    char roomInitial = cell.getInitial();
+            	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
+            	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
+            	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
+            	            if (potentialDoorCell.isDoorway()) {
+            	                DoorDirection direction = potentialDoorCell.getDoorDirection();
+            	                BoardCell adjacentCell = null;
+
+            	                switch (direction) { //Check door direction
+            	                    case UP:
+            	                        if (doorRow > 0) {
+            	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
+            	                        }
+            	                        break;
+            	                    case DOWN:
+            	                        if (doorRow < getNumRows() - 1) {
+            	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
+            	                        }
+            	                        break;
+            	                    case RIGHT:
+            	                        if (doorCol < getNumColumns() - 1) {
+            	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
+            	                        }
+            	                        break;
+            	                    case LEFT:
+            	                        if (doorCol > 0) {
+            	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
+            	                        }
+            	                        break;
+            	                }
+
+            	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
+            	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
+            	                  
+            	                } 
+            	            }
+                        }
+                    }
+                }
             }
             }
         }
