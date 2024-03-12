@@ -175,46 +175,43 @@ public class Board {
                 if (line.trim().isEmpty()) {
                     continue; // Skip empty lines
                 }
-                String[] cellValues = line.split(",");
-                List<BoardCell> boardRow = new ArrayList<>();
-                for (int column = 0; column < cellValues.length; column++) {
-                    if (cellValues[column].trim().isEmpty()) {
-                        // Handle empty cells appropriately, perhaps with a default cell value
-                        boardRow.add(createBoardCell(row, column, "defaultCellValue"));
-                    } else {
-                        boardRow.add(createBoardCell(row, column, cellValues[column].trim()));
-                    }
-                }
-                grid.add(boardRow);
-                row++;
+                processLine(line, row++);
             }
-            
             this.row = row;
-         
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
-        /*
-         * Added loops to check for initial to set center and label. Not previously made. 
-         */
-        for (List<BoardCell> row : grid) {
-        	for (BoardCell cell : row) {
-        		if (cell.isCenterCell()) {
-        			Room room = roomMap.get(cell.getInitial());
-        			if (room != null) {
-        				room.setCenterCell(cell);
-        			}
-        		}
-        		if (cell.isLabelCell()) {
-        			Room room = roomMap.get(cell.getInitial());
-        			if (room != null) {
-        				room.setLabelCell(cell);
-        			}
-        		}
-        	}
-        }
+        setCentersAndLabels();
         calculateAdj(); //Calculate adjacencies
-        
+    }
+
+    private void processLine(String line, int row) {
+        String[] cellValues = line.split(",");
+        List<BoardCell> boardRow = new ArrayList<>();
+        for (int column = 0; column < cellValues.length; column++) {
+            String cellValue = cellValues[column].trim();
+            boardRow.add(createBoardCell(row, column, cellValue.isEmpty() ? "defaultCellValue" : cellValue));
+        }
+        grid.add(boardRow);
+    }
+
+    private void setCentersAndLabels() {
+        for (List<BoardCell> row : grid) {
+            for (BoardCell cell : row) {
+                if (cell.isCenterCell()) {
+                    Room room = roomMap.get(cell.getInitial());
+                    if (room != null) {
+                        room.setCenterCell(cell);
+                    }
+                }
+                if (cell.isLabelCell()) {
+                    Room room = roomMap.get(cell.getInitial());
+                    if (room != null) {
+                        room.setLabelCell(cell);
+                    }
+                }
+            }
+        }
     }
     
     
