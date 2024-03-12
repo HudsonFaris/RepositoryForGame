@@ -214,7 +214,6 @@ public class Board {
         }
     }
     
-    
     /**
      * Creates the boardCell and holds DoorDirections. 
      * @param row
@@ -455,15 +454,8 @@ public class Board {
      * @return
      */
     public Set<BoardCell> getAdjList(int row, int col) {
-        // Retrieve the cell at the specified row and column
         BoardCell cell = getCellAt(row, col);
-        // Return the adjacency list of the cell
-        if (cell != null) {
-            return cell.getAdjList();
-        } else {
-            // If the cell is not found, return an empty set
-            return new HashSet<>();
-        }
-    }  
+        return cell != null ? cell.getAdjList() : new HashSet<>();
+    }
 
 }
