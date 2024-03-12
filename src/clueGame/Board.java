@@ -429,12 +429,13 @@ public class Board {
     private void findAllTargets(BoardCell thisCell, int numSteps, boolean startInRoom) {
         if (numSteps == 0 || (thisCell.isRoomCenter() && !startInRoom)) {
             targets.add(thisCell);
-            
             return;
         }
-        
-        for (BoardCell adjCell : thisCell.getAdjList()) { 
-        	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
+
+        for (BoardCell adjCell : thisCell.getAdjList()) {
+            if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) {
+                continue; // Skip the cell if it's already visited or occupied and not a room
+            }
 
             visited.add(adjCell);
             findAllTargets(adjCell, numSteps - 1, false);
