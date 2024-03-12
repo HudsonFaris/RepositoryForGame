@@ -17,35 +17,18 @@ import java.util.HashSet;
 
 
 public class BoardCell {
-	private int row;
-	private int column;
-	private char initial;
- 	private DoorDirection doorDirection;
- 	private char secretPassage;
- 	private Set<BoardCell> adjList = new HashSet<>();
- 	private boolean isDoorway;
- 	private boolean isCenterCell;
- 	private boolean isLabelCell;
- 	private boolean occupied = false; // New property to track if the cell is occupied
- 	private boolean isRoom;
- 	private boolean isSecretPassage;
- 	
- 	
- 	
- 	/**
- 	 * Constructor for each cell. 
- 	 * @param row
- 	 * @param column
- 	 * @param initial
- 	 * @param doorDirection
- 	 * @param isDoorway
- 	 * @param isCenterCell
- 	 * @param isLabelCell
- 	 * @param secretPassage
- 	 */
- 	
- 	
- 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isDoorway, boolean isCenterCell, boolean isLabelCell, char secretPassage, boolean isRoom, boolean isSecretPassage) {
+    private int row;
+    private int column;
+    private char initial;
+    private DoorDirection doorDirection;
+    private char secretPassage;
+    private Set<BoardCell> adjList = new HashSet<>();
+    private boolean isDoorway, isCenterCell, isLabelCell, occupied, isRoom, isSecretPassage;
+
+    // Main constructor
+    public BoardCell(int row, int column, char initial, DoorDirection doorDirection,
+                     boolean isDoorway, boolean isCenterCell, boolean isLabelCell, 
+                     char secretPassage, boolean isRoom, boolean isSecretPassage) {
         this.row = row;
         this.column = column;
         this.initial = initial;
@@ -56,87 +39,39 @@ public class BoardCell {
         this.secretPassage = secretPassage;
         this.isRoom = isRoom;
         this.isSecretPassage = isSecretPassage;
-
-        
-    }
- 	
- 	
- 	public boolean isCenterCell() {
-        return this.isCenterCell;
-    }
- 	
- 	public boolean isLabelCell() {
- 		return this.isLabelCell;
- 	}
- 	
- 	public void addAdj(BoardCell adj) {
- 		adjList.add(adj);
- 	}
- 	
- 	public BoardCell(int row, int column) {
-        this.row = row;
-        this.column = column;
-    }
- 	
-
- 	public boolean isDoorway() {
-        return isDoorway;
-    }
- 	
- // Getters for the door direction and initial
-    public DoorDirection getDoorDirection() {
-        return doorDirection;
     }
 
-    public char getInitial() {
-        return initial;
+    // Simplified constructor for basic cells
+    public BoardCell(int row, int column) {
+        this(row, column, ' ', DoorDirection.NONE, false, false, false, '0', false, false);
     }
+
+    // Getters and setters
+    public int getRow() { return row; }
     
-    public boolean isRoomCenter() {
-    	return isCenterCell;
-    }
+    public int getCol() { return column; }
     
-    public boolean isLabel() {
-    	return isLabelCell;
-    }
+    public char getInitial() { return initial; }
     
-    public char getSecretPassage() {
-    	return secretPassage;
-    }
+    public DoorDirection getDoorDirection() { return doorDirection; }
     
-    public boolean isSecretPassage() {
-    	return isSecretPassage;
-    }
-
-
- // Updated to return the Set of adjacent BoardCells
-    public Set<BoardCell> getAdjList() {
-        return adjList;
-    }
-
-    public int getCol() {
-		// TODO Auto-generated method stub
-		return column;
-	}
-
-
-	public int getRow() {
-	// TODO Auto-generated method stub
-	return row;
-	}
-
-
-	public void setOccupied(boolean occupied) {
-        this.occupied = occupied;
-    }
+    public char getSecretPassage() { return secretPassage; }
     
-    public boolean isOccupied() {
-        return occupied;
-    }
+    public Set<BoardCell> getAdjList() { return adjList; }
     
-    public boolean isRoom() {
-    	return isRoom;
-    }
- 
+    public boolean isDoorway() { return isDoorway; }
     
+    public boolean isRoomCenter() { return isCenterCell; }
+    
+    public boolean isLabel() { return isLabelCell; }
+    
+    public boolean isOccupied() { return occupied; }
+    
+    public boolean isRoom() { return isRoom; }
+    
+    public boolean isSecretPassage() { return isSecretPassage; }
+
+    public void setOccupied(boolean occupied) { this.occupied = occupied; }
+    
+    public void addAdj(BoardCell adj) { adjList.add(adj); }
 }

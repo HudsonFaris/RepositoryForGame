@@ -198,13 +198,13 @@ public class Board {
     private void setCentersAndLabels() {
         for (List<BoardCell> row : grid) {
             for (BoardCell cell : row) {
-                if (cell.isCenterCell()) {
+                if (cell.isRoomCenter()) {
                     Room room = roomMap.get(cell.getInitial());
                     if (room != null) {
                         room.setCenterCell(cell);
                     }
                 }
-                if (cell.isLabelCell()) {
+                if (cell.isLabel()) {
                     Room room = roomMap.get(cell.getInitial());
                     if (room != null) {
                         room.setLabelCell(cell);
