@@ -8,7 +8,7 @@ import java.util.List;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/8/2024
+ * Date: 3/3/2024
  * 
  */
 
@@ -24,6 +24,7 @@ public class Room {
      * Constructor
      * @param name
      */
+    
     public Room(String name) {
         this.name = name;
         

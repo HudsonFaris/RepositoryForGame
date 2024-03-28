@@ -123,6 +123,7 @@ public class FileInitTests306 {
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Lounge" ) ;
 		assertTrue( cell.isLabel() );
+		System.out.println(room.getLabelCell());
 		assertTrue( room.getLabelCell() == cell );
 
 		// this is a room center cell to test

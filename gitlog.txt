@@ -1,332 +1,334 @@
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C16A, dated 3/8/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C16A, dated 3/8/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C17A-2, dated 3/11/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C17A-2, dated 3/11/2024.
 
 
-
-
-
-commit b0a6e6f93c3c5e29c42740b872f067ca22aa2dd7
+commit 2260a4c7c336b1b9676d315af2d9f59453001073
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Mar 7 13:35:42 2024 -0700
+Date:   Mon Mar 11 21:03:52 2024 -0600
 
-    Made our tests work
+    Reduced redundencies in if statements and changed calcTargets so another method was easier to follow
 
-commit 4f650d8107064a7999491c8400693f04148bd7c9
+commit 0bfdf03e02b82d2398e2ecacdebbcb8a654c673d
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Tue Mar 5 16:19:39 2024 -0700
+Date:   Mon Mar 11 21:00:33 2024 -0600
 
-    9/9 Test passing, passed false for recursive
+    Fixed Board class, reduced lines and removed repeat getters/setters
 
-commit 7c689fbad63aef07cbb9b73c43679dbd085691d8
+commit c3e1cc398f55e693fdc97633e02f4a7fffa502ea
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Tue Mar 5 14:25:20 2024 -0700
+Date:   Mon Mar 11 20:53:09 2024 -0600
 
-    Added occupied logic to target calculation, 8/9 tests pass
+    Made getAdjList more dry, easier to follow and sig reduced lines
 
-commit a82d314b04991a7a570b69a8268a85ffbb96fcd1
+commit acef39d13f70150e4c81e5c69205782c216c2e06
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Tue Mar 5 13:38:27 2024 -0700
+Date:   Mon Mar 11 20:51:17 2024 -0600
 
-    Added passage logic and 7/9 tests pass now
+    Made calcTargets function easier to read and follow
 
-commit 85a7841fa6e145b8505b099cb0015c5f6a972014
+commit 75970daf0f18a2d17f12b28c95f8940e4746f2c4
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 22:07:52 2024 -0700
+Date:   Mon Mar 11 20:48:21 2024 -0600
 
-    6 Tests Pass, added check for starting in room
+    Made layout config more method seperable and easier to read
 
-commit 65601f87084cdba764d9180e87c90c25c31246bb
+commit c094529a9189dc77bdd9f8bb3c883d02f36998bf
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 21:55:39 2024 -0700
+Date:   Mon Mar 11 20:46:06 2024 -0600
 
-    5 tests now pass
+    Made creating boardCell signifigantly easier to read
 
-commit 792cfe03ec8dada5f7983a4e560bf402a739ecb4
+commit 6c97552ef047fb55001e6b6f78e0141dea316e52
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 21:29:32 2024 -0700
+Date:   Mon Mar 11 20:43:48 2024 -0600
+
+    Fixed spacing issues for braces
+    
+commit 0a734cc6bede28900fe298c4760e9fa5eb5a9136
+Author sbangapadang22 <<51834910+sbangapadang22@users.noreply.github.com>
+Date: Mon Mar 11 19:24:49 2024 -0600
+
+	Any other changes
+
+commit 0a734cdhawhd28900fe298c4760e9fa5eb5a9136
+Author sbangapadang22 <<51834910+sbangapadang22@users.noreply.github.com>
+Date: Mon Mar 11 18:59:49 2024 -0600
+
+	Went through and changed indentation as needed
+	
+commit leud0310fe298c4760e9fa5eb5a9136
+Author sbangapadang22 <<51834910+sbangapadang22@users.noreply.github.com>
+Date: Mon Mar 11 17:04:32 2024 -0600
+
+	Broke down calcAdj into smaller methods for readability/simplicity
+
+commit 0a734cc65ede28900fe298c4760e623a5eb5a9136
+Author sbangapadang22 <<51834910+sbangapadang22@users.noreply.github.com>
+Date: Mon Mar 11 17:02:15 2024 -0600
+
+	Added roomhelpers to simplify roomCenter calculations
+	
+commit 0a5193cc6bede28900fe298c4760e9fa5eb5a9136
+Author sbangapadang22 <<51834910+sbangapadang22@users.noreply.github.com>
+Date: Mon Mar 11 16:50:20 2024 -0600
+
+	Added default property for clarity
+
+
+
+
+Most significant change: calculateAdj();
+/**
+     * Calculates adjacent targets for path == 0. Acts as helper function to method above. 
+     */
+    private void calculateAdj() {
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumColumns(); col++) {
+                BoardCell cell = getCellAt(row, col);
+                // Check if the cell is not null before proceeding
+                if (cell != null) {
+                	if ((row > 0)) {
+                	    BoardCell adjacentCell = getCellAt(row-1, col);
+                	    if (adjacentCell != null && !adjacentCell.isRoom() && adjacentCell.getInitial() != 'X') {  // Check that the adjacent cell is not null
+                	    	cell.addAdj(adjacentCell);
+                	    }
+                	}
+                	if ((row < getNumRows()-1)) {
+                	    BoardCell adjacentCell = getCellAt(row+1, col);
+                	    if (adjacentCell != null  && !adjacentCell.isRoom()&& adjacentCell.getInitial() != 'X') {  // Check that the adjacent cell is not null
+                	    	cell.addAdj(adjacentCell);
+                	    }
+                	}
+                	
+                	if (col > 0) {
+                	    BoardCell adjacentCell = getCellAt(row, col - 1);
+                	    if (adjacentCell != null && !adjacentCell.isRoom()&& adjacentCell.getInitial() != 'X') { // Check if the cell is not null
+                	    	cell.addAdj(adjacentCell);
+                	    }
+                	}
+
+                	if (col < getNumColumns() - 1) {
+                	    BoardCell adjacentCell = getCellAt(row, col + 1);
+                	    if (adjacentCell != null && !adjacentCell.isRoom()&& adjacentCell.getInitial() != 'X') { // Check if the cell is not null
+                	    	cell.addAdj(adjacentCell);
+                	    }
+                	}
+                	
+                	
+                	
+                	
+                	   
+                    // If the cell is a room center, check the whole board for doors pointing to it
+                	if (cell.isRoomCenter()) {
+                	    char roomInitial = cell.getInitial();
+                	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
+                	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
+                	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
+                	            if (potentialDoorCell.isDoorway()) {
+                	                DoorDirection direction = potentialDoorCell.getDoorDirection();
+                	                BoardCell adjacentCell = null;
+
+                	                switch (direction) {
+                	                    case UP:
+                	                        if (doorRow > 0) {
+                	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case DOWN:
+                	                        if (doorRow < getNumRows() - 1) {
+                	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case RIGHT:
+                	                        if (doorCol < getNumColumns() - 1) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
+                	                        }
+                	                        break;
+                	                    case LEFT:
+                	                        if (doorCol > 0) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
+                	                        }
+                	                        break;
+                	                }
+
+                	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
+                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
+                	                  
+                	                }
+                	                
+                	            }
+                	        
+                	    
+                	
+                            }
+                        }
+                    }
+                    
+                    }
+                if (cell.isSecretPassage()) {
+            		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
+                    char secretPassageInitial = cell.getSecretPassage(); 
+                    if (secretPassageInitial != '0') { // Check if the initial is valid
+                        BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
+                        if (secretPassageTarget != null) {
+                            origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
+                            
+                        }
+                    }
+                }
+                    
+                if (cell != null && cell.isDoorway()) {        
+                    DoorDirection direction = cell.getDoorDirection();
+                    char initial;
+
+                    if (direction == DoorDirection.UP && row > 0) {
+                        initial = getCellAt(row-1, col).getInitial();
+                    } else if (direction == DoorDirection.DOWN && row < getNumRows() - 1) {
+                        initial = getCellAt(row+1, col).getInitial();
+                    } else if (direction == DoorDirection.RIGHT && col < getNumColumns() - 1) {
+                        initial = getCellAt(row, col+1).getInitial();
+                    } else if (direction == DoorDirection.LEFT && col > 0) {
+                        initial = getCellAt(row, col-1).getInitial();
+                    } else {
+                        continue;  // Skip to the next iteration if none of the conditions are met
+                    }
+
+                    BoardCell newCell = findRoomCenterByInitial(initial);
+                    if (newCell != null) {
+                        cell.addAdj(newCell);
+                    }
+                }
+                
+            }
+            }
+        
+        }
+
+
+Changed to:
+// Calculates adjacencies for all cells, applying game-specific rules for movement, doorways, and secret passages.
+    private void calculateAdj() {
+        // Iterate through each cell on the board.
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumColumns(); col++) {
+                BoardCell cell = getCellAt(row, col); // Retrieve the current cell.
+                if (cell != null) { // Ensure the cell exists.
+                    // Add adjacent cells based on the current cell's properties.
+                    addAdjacentCells(cell, row, col);
+                    if (cell.isRoomCenter()) {
+                        // If the cell is a room center, add doorways leading into the room as adjacencies.
+                        addDoorwaysAsAdjacencies(cell, row, col);
+                    }
+                    if (cell.isSecretPassage()) {
+                        // If the cell has a secret passage, add the corresponding room center as an adjacency.
+                        addSecretPassageAdjacency(cell);
+                    }
+                    if (cell.isDoorway()) {
+                        // If the cell is a doorway, add the adjacent room center or hallway cell as an adjacency.
+                        addRoomCenterAdjacencyForDoorway(cell, row, col);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Adds adjacent cells to the specified cell considering the game rules.
+     * This includes checking for valid adjacent cells in all four cardinal directions
+     * and excluding cells that are part of a room or marked as impassable ('X').
+     */
+    private void addAdjacentCells(BoardCell cell, int row, int col) {
+        // Directions to check for adjacency: Up, Down, Left, Right
+        int[] rowOffsets = {-1, 1, 0, 0};
+        int[] colOffsets = {0, 0, -1, 1};
+        for (int i = 0; i < rowOffsets.length; i++) {
+            int adjRow = row + rowOffsets[i];
+            int adjCol = col + colOffsets[i];
+            // Check if the cell is within the board boundaries and has valid characteristics
+            if (isValidCell(adjRow, adjCol)) {
+                BoardCell adjacentCell = getCellAt(adjRow, adjCol);
+                // Add the cell to adjacencies if it's not part of a room or impassable
+                if (adjacentCell != null && !adjacentCell.isRoom() && adjacentCell.getInitial() != 'X') {
+                    cell.addAdj(adjacentCell);
+                }
+            }
+        }
+    }
+
+    /**
+     * Identifies and adds doorway cells leading into a room center to the room center's adjacency list.
+     * This is used to connect doorways directly to room centers for gameplay mechanics, allowing players
+     * to move through doorways into rooms efficiently.
+     */
+    private void addDoorwaysAsAdjacencies(BoardCell cell, int row, int col) {
+        // Iterate over the entire board to find doorways that lead into the specified room
+        for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
+            for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
+                BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
+                // Add the doorway as an adjacency if it leads directly into the room
+                if (potentialDoorCell != null && potentialDoorCell.isDoorway() && isDoorwayPointingToRoom(potentialDoorCell, cell.getInitial())) {
+                    cell.addAdj(potentialDoorCell);
+                }
+            }
+        }
+    }
+
+    /**
+     * Adds an adjacency link between a cell containing a secret passage and the center of the target room.
+     * This allows for direct movement between distant rooms via the secret passage, a key gameplay feature.
+     */
+    private void addSecretPassageAdjacency(BoardCell cell) {
+        // Check if there's a valid secret passage and link it to the target room center
+        if (cell.getSecretPassage() != '0') { // '0' indicates no secret passage
+            BoardCell secretPassageTarget = findRoomCenterByInitial(cell.getSecretPassage());
+            if (secretPassageTarget != null) {
+                cell.addAdj(secretPassageTarget);
+            }
+        }
+    }
+
+    /**
+     * For doorway cells, adds an adjacency to the corresponding room center or next cell in the hallway,
+     * allowing for movement through the doorway into the room or continuing in the hallway.
+     */
+    private void addRoomCenterAdjacencyForDoorway(BoardCell cell, int row, int col) {
+        // Determine the cell that the doorway leads to based on its direction
+        BoardCell targetCell = getTargetCellForDoorway(cell, cell.getDoorDirection(), row, col);
+        if (targetCell != null) {
+            // Add the target cell as an adjacency to facilitate movement through the doorway
+            cell.addAdj(targetCell);
+        }
+    }
+
+    /**
+     * Checks if a given row and column index correspond to a valid cell on the board.
+     * This is used to prevent out-of-bounds access when calculating adjacencies.
+     */
+    private boolean isValidCell(int row, int col) {
+        return row >= 0 && row < getNumRows() && col >= 0 && col < getNumColumns();
+    }
+
+    /**
+     * Determines if a doorway cell is correctly positioned to lead into a specified room,
+     * based on the room's initial character and the doorway's direction.
+     */
+    private boolean isDoorwayPointingToRoom(BoardCell doorCell, char roomInitial) {
+        BoardCell adjacentCell = getTargetCellForDoorway(doorCell, doorCell.getDoorDirection(), doorCell.getRow(), doorCell.getCol());
+        // Check if the adjacent cell matches the specified room initial
+        return adjacentCell != null && adjacentCell.getInitial() == roomInitial;
+    }
+
+    /**
+     * Calculates the cell a doorway leads to, based on the door's direction.
+     * This supports movement through doorways by identifying the adjacent cell in the direction the door faces.
+     */
+    private BoardCell getTargetCellForDoorway(BoardCell cell, DoorDirection direction, int row, int col) {
+        switch (direction) {
+            case UP: return isValidCell(row - 1, col) ? getCellAt(row - 1, col) : null;
+            case DOWN: return isValidCell(row + 1, col) ? getCellAt(row + 1, col) : null;
+            case RIGHT: return isValidCell(row, col + 1) ? getCellAt(row, col + 1) : null;
+            case LEFT: return isValidCell(row, col - 1) ? getCellAt(row, col - 1) : null;
+            default: return null; // In case of an invalid direction
+        }
+    }
 
-    Made 3 tests work
-
-commit bc050308444f32d06e4fce6d4cd1bdf2dc1faf5a
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 17:55:47 2024 -0700
-
-    Made one test past after 5 hours
-
-commit 28496dcad5fb9ea1d5210c4202fd65c7e902e60e
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 13:11:46 2024 -0700
-
-    Updated comments
-
-commit e88002da96af0070a7764df736837ac9a22fc217
-Merge: 7813843 c5b907a
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 11:35:39 2024 -0700
-
-    TEst
-
-commit 781384305622208cdf6e72b3cf5a8c5529af039b
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Mon Mar 4 11:33:29 2024 -0700
-
-    Created a reset method and implemented into instance
-
-commit c5b907a1791b4df8f5b20cc82635940b9f0af0d3
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sun Mar 3 23:21:36 2024 -0700
-
-    exception tests fixed
-
-commit f51e6ad2b1efe98c9346c1e93402f02a35cdcd4b
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sun Mar 3 23:00:21 2024 -0700
-
-    fixed tests for all now
-
-commit 06163cbfcd672daa02fc7a8ae6768633d42cf119
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sun Mar 3 22:43:04 2024 -0700
-
-    okay now tests fr fail
-
-commit 1beeb2e64da203145f59a4f236b5024d6aaf902f
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sun Mar 3 22:10:34 2024 -0700
-
-    tests fail now, no errors
-
-commit 43baeaf6838897a6ddaccaedb59a866209b963c5
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sun Mar 3 21:02:20 2024 -0700
-
-    getter for adjlist
-
-commit deb63e9caa1dc6f630544d2e39e0084b3b5a260c
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Mar 3 15:42:52 2024 -0700
-
-    Added new test files and roughly made calculatetargets/adjcalculations but some stuff isn't implemented.
-
-commit 3106aa91c1a97b2880e194a77951ba74c1cbb3c3
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Mar 3 15:07:33 2024 -0700
-
-    Added teardown @AfterALL to clean up board after group of tests is done to prevent complications
-
-commit 4de5e18300a6b63ba92f5d827f59bda00851f974
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Mar 3 14:32:59 2024 -0700
-
-    Added gitrefactor.txt
-
-commit 3deed558dc059f8a0f39a1e31698cd43b7297f35
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Mar 3 14:26:51 2024 -0700
-
-    Updated comments and refactored code
-
-commit 9ab66ce5e85a467271d637c1707490663c684eae
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Mar 3 14:19:39 2024 -0700
-
-    Added own file for txt
-
-commit f97cee993f87267b8d2e896ea61e5fea7c8d7603
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 19:59:22 2024 -0700
-
-    Fixed last test (i think... it works so who cares)
-
-commit 88e7fc03093b4e905e6474bdd422c08926248c36
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 18:03:20 2024 -0700
-
-    All tests work besides one, the last one is something small and should be easy I'll just do it later
-
-commit ce51f8126e4ba85c67aaf93f9400797479dc8b19
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 17:50:48 2024 -0700
-
-    80% with final test
-
-commit f22dd8c26c62c4769d48df22b839d65ee50abeec
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 16:48:02 2024 -0700
-
-    4/5 Tests pass on given tests
-
-commit a725bd886d6f3e5921078dddf7247bf06a4d70ce
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 15:43:52 2024 -0700
-
-    All unique tests work except CorrectNumberOfDoors (later)
-
-commit 901322d8e22c7c08313d480d081ef4dcbf996673
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Mar 2 15:07:18 2024 -0700
-
-    Passed 4/6 tests for FileInitTests
-
-commit a8976c764fc31235369a7e2cb28c9e9651dd13d8
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Fri Mar 1 14:36:59 2024 -0700
-
-    Updated gitlog
-
-commit 2d1e6ba04994b4ae31621de8b1bfbf0297726e2d
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Fri Mar 1 14:36:02 2024 -0700
-
-    Added Tests.txt
-
-commit d267cba502e044f307ad70a26a54846e0f5d7985
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Fri Mar 1 14:29:00 2024 -0700
-
-    Updated readme.txt
-
-commit 37df6f36a5c1d7cad4b96b47068a77fe03f2427d
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Fri Mar 1 14:27:43 2024 -0700
-
-    Added final comments/headers
-
-commit ae43228996f53956b2babf1edb5da018c87651cf
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Fri Mar 1 14:17:27 2024 -0700
-
-    Fixed original tests to fail by changing null methods
-
-commit dd72026e130b432d01b853668ae1c8fcf024f345
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Fri Mar 1 12:51:24 2024 -0700
-
-    rest done
-
-commit a0eded429d39c4106036cd1c99db9e7c302cedee
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 29 14:53:45 2024 -0700
-
-    Added all classes for package clueGame and coded skeleton without tests. Current tests run without error
-
-commit 48999a6e915718077d24c466a237ceb114fa09e7
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 29 12:54:32 2024 -0700
-
-    Changed tests so they are possible for mixed
-
-commit 35dfd742441fafea818f44c7fd840961713f5dc7
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 21:14:58 2024 -0700
-
-    Changed test on normal (possibly correct) and working on final test
-
-commit 4dc656bcbbda5bd0fccdfb4bbc47c903e2d9a773
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 20:23:18 2024 -0700
-
-    Reverted test changes for debugging
-
-commit ce321c57c4edfda2a9147bcb0c1242a7b6a6808b
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 20:15:26 2024 -0700
-
-    Reverted changes, back to basic, still issue
-
-commit 1443bb641be156d89333e4ee95cbe9adb0f1d61b
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 18:15:31 2024 -0700
-
-    More debugging, issue highlighted of deleteing targets for some reason
-
-commit 548280e9f95aa120b36bf8504fdac6aafa1c1778
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 17:12:07 2024 -0700
-
-    Debugging for Normal Tests
-
-commit 622df928c529eac486988f39407ec8d8e6788ace
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 15:34:41 2024 -0700
-
-    Restructured Code (fixed issue with occupied)
-
-commit 486f5b118f04b5490ed4cb41d8337c82449d7a61
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Wed Feb 28 13:05:03 2024 -0700
-
-    Added comments to clarify new code
-
-commit fe84e97149dc3f3231c4e99244d782156d5b0a30
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Feb 25 21:16:53 2024 -0700
-
-    Small checks for testTargetsNormal
-
-commit 3f96f0fa12fdab3e90e7d209e04d2f7911cc0475
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Feb 25 20:38:14 2024 -0700
-
-    Changed MAX_SIZE to COLS=4 and ROWS=4 which fixed fails
-    in both testTargetOccupied() and testTargetsRoom()
-
-commit 67c40e4adcdcf114628e28f5df2e8b0c95f2feb9
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Feb 25 15:32:14 2024 -0700
-
-    Trying mixed targets/w room. Current error on address of true being assigned in different areas
-
-commit f339e457cb18f6f111bed03c99ca71bd51eae705
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sun Feb 25 14:57:11 2024 -0700
-
-    Made testTargetsOccupied() work, included adjacency list function and added proper function to calcTargets
-
-commit f4b06fd9d79206fc98f2a8218a47662147106a61
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Feb 24 23:21:36 2024 -0700
-
-    Added gitlog to project
-
-commit f622645d73087dd872485a5825cd4f822138ace7
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Feb 24 23:14:47 2024 -0700
-
-    Added readme to project
-
-commit 9f8a63571e3221c4551c3c1cb4006512c765f59f
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Sat Feb 24 23:08:59 2024 -0700
-
-    Added final comments/headers for classes
-
-commit 84119b25a16b4a0195e213c6aa16f295b2f5f4ea
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sat Feb 24 17:45:35 2024 -0700
-
-    finished tests
-
-commit 068f2e65e80c5222dd49021e5b872f01cbe7e1d4
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sat Feb 24 16:59:26 2024 -0700
-
-    errors really fixed now, adding tests
-
-commit 4d9a523cc8ab77b9560444cc550a54ca4fb93511
-Author: sbangapadang22 <sbangapadang@mines.edu>
-Date:   Sat Feb 24 16:28:18 2024 -0700
-
-    fixed errors, adding tests
-
-commit abf1c3ed2107fab8f9568d1ed8ac65e8a2550e9c
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 22 19:51:53 2024 -0700
-
-    Changed JUnit Location to be included with path
-
-commit d951fb18ff0ab0374ebc1618d6ceb5fe4edc52cc
-Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
-Date:   Thu Feb 22 16:00:58 2024 -0700
-
-    Initial Commit

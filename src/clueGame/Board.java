@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/8/2024
+ * Date: 3/3/2024
  * 
  */
 
@@ -17,6 +17,7 @@ import java.util.Set;
 
 import experiment.TestBoardCell;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,6 +38,16 @@ public class Board {
     private Set<BoardCell> targets;
     private Set<BoardCell> visited;
     private Map<Character, Room> roomMap;
+    
+    Map<String, Player> players;
+
+	// Array lists to hold all objects of card types
+	ArrayList<Card> deck;
+	ArrayList<Card> weapons;
+	ArrayList<Card> rooms;
+	ArrayList<Card> gameCharacters; // for the characters in the game; not calling this "players" for clarity.
+	Solution solution;
+    
     public int i = 0;
     private static Board theInstance = new Board();
 
@@ -58,7 +69,14 @@ public class Board {
         roomMap = new HashMap<>();
         targets = new HashSet<>();
         visited = new HashSet<>();
+        deck = new ArrayList<>();       // Initialize the deck
+        weapons = new ArrayList<>();    // Initialize the weapons
+        rooms = new ArrayList<>();      // Initialize the rooms
+        gameCharacters = new ArrayList<>(); // Initialize the game characters
+        players = new HashMap<>();  
+        
     }
+    
     
         
     
@@ -73,16 +91,36 @@ public class Board {
     
     //Calls intialization. 
     public void initialize() {
-    	reset();
+        reset();
         try {
-            loadSetupConfig();
-            loadLayoutConfig();
+        	loadLayoutConfig(); // This should come first, it populates the grid
+            loadSetupConfig(); // Setup should be loaded after the layout
+            cellInfo();
+            // After this, you can create Players, since grid is now populated
         } catch (BadConfigFormatException e) {
             System.out.println("Test");
             e.printStackTrace();
         }
     }
     
+    public void cellInfo() {
+    	for (List<BoardCell> row : grid) {
+        	for (BoardCell cell : row) {
+        		if (cell.isCenterCell()) {
+        			Room room = roomMap.get(cell.getInitial());
+        			if (room != null) {
+        				room.setCenterCell(cell);
+        			}
+        		}
+        		if (cell.isLabelCell()) {
+        			Room room = roomMap.get(cell.getInitial());
+        			if (room != null) {
+        				room.setLabelCell(cell);
+        			}
+        		}
+        	}
+        }
+    }
  // Method to get the entire grid
     public List<List<BoardCell>> getGrid() {
         return grid;
@@ -110,8 +148,6 @@ public class Board {
     public int getNumRows() {
     	return row;
         
-    	
-    	//Getters for each cell
     }
     public int getRow() {
     	return row;
@@ -135,7 +171,9 @@ public class Board {
         setupConfigFile = "data/" + setupConfigFileName;
     }
 
-
+	public void deal() {
+		
+	}
     
     /**
      * Takes in reader and splits lines. Basically creates the roomMap. 
@@ -145,17 +183,67 @@ public class Board {
         // Initialize roomMap or other necessary fields
         try (BufferedReader reader = new BufferedReader(new FileReader(setupConfigFile))) {
             String line;
+            Color color = null;
+            boolean firstIter = true;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(", ");
                 if (tokens.length >= 3) { // Make sure there are at least 3 tokens
                     char key = tokens[2].charAt(0);
                     if (tokens[0].equals("Room") || tokens[0].equals("Space")) {
-                        roomMap.put(key, new Room(tokens[1]));
-                    } else {
-                        // Handle other types of lines or throw an exception if the format is unrecognized
+                        Room room = new Room(tokens[1]);  // Create Room object once
+                        roomMap.put(key, room);        // Use the created object
+                    } 
+                    if (tokens[0].equals("Room")) {
+                        Card newCard;
+                        newCard = new Card(tokens[1], CardType.ROOM);
+                        deck.add(newCard);
+                        rooms.add(newCard);
                     }
                 }
+                if(tokens[0].equals("Player")) {		
+    				switch(tokens[2]) {
+    				case "Yellow":
+    					color = Color.YELLOW;
+    					break;
+    				case "Red":
+    					color = Color.RED;
+    					break;
+    				case "Green":
+    					color = Color.GREEN;
+    					break;
+    				case "Blue":
+    					color = Color.BLUE;
+    					break;
+    				case "White":
+    					color = Color.WHITE;
+    					break;
+    				case "Black":
+    					color = Color.BLACK;
+    					break;
+    				}
+
+    				Card newCard;
+    				newCard = new Card(tokens[1], CardType.PERSON);
+    				deck.add(newCard);
+    				gameCharacters.add(newCard);
+    				// creates player class (uses first "person")
+    				if(firstIter == true) {
+    					Player player = new HumanPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
+    					players.put(tokens[1], player);
+    					firstIter = false;
+    				}else {					
+    					Player player = new ComputerPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
+    					players.put(tokens[1], player);
+    				}
+
+                } else if (tokens[0].equals("Weapon")) {
+    				Card newCard;
+    				newCard = new Card(tokens[1], CardType.WEAPON);
+    				deck.add(newCard);
+    				weapons.add(newCard);
+                }
             }
+            
         } catch (IOException e) {
             throw new BadConfigFormatException("Cannot read setup config file: " + e.getMessage());
         }
@@ -168,6 +256,7 @@ public class Board {
      * @throws BadConfigFormatException
      */
     public void loadLayoutConfig() throws BadConfigFormatException {
+    	
         try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))) {
             String line;
             int row = 0;
@@ -175,44 +264,33 @@ public class Board {
                 if (line.trim().isEmpty()) {
                     continue; // Skip empty lines
                 }
-                processLine(line, row++);
+                String[] cellValues = line.split(",");
+                List<BoardCell> boardRow = new ArrayList<>();
+                for (int column = 0; column < cellValues.length; column++) {
+                    if (cellValues[column].trim().isEmpty()) {
+                        // Handle empty cells appropriately, perhaps with a default cell value
+                        boardRow.add(createBoardCell(row, column, "defaultCellValue"));
+                    } else {
+                        boardRow.add(createBoardCell(row, column, cellValues[column].trim()));
+                    }
+                }
+                grid.add(boardRow);
+                row++;
             }
+            
             this.row = row;
+         
         } catch (IOException e) {
             throw new BadConfigFormatException("Error reading layout configuration file.");
         }
-        setCentersAndLabels();
+        /*
+         * Added loops to check for initial to set center and label. Not previously made. 
+         */
+        
         calculateAdj(); //Calculate adjacencies
+        
     }
-
-    private void processLine(String line, int row) {
-        String[] cellValues = line.split(",");
-        List<BoardCell> boardRow = new ArrayList<>();
-        for (int column = 0; column < cellValues.length; column++) {
-            String cellValue = cellValues[column].trim();
-            boardRow.add(createBoardCell(row, column, cellValue.isEmpty() ? "defaultCellValue" : cellValue));
-        }
-        grid.add(boardRow);
-    }
-
-    private void setCentersAndLabels() {
-        for (List<BoardCell> row : grid) {
-            for (BoardCell cell : row) {
-                if (cell.isRoomCenter()) {
-                    Room room = roomMap.get(cell.getInitial());
-                    if (room != null) {
-                        room.setCenterCell(cell);
-                    }
-                }
-                if (cell.isLabel()) {
-                    Room room = roomMap.get(cell.getInitial());
-                    if (room != null) {
-                        room.setLabelCell(cell);
-                    }
-                }
-            }
-        }
-    }
+    
     
     /**
      * Creates the boardCell and holds DoorDirections. 
@@ -222,29 +300,53 @@ public class Board {
      * @return
      */
     private BoardCell createBoardCell(int row, int column, String cellValue) {
-        cellValue = cellValue.trim();
         char initial = cellValue.charAt(0);
-        char secondChar = cellValue.length() > 1 ? cellValue.charAt(1) : '0';
-        boolean isRoom = initial != 'W' && initial != 'X';
-        boolean isCenterCell = secondChar == '*';
-        boolean isLabelCell = secondChar == '#';
-        boolean isSecretPassage = Character.isLetter(secondChar) && secondChar != 'v';
-        char secretPassage = isSecretPassage ? secondChar : '0';
+        char secretPassage = '0';
+        boolean isCenterCell = cellValue.length() > 1 && cellValue.charAt(1) == '*';
+        boolean isLabelCell = cellValue.length() > 1 && cellValue.charAt(1) == '#';
+        DoorDirection doorDirection = DoorDirection.NONE;
+        boolean isDoorway = false;
+        boolean isSecretPassage = false;
+        cellValue = cellValue.trim();
+        boolean isRoom = false;
         
-        DoorDirection doorDirection = getDoorDirection(secondChar);
-        boolean isDoorway = doorDirection != DoorDirection.NONE;
-
-        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom, isSecretPassage);
-    }
-
-    private DoorDirection getDoorDirection(char secondChar) {
-        switch (secondChar) {
-            case '^': return DoorDirection.UP;
-            case 'v': return DoorDirection.DOWN;
-            case '<': return DoorDirection.LEFT;
-            case '>': return DoorDirection.RIGHT;
-            default:  return DoorDirection.NONE;
+        
+        if (cellValue.charAt(0) != 'W' && cellValue.charAt(0) != 'X') {
+        	isRoom = true;
         }
+        
+        
+        if (cellValue.length() > 1) {
+        	char secondChar = cellValue.charAt(1);
+        	if (Character.isLetter(secondChar) && secondChar != 'v') {
+        		isSecretPassage = true;
+                secretPassage = secondChar;
+
+                
+        	}
+        	
+            // This assumes the second character indicates the door direction
+            isDoorway = true;
+            switch (cellValue.charAt(1)) {
+                case '^':
+                    doorDirection = DoorDirection.UP;
+                    break;
+                case 'v':
+                    doorDirection = DoorDirection.DOWN;
+                    break;
+                case '<':
+                    doorDirection = DoorDirection.LEFT;
+                    break;
+                case '>':
+                    doorDirection = DoorDirection.RIGHT;
+                    break;
+                default:
+                    isDoorway = false; // Invalid direction, not a doorway
+                    break;
+            }
+        }
+        
+        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom, isSecretPassage);
     }
     
     //Other get cell for updated test methods
@@ -263,8 +365,6 @@ public class Board {
         return roomMap.get(initial);
     }
     
-    
-    //Initial calctargets method/reset with helper method
     public void calcTargets(BoardCell startCell, int pathLength) {
         targets.clear();
         visited.clear();
@@ -284,8 +384,7 @@ public class Board {
             for (int col = 0; col < getNumColumns(); col++) {
                 BoardCell cell = getCellAt(row, col);
                 // Check if the cell is not null before proceeding
-                if (cell != null) { //If cell exists, mark it as adjacent cell as long as not 'X' or not room
-                	
+                if (cell != null) {
                 	if ((row > 0)) {
                 	    BoardCell adjacentCell = getCellAt(row-1, col);
                 	    if (adjacentCell != null && !adjacentCell.isRoom() && adjacentCell.getInitial() != 'X') {  // Check that the adjacent cell is not null
@@ -312,10 +411,58 @@ public class Board {
                 	    	cell.addAdj(adjacentCell);
                 	    }
                 	}
+                	
+                	
+                	
+                	
+                	   
+                    // If the cell is a room center, check the whole board for doors pointing to it
+                	if (cell.isRoomCenter()) {
+                	    char roomInitial = cell.getInitial();
+                	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
+                	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
+                	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
+                	            if (potentialDoorCell.isDoorway()) {
+                	                DoorDirection direction = potentialDoorCell.getDoorDirection();
+                	                BoardCell adjacentCell = null;
 
+                	                switch (direction) {
+                	                    case UP:
+                	                        if (doorRow > 0) {
+                	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case DOWN:
+                	                        if (doorRow < getNumRows() - 1) {
+                	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
+                	                        }
+                	                        break;
+                	                    case RIGHT:
+                	                        if (doorCol < getNumColumns() - 1) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
+                	                        }
+                	                        break;
+                	                    case LEFT:
+                	                        if (doorCol > 0) {
+                	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
+                	                        }
+                	                        break;
+                	                }
+
+                	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
+                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
+                	                  
+                	                }
+                	                
+                	            }
+                	        
+                	    
+                	
+                            }
+                        }
                     }
-                
-                //If case of secret passage, use helper methods to find corresponding room
+                    
+                    }
                 if (cell.isSecretPassage()) {
             		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
                     char secretPassageInitial = cell.getSecretPassage(); 
@@ -323,11 +470,12 @@ public class Board {
                         BoardCell secretPassageTarget = findRoomCenterByInitial(secretPassageInitial);
                         if (secretPassageTarget != null) {
                             origCell.addAdj(secretPassageTarget); // Add the center of the target room as adjacent
+                            
                         }
                     }
                 }
-                    //If doorway, consider direction of doorway and how that affects going into rooms
-                if (cell.isDoorway()) {        
+                    
+                if (cell != null && cell.isDoorway()) {        
                     DoorDirection direction = cell.getDoorDirection();
                     char initial;
 
@@ -347,53 +495,14 @@ public class Board {
                     if (newCell != null) {
                         cell.addAdj(newCell);
                     }
-                }   
-                
-                if (cell.isRoomCenter()) {
-            	    char roomInitial = cell.getInitial();
-            	    for (int doorRow = 0; doorRow < getNumRows(); doorRow++) {
-            	        for (int doorCol = 0; doorCol < getNumColumns(); doorCol++) {
-            	            BoardCell potentialDoorCell = getCellAt(doorRow, doorCol);
-            	            if (potentialDoorCell.isDoorway()) {
-            	                DoorDirection direction = potentialDoorCell.getDoorDirection();
-            	                BoardCell adjacentCell = null;
-
-            	                switch (direction) { //Check door direction
-            	                    case UP:
-            	                        if (doorRow > 0) {
-            	                            adjacentCell = getCellAt(doorRow - 1, doorCol);
-            	                        }
-            	                        break;
-            	                    case DOWN:
-            	                        if (doorRow < getNumRows() - 1) {
-            	                            adjacentCell = getCellAt(doorRow + 1, doorCol);
-            	                        }
-            	                        break;
-            	                    case RIGHT:
-            	                        if (doorCol < getNumColumns() - 1) {
-            	                            adjacentCell = getCellAt(doorRow, doorCol + 1);
-            	                        }
-            	                        break;
-            	                    case LEFT:
-            	                        if (doorCol > 0) {
-            	                            adjacentCell = getCellAt(doorRow, doorCol - 1);
-            	                        }
-            	                        break;
-            	                }
-
-            	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
-            	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
-            	                  
-            	                } 
-            	            }
-                        }
-                    }
                 }
+                
             }
             }
+        
         }
     
-    //Finds room by first initial
+    
     public BoardCell findRoomCenterByInitial(char roomInitial) {
         for (int row = 0; row < getNumRows(); row++) {
             for (int col = 0; col < getNumColumns(); col++) {
@@ -407,7 +516,7 @@ public class Board {
         return null; // Return null if no matching room center is found
     }
     
-    //Gets second char of secret passage to find corresponding cell. 
+    
     public char getSecondCharOfSecretPassage(String secretPassage) {
         // Check if the secret passage string is not null and has at least two characters
         if (secretPassage != null && secretPassage.length() > 1) {
@@ -423,13 +532,12 @@ public class Board {
     private void findAllTargets(BoardCell thisCell, int numSteps, boolean startInRoom) {
         if (numSteps == 0 || (thisCell.isRoomCenter() && !startInRoom)) {
             targets.add(thisCell);
+            
             return;
         }
 
-        for (BoardCell adjCell : thisCell.getAdjList()) {
-            if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) {
-                continue; // Skip the cell if it's already visited or occupied and not a room
-            }
+        for (BoardCell adjCell : thisCell.getAdjList()) { 
+        	if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoom())) continue;
 
             visited.add(adjCell);
             findAllTargets(adjCell, numSteps - 1, false);
@@ -449,8 +557,34 @@ public class Board {
      * @return
      */
     public Set<BoardCell> getAdjList(int row, int col) {
+        // Retrieve the cell at the specified row and column
         BoardCell cell = getCellAt(row, col);
-        return cell != null ? cell.getAdjList() : new HashSet<>();
+        // Return the adjacency list of the cell
+        if (cell != null) {
+            return cell.getAdjList();
+        } else {
+            // If the cell is not found, return an empty set
+            return new HashSet<>();
+        }
     }
+
+
+    public ArrayList<Card> getDeck(){
+		return deck;
+	}
+	public void addDeckCards(Card card) {
+		deck.add(card);
+	}
+	public Map<String, Player> getPlayers(){
+		return players;
+	}
+	
+	public void setPlayers(Map<String, Player> input) {
+		players = input;
+	}
+
+	public ArrayList<Card> getWeapons(){
+		return weapons;
+	}
 
 }

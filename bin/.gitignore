@@ -4,10 +4,5 @@
 .settings/
 .metadata
 bin/
-/.gitignore
-/Tests.txt
-/clueGame/
-/experiment/
-/gitrefactor.txt
-/readme.txt
 /tests/
+/clueGame/
