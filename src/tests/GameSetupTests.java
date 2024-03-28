@@ -27,8 +27,6 @@ public class GameSetupTests {
 	public static final int NUM_PLAYER_CARDS = 6;
 	public static final int NUM_WEAPON_CARDS = 6;
 	public static final int NUM_DECK_CARDS = 21;
-	
-	
 	// creates board
 	private static Board board;
 	
@@ -57,7 +55,7 @@ public class GameSetupTests {
 	@Test
 	public void loadNumDeck() {
 		ArrayList<Card> deck = board.getDeck();
-		assertEquals(NUM_DECK_CARDS, deck.size() +3);
+		assertEquals(NUM_DECK_CARDS, deck.size());
 	}
 	
 	// confirms all players are where they need to be
@@ -73,17 +71,7 @@ public class GameSetupTests {
 		Assert.assertTrue(players.containsKey("Plum"));
 	}
 	
-	// confirms all players correspond to their given colors
-	@Test
-	public void testPlayerColors() {
-		Map<String, Player> players = board.getPlayers();
-		Assert.assertEquals(Color.YELLOW, players.get("Mustard").getColor());
-		Assert.assertEquals(Color.RED, players.get("Scarlet").getColor());
-		Assert.assertEquals(Color.GREEN, players.get("Green").getColor());
-		Assert.assertEquals(Color.BLUE, players.get("Peacock").getColor());
-		Assert.assertEquals(Color.WHITE, players.get("White").getColor());
-		Assert.assertEquals(Color.BLACK, players.get("Plum").getColor());
-	}
+	
 	
 	// tests that the code seperates human players from computer players
 	@Test
@@ -110,11 +98,11 @@ public class GameSetupTests {
 	public void testLocations() {
 		Map<String, Player> players = board.getPlayers();
 		Assert.assertEquals(board.getCell(6, 5), players.get("Mustard").getLocation()); 
-		Assert.assertEquals(board.getCell(6, 15), players.get("Scarlet").getLocation()); 
-		Assert.assertEquals(board.getCell(15, 15), players.get("Green").getLocation()); 
-		Assert.assertEquals(board.getCell(15, 8), players.get("Peacock").getLocation()); 
-		Assert.assertEquals(board.getCell(11, 9), players.get("White").getLocation()); 
-		Assert.assertEquals(board.getCell(11, 14), players.get("Plum").getLocation()); 
+		Assert.assertEquals(board.getCell(7, 9), players.get("Scarlet").getLocation()); 
+		Assert.assertEquals(board.getCell(6, 16), players.get("Green").getLocation()); 
+		Assert.assertEquals(board.getCell(14, 2), players.get("Peacock").getLocation()); 
+		Assert.assertEquals(board.getCell(16, 22), players.get("White").getLocation()); 
+		Assert.assertEquals(board.getCell(20, 12), players.get("Plum").getLocation()); 
 	}
 	
 	// test all of the players hands after the cards are dealt

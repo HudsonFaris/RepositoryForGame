@@ -54,6 +54,7 @@ public class Board {
     public void reset() {
         grid.clear(); // Clear the existing grid
         roomMap.clear(); // Clear the existing rooms
+        deck.clear();
         
         this.row = 0;
         this.column = 0;
@@ -572,8 +573,11 @@ public class Board {
     public ArrayList<Card> getDeck(){
 		return deck;
 	}
+    
 	public void addDeckCards(Card card) {
 		deck.add(card);
+		
+		System.out.println(card);
 	}
 	public Map<String, Player> getPlayers(){
 		return players;

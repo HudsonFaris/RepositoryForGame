@@ -14,11 +14,11 @@ Space, Unused, X
 Space, Walkway, W
 // Players on board
 Player, Mustard, Yellow, 6, 5
-Player, Scarlet, Red, 6, 15
-Player, Green, Green, 15, 15
-Player, Peacock, Blue, 15, 8
-Player, White, White, 11, 9
-Player, Plum, Black, 11, 14
+Player, Scarlet, Red, 7, 9
+Player, Green, Green, 6, 16
+Player, Peacock, Blue, 14, 2
+Player, White, White, 16, 22
+Player, Plum, Black, 20, 12
 // Weapons
 Weapon, knife
 Weapon, rope
