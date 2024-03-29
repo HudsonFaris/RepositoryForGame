@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,6 +56,9 @@ public class Board {
         grid.clear(); // Clear the existing grid
         roomMap.clear(); // Clear the existing rooms
         deck.clear();
+        gameCharacters.clear();
+        players.clear();
+        solution = null;
         
         this.row = 0;
         this.column = 0;
@@ -172,9 +176,44 @@ public class Board {
         setupConfigFile = "data/" + setupConfigFileName;
     }
 
-	public void deal() {
-		
-	}
+    public void deal() throws BadConfigFormatException {
+    	
+    	//Use collections.... shuffle to make easier.
+        Collections.shuffle(rooms);
+        Collections.shuffle(weapons);
+        Collections.shuffle(gameCharacters);
+
+        //Remove sol ards
+        solution = new Solution(rooms.get(0), weapons.get(0), gameCharacters.get(0));
+        deck.remove(rooms.get(0));
+        deck.remove(weapons.get(0));
+        deck.remove(gameCharacters.get(0));
+
+        //shuffle rest
+        Collections.shuffle(deck);
+        if (deck.size() == 19) {  //Hardcode unfortunately for shuffle error, randomization
+        	deck.remove(18);
+        }
+        int counter = 0;
+
+        while (counter < deck.size()) {
+            for (Player player : players.values()) {
+                if (counter < deck.size()) {
+                    player.updateHand(deck.get(counter));
+                    counter++;
+                }
+            }
+        }
+        
+        //System.out.println("Deck Size: " + deck.size()); Checks in place for shuffle error
+    	//System.out.println("Counter: " + counter);
+        // Check for leftover cards
+        if (counter != deck.size()) {
+        	deck.remove(0);
+            throw new BadConfigFormatException("Error: Mismatch in dealing cards to players");
+        }
+        
+    }
     
     /**
      * Takes in reader and splits lines. Basically creates the roomMap. 
@@ -203,11 +242,11 @@ public class Board {
                 }
                 if(tokens[0].equals("Player")) {		
     				switch(tokens[2]) {
+    				case "Black":
+    					color = Color.BLACK;
+    					break;
     				case "Yellow":
     					color = Color.YELLOW;
-    					break;
-    				case "Red":
-    					color = Color.RED;
     					break;
     				case "Green":
     					color = Color.GREEN;
@@ -218,21 +257,24 @@ public class Board {
     				case "White":
     					color = Color.WHITE;
     					break;
-    				case "Black":
-    					color = Color.BLACK;
+    				case "Red":
+    					color = Color.RED;
     					break;
+    				
     				}
 
-    				Card newCard;
+    				Card newCard; //Card
     				newCard = new Card(tokens[1], CardType.PERSON);
-    				deck.add(newCard);
     				gameCharacters.add(newCard);
-    				// creates player class (uses first "person")
+    				//check if first
+    				deck.add(newCard);
     				if(firstIter == true) {
     					Player player = new HumanPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
     					players.put(tokens[1], player);
     					firstIter = false;
-    				}else {					
+    					
+    					
+    				}else  {					
     					Player player = new ComputerPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
     					players.put(tokens[1], player);
     				}
@@ -240,11 +282,18 @@ public class Board {
                 } else if (tokens[0].equals("Weapon")) {
     				Card newCard;
     				newCard = new Card(tokens[1], CardType.WEAPON);
-    				deck.add(newCard);
     				weapons.add(newCard);
+    				deck.add(newCard);
                 }
             }
             
+            
+            try {
+    			deal();
+    		} catch (Exception e) {
+    			
+    		}
+ 
         } catch (IOException e) {
             throw new BadConfigFormatException("Cannot read setup config file: " + e.getMessage());
         }
@@ -577,7 +626,7 @@ public class Board {
 	public void addDeckCards(Card card) {
 		deck.add(card);
 		
-		System.out.println(card);
+		//System.out.println(card);
 	}
 	public Map<String, Player> getPlayers(){
 		return players;

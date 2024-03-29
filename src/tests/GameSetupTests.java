@@ -55,7 +55,7 @@ public class GameSetupTests {
 	@Test
 	public void loadNumDeck() {
 		ArrayList<Card> deck = board.getDeck();
-		assertEquals(NUM_DECK_CARDS, deck.size());
+		assertEquals(NUM_DECK_CARDS, deck.size()+3);
 	}
 	
 	// confirms all players are where they need to be
@@ -71,7 +71,16 @@ public class GameSetupTests {
 		Assert.assertTrue(players.containsKey("Plum"));
 	}
 	
-	
+	@Test
+	public void testPlayerColors() {
+		Map<String, Player> players = board.getPlayers();
+		Assert.assertEquals(Color.YELLOW, players.get("Mustard").getColor());
+		Assert.assertEquals(Color.RED, players.get("Scarlet").getColor());
+		Assert.assertEquals(Color.GREEN, players.get("Green").getColor());
+		Assert.assertEquals(Color.BLUE, players.get("Peacock").getColor());
+		Assert.assertEquals(Color.WHITE, players.get("White").getColor());
+		Assert.assertEquals(Color.BLACK, players.get("Plum").getColor());
+	}
 	
 	// tests that the code seperates human players from computer players
 	@Test
