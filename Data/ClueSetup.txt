@@ -13,16 +13,16 @@ Room, Auditorium, A
 Space, Unused, X
 Space, Walkway, W
 // Players on board
-Player, Mustard, Yellow, 6, 5
-Player, Scarlet, Red, 7, 9
-Player, Green, Green, 6, 16
-Player, Peacock, Blue, 14, 2
-Player, White, White, 16, 22
-Player, Plum, Black, 20, 12
+Player, Mike, Blue, 6, 5
+Player, Varz, Black, 7, 9
+Player, Greif, Green, 6, 16
+Player, Stoop, White, 14, 2
+Player, Owen, Yellow, 16, 22
+Player, Chip, Red, 20, 12
 // Weapons
+Weapon, spoon
+Weapon, bat
+Weapon, machete
+Weapon, magic
+Weapon, mac-10
 Weapon, knife
-Weapon, rope
-Weapon, dumbbell
-Weapon, poison
-Weapon, pipe
-Weapon, revolver

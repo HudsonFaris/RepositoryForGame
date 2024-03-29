@@ -1,22 +1,33 @@
 package clueGame;
 
+/**
+ * Card - Child class of player, creates comp player and uses abstract methods if
+ * and only if the player is a computer. 5/6. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/29/2024
+ * 
+ */
+
 public class Card{
 
-	// variables to hold card name and card type
+	//Card variables
 	private String cardName;
 	private CardType cardType;
 
 
-	// constructor to set name and card type
+	//Construct
 	public Card(String name, CardType cardType) {
 		super();
-		this.cardName = name;
 		this.cardType = cardType;
+		this.cardName = name;
 	}
 	
 	
-	// testing wheter to cards are equal using the card name, 
-	// card type and class
+	// equals method as described....
 	public boolean equals(Card target) {
 		if(target.cardName == cardName && target.getCardType() == cardType) {
 			if(getClass() == target.getClass()) {
@@ -27,21 +38,21 @@ public class Card{
 		}
 		return false;
 	}
-
-	// returns the card type
-	public CardType getCardType() {
-		return cardType;
-	}
-	// returns the card name
-	public String getCardName() {
-		return cardName;
-	}
-	// sets card type
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
-	}
-	// sets card name
+	
 	public void setCardName(String name) {
 		this.cardName = name;
 	}
+	public String getCardName() {
+		return cardName;
+	}
+	
+	public void setCardType(CardType cardType) {
+		this.cardType = cardType;
+	}
+	
+	public CardType getCardType() {
+		return cardType;
+	}
+
+	
 }

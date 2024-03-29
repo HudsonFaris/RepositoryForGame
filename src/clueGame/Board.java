@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/3/2024
+ * Date: 3/29/2024
  * 
  */
 
@@ -233,14 +233,14 @@ public class Board {
                         Room room = new Room(tokens[1]);  // Create Room object once
                         roomMap.put(key, room);        // Use the created object
                     } 
-                    if (tokens[0].equals("Room")) {
+                    if (tokens[0].equals("Room")) { //Add card for creating room, not with space though
                         Card newCard;
                         newCard = new Card(tokens[1], CardType.ROOM);
                         deck.add(newCard);
                         rooms.add(newCard);
                     }
                 }
-                if(tokens[0].equals("Player")) {		
+                if(tokens[0].equals("Player")) { //Plyer colors		
     				switch(tokens[2]) {
     				case "Black":
     					color = Color.BLACK;
@@ -268,9 +268,10 @@ public class Board {
     				gameCharacters.add(newCard);
     				//check if first
     				deck.add(newCard);
-    				if(firstIter == true) {
+    				if(firstIter == true) { //Make first person human, rest comp players
     					Player player = new HumanPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
     					players.put(tokens[1], player);
+    					//Remove boolean/make false
     					firstIter = false;
     					
     					
@@ -279,7 +280,7 @@ public class Board {
     					players.put(tokens[1], player);
     				}
 
-                } else if (tokens[0].equals("Weapon")) {
+                } else if (tokens[0].equals("Weapon")) { //If rreads weapon create new card and add weapon to it, and just make weapon
     				Card newCard;
     				newCard = new Card(tokens[1], CardType.WEAPON);
     				weapons.add(newCard);

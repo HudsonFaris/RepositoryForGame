@@ -1,21 +1,40 @@
 package clueGame;
 
+/**
+ * Solution Class - Holds the solution cards, that's really it... Doesn't do much 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/29/2024
+ * 
+ */
+
 public class Solution {
 
-	// card variables to hold solution cards for all three types
-	Card person;
 	Card room;
+	Card person;
 	Card Weapon;
 	
 	
-	// constructor to set proper solution cards
+	
+	
+	//construct
 	public Solution(Card person, Card room, Card weapon) {
 		this.person = person;
 		this.room = room;
 		this.Weapon = weapon;
 	}
 	
-	// corresponding getters and setters
+	public Card getRoom() {
+		return room;
+	}
+
+	public void setRoom(Card room) {
+		this.room = room;
+	}
+	
 	public Card getPerson() {
 		return person;
 	}
@@ -24,20 +43,12 @@ public class Solution {
 		this.person = person;
 	}
 
-	public Card getRoom() {
-		return room;
-	}
-
-	public void setRoom(Card room) {
-		this.room = room;
+	public void setWeapon(Card weapon) {
+		Weapon = weapon;
 	}
 
 	public Card getWeapon() {
 		return Weapon;
-	}
-
-	public void setWeapon(Card weapon) {
-		Weapon = weapon;
 	}
 
 }

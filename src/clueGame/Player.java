@@ -1,5 +1,19 @@
 package clueGame;
 
+/**
+ * Player Class - This class holds the constructor for a player, and holds suggestion methods and asbtract methods for the 
+ * player class. 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/29/2024
+ * 
+ */
+
+
+
 import java.awt.Color;
 import java.util.Random;
 import java.util.Set;
@@ -8,52 +22,47 @@ import java.util.HashSet;
 
 public abstract class Player {
 
-	// variables to hold name of the player, corresponding color,
-	// location and said players hand
-	private String name;
-	private Color color;
-	private int row, column;
-	private BoardCell location;
+	// basic variables...
 	private ArrayList<Card> hand = new ArrayList<Card>();
 	protected ArrayList<Card> seen = new ArrayList<Card>();
+	private int row, column;
+	private BoardCell location;
+	private String name;
+	private Color color;
 	
 
 	// constructor to set correct variables
 	public Player(String name, Color color, int row, int column) {
+		
 		this.setName(name);
 		this.setColor(color);
-		this.setRow(row);
 		this.setColumn(column);
+		this.setRow(row);
+		
 		this.location = Board.getInstance().getCell(row, column);
 	}
 
-	// Player disproves a suggestion
-	// iterate through hand, and if it is here add it to the arraylist so 
-	// we can choose a random card to output
+	// player disprove suggestion
 	public Card disproveSuggestion(ArrayList<Card> suggestion) {
-		ArrayList<Card> disproveCards = new ArrayList<Card>();
-		for(Card card: hand) {
-			if(suggestion.contains(card)) {
-				disproveCards.add(card);
-			}
-		}
-
-		Random num = new Random();
-		if(disproveCards.size() > 0) {
-			int index = num.nextInt(disproveCards.size());
-			return disproveCards.get(index);
-		}else {
-			return null;
-		}
+		return null;
 	}
 
-	// simply...updates seen
-	public void updateSeen(Card seenCard) {
-		if(!seen.contains(seenCard)) {
-			seen.add(seenCard);
-		}
+	//check if card is seen
+	public void updateSeen(Card seenCard){
+		//nothing
 	}
+	public abstract BoardCell selectTargets(Set<BoardCell> set);
+	
+	public abstract Card getSuggPerson();
+	
+	public abstract Card getSuggWeapon();
+	
+	public abstract String getSuggRoom();
+	
 
+	public void createSuggestion(BoardCell boardCell) {}
+
+	
 	// adds cards to array list hand of players
 	public void updateHand(Card card) {
 		hand.add(card);
@@ -71,14 +80,6 @@ public abstract class Player {
 	// corresponding setters and getters
 	public void setHand(ArrayList<Card> hand) {
 		this.hand = hand;
-	}
-
-	public BoardCell getLocation() {
-		return location;
-	}
-
-	public void setLocation(BoardCell location) {
-		this.location = location;
 	}
 
 	public Color getColor() {
@@ -112,14 +113,13 @@ public abstract class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 	
-	public abstract Card getSuggPerson();
-	public abstract Card getSuggWeapon();
-	public abstract String getSuggRoom();
-	public abstract BoardCell selectTargets(Set<BoardCell> set);
+	public BoardCell getLocation() {
+		return location;
+	}
 
-	public void createSuggestion(BoardCell boardCell) {}
+	public void setLocation(BoardCell location) {
+		this.location = location;
+	}
 
 }
