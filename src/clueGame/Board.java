@@ -185,7 +185,6 @@ public class Board {
         Collections.shuffle(weapons);
         Collections.shuffle(gameCharacters);
 
-        //Remove sol ards
         solution = new Solution(rooms.get(0), weapons.get(0), gameCharacters.get(0));
         deck.remove(rooms.get(0));
         deck.remove(weapons.get(0));
@@ -215,6 +214,8 @@ public class Board {
         	deck.remove(0);
             throw new BadConfigFormatException("Error: Mismatch in dealing cards to players");
         }
+        
+ 
     }
     
     /**
@@ -635,7 +636,7 @@ public class Board {
 		return weapons;
 	}
 	
-	public boolean checkAccusation(Card person, Card location, Card weapon) {
+	public boolean checkAccusation(Solution solution, Card person, Card location, Card weapon) {
 		if(solution.getPerson().getCardName().equals(person.getCardName()) && 
 				solution.getRoom().getCardName().equals(location.getCardName()) && 
 				solution.getWeapon().getCardName().equals(weapon.getCardName())) {
@@ -665,5 +666,7 @@ public class Board {
 		} 
 		return null;
 	}
+	
+	
 
 }

@@ -22,9 +22,10 @@ public class Solution {
 	
 	//construct
 	public Solution(Card person, Card room, Card weapon) {
-		this.person = person;
-		this.room = room;
 		this.Weapon = weapon;
+		this.room = room;
+		this.person = person;
+	
 	}
 	
 	public Card getRoom() {

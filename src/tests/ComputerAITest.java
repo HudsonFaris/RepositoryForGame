@@ -116,10 +116,11 @@ public class ComputerAITest {
 		String location = computerPlayerOne.getSuggRoom();
 		Assert.assertTrue(location == "Walkway");
 		//Room matches current location on board
-		Player computerPlayerTwo = new ComputerPlayer("Test", Color.BLACK, 11, 3);
+		
+		Player computerPlayerTwo = new ComputerPlayer("Test", Color.BLACK, 20, 2);
 		computerPlayerTwo.createSuggestion(computerPlayerTwo.getLocation());
 		String locationTWO = computerPlayerTwo.getSuggRoom();
-		Assert.assertTrue(locationTWO == "Library");
+		Assert.assertTrue(locationTWO == "Pantry");
 	}
 	
 }

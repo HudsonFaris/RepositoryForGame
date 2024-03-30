@@ -59,38 +59,44 @@ public class ComputerPlayer extends Player{
 			}
 
 			Random randNum = new Random();
-			this.setSuggPerson(peoples.get(randNum.nextInt(peoples.size())));
-			this.setSuggWeapon(weapons.get(randNum.nextInt(peoples.size())));
+			 if (!peoples.isEmpty()) {
+			        this.setSuggPerson(peoples.get(randNum.nextInt(peoples.size())));
+			    }
+			    // Setting a suggestion for a weapon if the weapons list is not empty
+			 if (!weapons.isEmpty()) {
+			        this.setSuggWeapon(weapons.get(randNum.nextInt(weapons.size())));
+			    }
+			 
 			char initialRoom = (boardCell.getInitial());
 			// switch statement to aid in getting location.
 			switch(initialRoom) {
 			case 'M':
 				System.out.println(1);
-				this.suggRoom = "Main Hall";
-				break;
-			case 'K':
-				this.suggRoom = "Cooking Room";
-				break;
-			case 'R':
-				this.suggRoom = "Relaxing Room";
-				break;
-			case 'P':
-				this.suggRoom = "Ping Pong Room";
-				break;
-			case 'L':
-				this.suggRoom = "Library";
-				break;
-			case 'D':
-				this.suggRoom = "Dining Room";
-				break;
-			case 'T':
-				this.suggRoom = "TV Room";
+				this.suggRoom = "Mailroom";
 				break;
 			case 'S':
-				this.suggRoom = "School";
+				this.suggRoom = "Supper Room";
 				break;
-			case 'C':
-				this.suggRoom = "Closet";
+			case 'B':
+				this.suggRoom = "Break Room";
+				break;
+			case 'L':
+				this.suggRoom = "Lobby";
+				break;
+			case 'G':
+				this.suggRoom = "Garden";
+				break;
+			case 'P':
+				this.suggRoom = "Pantry";
+				break;
+			case 'J':
+				this.suggRoom = "Jocket Room";
+				break;
+			case 'H':
+				this.suggRoom = "Hidden Compartment";
+				break;
+			case 'A':
+				this.suggRoom = "Auditorium";
 				break;
 			case 'W':
 				this.suggRoom = "Walkway";

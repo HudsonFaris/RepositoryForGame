@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.HashMap;
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,25 +36,28 @@ public class GameSolutionTest {
 	// checks person, weapon, room
 	@Test
 	public void testCheckAccusation() {
-		Card person = new Card("Mustard", CardType.PERSON);
-		Card room = new Card("Main Hall", CardType.ROOM);
-		Card weapon = new Card("knife", CardType.WEAPON);
+
+		Card person = new Card("Mike", CardType.PERSON);
+		Card room = new Card("Mailroom", CardType.ROOM);
+		Card weapon = new Card("mac-10", CardType.WEAPON);
+		
 		
 		Solution answer = new Solution(person, room, weapon);
 		
-		Assert.assertTrue("Mustard" == answer.getPerson().getCardName());
-		Assert.assertTrue("Main Hall"== answer.getRoom().getCardName());
-		Assert.assertTrue("knife" == answer.getWeapon().getCardName());
-		Assert.assertTrue(board.checkAccusation(person, room, weapon) == true);
+		Assert.assertTrue("Mike" == answer.getPerson().getCardName());
+		Assert.assertTrue("Mailroom"== answer.getRoom().getCardName());
+		Assert.assertTrue("mac-10" == answer.getWeapon().getCardName());
+
+		Assert.assertTrue(board.checkAccusation(answer, person, room, weapon) == true);
 		
-		Card wrong = new Card("Kenny", CardType.PERSON);
-		Assert.assertTrue(board.checkAccusation(wrong, room, weapon) == false);
+		Card wrong = new Card("Varz", CardType.PERSON);
+		Assert.assertTrue(board.checkAccusation(answer, wrong, room, weapon) == false);
 		
-		Card wrongTwo = new Card("pipe", CardType.WEAPON);
-		Assert.assertTrue(board.checkAccusation(person, room, wrongTwo) == false);
+		Card wrongTwo = new Card("knife", CardType.WEAPON);
+		Assert.assertTrue(board.checkAccusation(answer, person, room, wrongTwo) == false);
 		
-		Card wrongThree = new Card("Dining Hall", CardType.ROOM);
-		Assert.assertTrue(board.checkAccusation(person, wrongThree, weapon) == false);
+		Card wrongThree = new Card("Pantry", CardType.ROOM);
+		Assert.assertTrue(board.checkAccusation(answer, person, wrongThree, weapon) == false);
 	}
 	
 	
