@@ -44,13 +44,29 @@ public abstract class Player {
 
 	// player disprove suggestion
 	public Card disproveSuggestion(ArrayList<Card> suggestion) {
-		return null;
-	}
+		ArrayList<Card> disproveCards = new ArrayList<Card>();
+		for(Card card: hand) {
+			if(suggestion.contains(card)) {
+				disproveCards.add(card);
+			}
+		}
 
-	//check if card is seen
-	public void updateSeen(Card seenCard){
-		//nothing
+		Random num = new Random();
+		if(disproveCards.size() > 0) {
+			int index = num.nextInt(disproveCards.size());
+			return disproveCards.get(index);
+		}else {
+			return null;
+		}
 	}
+	//check if card is seen
+	public void updateSeen(Card seenCard) {
+		if(!seen.contains(seenCard)) {
+			seen.add(seenCard);
+		}
+	}
+	
+	
 	public abstract BoardCell selectTargets(Set<BoardCell> set);
 	
 	public abstract Card getSuggPerson();

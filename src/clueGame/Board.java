@@ -42,7 +42,7 @@ public class Board {
     
     Map<String, Player> players;
 
-	// Array lists to hold all objects of card types
+	//Array Lists
 	ArrayList<Card> deck;
 	ArrayList<Card> weapons;
 	ArrayList<Card> rooms;
@@ -58,6 +58,7 @@ public class Board {
         deck.clear();
         gameCharacters.clear();
         players.clear();
+        weapons.clear();;
         solution = null;
         
         this.row = 0;
@@ -74,10 +75,10 @@ public class Board {
         roomMap = new HashMap<>();
         targets = new HashSet<>();
         visited = new HashSet<>();
-        deck = new ArrayList<>();       // Initialize the deck
-        weapons = new ArrayList<>();    // Initialize the weapons
-        rooms = new ArrayList<>();      // Initialize the rooms
-        gameCharacters = new ArrayList<>(); // Initialize the game characters
+        deck = new ArrayList<>();       
+        weapons = new ArrayList<>();    
+        rooms = new ArrayList<>();     
+        gameCharacters = new ArrayList<>(); 
         players = new HashMap<>();  
         
     }
@@ -126,6 +127,7 @@ public class Board {
         	}
         }
     }
+    
  // Method to get the entire grid
     public List<List<BoardCell>> getGrid() {
         return grid;
@@ -194,6 +196,7 @@ public class Board {
         if (deck.size() == 19) {  //Hardcode unfortunately for shuffle error, randomization
         	deck.remove(18);
         }
+        
         int counter = 0;
 
         while (counter < deck.size()) {
@@ -212,7 +215,6 @@ public class Board {
         	deck.remove(0);
             throw new BadConfigFormatException("Error: Mismatch in dealing cards to players");
         }
-        
     }
     
     /**
@@ -240,6 +242,7 @@ public class Board {
                         rooms.add(newCard);
                     }
                 }
+                
                 if(tokens[0].equals("Player")) { //Plyer colors		
     				switch(tokens[2]) {
     				case "Black":
@@ -288,13 +291,11 @@ public class Board {
                 }
             }
             
-            
             try {
     			deal();
     		} catch (Exception e) {
     			
     		}
- 
         } catch (IOException e) {
             throw new BadConfigFormatException("Cannot read setup config file: " + e.getMessage());
         }
@@ -501,18 +502,12 @@ public class Board {
                 	                }
 
                 	                if (adjacentCell != null && adjacentCell.getInitial() == roomInitial) {
-                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent
-                	                  
-                	                }
-                	                
+                	                    cell.addAdj(potentialDoorCell);  // Add the doorway as adjacent        
+                	                }   
                 	            }
-                	        
-                	    
-                	
                             }
                         }
-                    }
-                    
+                    }       
                     }
                 if (cell.isSecretPassage()) {
             		BoardCell origCell = findRoomCenterByInitial(cell.getInitial());
@@ -550,7 +545,6 @@ public class Board {
                 
             }
             }
-        
         }
     
     
@@ -639,6 +633,37 @@ public class Board {
 
 	public ArrayList<Card> getWeapons(){
 		return weapons;
+	}
+	
+	public boolean checkAccusation(Card person, Card location, Card weapon) {
+		if(solution.getPerson().getCardName().equals(person.getCardName()) && 
+				solution.getRoom().getCardName().equals(location.getCardName()) && 
+				solution.getWeapon().getCardName().equals(weapon.getCardName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public Card handleSuggestion(Card person, Card room, Card weapon, Player suggestor) {
+		ArrayList<Card> suggestionList = new ArrayList<Card>();
+		suggestionList.add(person);
+		suggestionList.add(room);
+		suggestionList.add(weapon);
+		Card result = null;
+		for(Map.Entry<String, Player> entry: players.entrySet()) {
+			if(entry.getValue() == suggestor) {continue;}
+			for(int suggestionIterator = 0; suggestionIterator < 3; ++suggestionIterator) {
+				for(int handIterator = 0; handIterator < 3; ++handIterator) {
+					if(entry.getValue().getHand().get(handIterator).getCardName().equals(suggestionList.get(suggestionIterator).getCardName())) {
+						result = suggestionList.get(suggestionIterator);
+						break;
+					}
+				}
+			}
+			if(result != null) {return result;}
+		} 
+		return null;
 	}
 
 }
