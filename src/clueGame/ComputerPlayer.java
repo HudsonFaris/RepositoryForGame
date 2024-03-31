@@ -18,7 +18,6 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -47,8 +46,8 @@ public class ComputerPlayer extends Player{
 	@Override
 	public void createSuggestion(BoardCell boardCell) {
 	    List<Card> peoples = new ArrayList<>();
+	    Random randInt = new Random();
 	    List<Card> weapons = new ArrayList<>();
-	    Random randNum = new Random();
 
 	    for (Card c : Board.getInstance().getDeck()) {
 	        if (!seen.contains(c) && !getHand().contains(c)) {
@@ -61,11 +60,11 @@ public class ComputerPlayer extends Player{
 	    }
 
 	    if (!peoples.isEmpty()) {
-	        this.setSuggPerson(peoples.get(randNum.nextInt(peoples.size())));
+	        this.setSuggPerson(peoples.get(randInt.nextInt(peoples.size())));
 	    }
 
 	    if (!weapons.isEmpty()) {
-	        this.setSuggWeapon(weapons.get(randNum.nextInt(weapons.size())));
+	        this.setSuggWeapon(weapons.get(randInt.nextInt(weapons.size())));
 	    }
 
 	    Map<Character, String> roomMap = new HashMap<>();
