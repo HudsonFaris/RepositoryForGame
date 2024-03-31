@@ -10,7 +10,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/29/2024
+ * Date: 3/31/2024
  * 
  */
 
@@ -42,7 +42,8 @@ public class ComputerPlayer extends Player{
 		this("Test", Color.WHITE, 6, 9); //Funny number. .
 	}
 	
-	
+	//Just creates the suggestion
+
 	@Override
 	public void createSuggestion(BoardCell boardCell) {
 	    List<Card> peoples = new ArrayList<>();
@@ -75,7 +76,7 @@ public class ComputerPlayer extends Player{
 	    roomMap.put('G', "Garden");
 	    roomMap.put('P', "Pantry");
 	    roomMap.put('J', "Jocket Room");
-	    roomMap.put('H', "Hidden Compartment");
+	    roomMap.put('H', "Hidden Compartment"); //Jeez (REMOVED)
 	    roomMap.put('A', "Auditorium");
 	    roomMap.put('W', "Walkway");
 
@@ -91,14 +92,14 @@ public class ComputerPlayer extends Player{
 	            .filter(target -> !getSeen().toString().contains(Board.getInstance().getRoom(target.getInitial()).getName()))
 	            .findFirst();
 
-	    // If an unseen room cell is found, return it.
+	    //If an unseen room cell is found, return it
 	    if (unseenRoomCell.isPresent()) {
 	        return unseenRoomCell.get();
 	    }
 
-	    // If no unseen room cell is found, select a random target.
+	    //If no unseen room cell is found, select a random target
 	    int randTargetIndex = new Random().nextInt(targets.size());
-	    return new ArrayList<>(targets).get(randTargetIndex); // Convert to list for random access
+	    return new ArrayList<>(targets).get(randTargetIndex); //Convert to list for random access
 	}
 
 

@@ -8,7 +8,7 @@ package clueGame;
  * @author Sam Bangapadang
  * 
  * Sources: JavaDocs
- * Date: 3/29/2024
+ * Date: 3/31/2024
  * 
  */
 
@@ -103,7 +103,6 @@ public class Board {
             cellInfo();
             // After this, you can create Players, since grid is now populated
         } catch (BadConfigFormatException e) {
-            System.out.println("Test");
             e.printStackTrace();
         }
     }
@@ -635,6 +634,8 @@ public class Board {
 		return weapons;
 	}
 	
+	
+	//Just see if things match the accusation
 	public boolean checkAccusation(Solution solution, Card person, Card location, Card weapon) {
 	    return solution.getPerson().getCardName().equals(person.getCardName()) && 
 	           solution.getRoom().getCardName().equals(location.getCardName()) && 
@@ -644,6 +645,7 @@ public class Board {
 	
 	
 	//REFACTOR MOVE//
+	//Iteratres through values and see if the player is suggestor, if so gets hand. 
 	public Card handleSuggestion(Card person, Card room, Card weapon, Player suggestor) {
 	    List<Card> suggestionList = Arrays.asList(person, room, weapon);
 

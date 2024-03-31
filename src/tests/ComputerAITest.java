@@ -1,5 +1,16 @@
 package tests;
 
+/**
+ * ComputerAITest - Holds tests for targets and suggesting locations using "AI". 
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/31/2024
+ * 
+ */
+
 import java.awt.Color;
 import java.util.Set;
 
@@ -19,6 +30,7 @@ public class ComputerAITest {
     private static Board board;
     public static Card mikeCard, varzCard, greifCard, stoopCard, owenCard, chipCard, knifeCard, mailroomCard;
 
+    //done! YAY
     @BeforeAll
     public static void setUp() {
         board = Board.getInstance();
@@ -35,6 +47,7 @@ public class ComputerAITest {
         mailroomCard = new Card("Mailroom", CardType.ROOM);
     }
 
+    //Checks if the suggested location works, even if room or just normal cell
     @Test
     public void testSuggLocation() {
         Player computerPlayerOne = new ComputerPlayer();
@@ -48,6 +61,7 @@ public class ComputerAITest {
         Assert.assertTrue(locationTWO == "Pantry");
     }
 
+    //Checks if creating a suggestion method works with seen. 
     @Test
     public void testCreateSuggestion() {
         Player computerPlayerOne = new ComputerPlayer();
@@ -69,6 +83,7 @@ public class ComputerAITest {
         Assert.assertEquals("Knife", computerPlayerOne.getSuggWeapon().getCardName());
     }
 
+    //Checks if selected targets work correctly for players (kind of done before but redundant)
     @Test
     public void testSelectTargets() {
         Player player = new ComputerPlayer();
@@ -83,6 +98,6 @@ public class ComputerAITest {
         board.calcTargets(player.getLocation(), 3);
         Set<BoardCell> targetsTwo = board.getTargets();
         BoardCell cellTwo = player.selectTargets(targetsTwo);
-        Assert.assertTrue(cellTwo.getInitial() != 'R');
+        Assert.assertTrue(cellTwo.getInitial() != 'X');
     }
 }

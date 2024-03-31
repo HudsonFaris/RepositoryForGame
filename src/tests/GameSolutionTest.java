@@ -1,5 +1,16 @@
 package tests;
 
+/**
+ * GameSolutionTests- Holds tests for accusation methods
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 3/31/2024
+ * 
+ */
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
@@ -26,6 +37,7 @@ public class GameSolutionTest {
         board.initialize();
     }
 
+    //Checks if the accusation is correct. 
     @Test
     public void testCorrectAccusation() {
         // Correct accusation
@@ -35,7 +47,8 @@ public class GameSolutionTest {
         Solution correctSolution = new Solution(person, room, weapon);
         Assert.assertTrue(board.checkAccusation(correctSolution, person, room, weapon));
     }
-
+    
+    //Checks if accusation is wrong. 
     @Test
     public void testIncorrectAccusation() {
         // Incorrect accusations
@@ -45,6 +58,7 @@ public class GameSolutionTest {
         Assert.assertFalse(board.checkAccusation(solution, new Card("Mike", CardType.PERSON), new Card("Mailroom", CardType.ROOM), new Card("knife", CardType.WEAPON)));
     }
 
+    //Checks if one is a match
     @Test
     public void testDisproveSuggestionWithOneMatch() {
         Player player = new ComputerPlayer("Varz", Color.BLACK, 7, 9);
@@ -63,7 +77,8 @@ public class GameSolutionTest {
             Assert.assertEquals("Disproved card should be 'Mike'", new Card("Mike", CardType.PERSON), result);
         }
     }
-
+    
+    //checks no match
     @Test
     public void testDisproveSuggestionWithNoMatch() {
         Player player = new ComputerPlayer("Varz", Color.BLACK, 7, 9);
@@ -72,14 +87,17 @@ public class GameSolutionTest {
         player.updateHand(new Card("mac-10", CardType.WEAPON));
 
         ArrayList<Card> suggestion = new ArrayList<>();
+        
+        //Check ?
         suggestion.add(new Card("Owen", CardType.PERSON));
         suggestion.add(new Card("Garden", CardType.ROOM));
         suggestion.add(new Card("bat", CardType.WEAPON));
-
+        //Works!
+        
         Assert.assertNull(player.disproveSuggestion(suggestion));
     }
 
-
+    //Checks with no disproof
     @Test
     public void testHandleSuggestionWithNoDisproof() {
         // Setting up players and their hands
@@ -97,14 +115,15 @@ public class GameSolutionTest {
         players.get("Greif").updateHand(new Card("bat", CardType.WEAPON));
 
         board.setPlayers(players);
-
-        Card person = new Card("Stoop", CardType.PERSON);
         Card room = new Card("Supper Room", CardType.ROOM);
         Card weapon = new Card("machete", CardType.WEAPON);
+        Card person = new Card("Stoop", CardType.PERSON);
+        
 
         Assert.assertNull(board.handleSuggestion(person, room, weapon, players.get("Mike")));
     }
     
+    //Checks with multiple disproof
     @Test
     public void testHandleSuggestionWithMultipleDisproof() {
         // Setting up players and their hands
@@ -123,9 +142,10 @@ public class GameSolutionTest {
 
         board.setPlayers(players);
 
-        Card person = new Card("Mike", CardType.PERSON);
         Card room = new Card("Mailroom", CardType.ROOM);
         Card weapon = new Card("mac-10", CardType.WEAPON);
+        Card person = new Card("Mike", CardType.PERSON);
+
 
         // First player in the list with a matching card should disprove
         //System.out.println(Board.getCard)
