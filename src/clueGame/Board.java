@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -637,34 +638,30 @@ public class Board {
 	}
 	
 	public boolean checkAccusation(Solution solution, Card person, Card location, Card weapon) {
-		if(solution.getPerson().getCardName().equals(person.getCardName()) && 
-				solution.getRoom().getCardName().equals(location.getCardName()) && 
-				solution.getWeapon().getCardName().equals(weapon.getCardName())) {
-			return true;
-		} else {
-			return false;
-		}
+	    return solution.getPerson().getCardName().equals(person.getCardName()) && 
+	           solution.getRoom().getCardName().equals(location.getCardName()) && 
+	           solution.getWeapon().getCardName().equals(weapon.getCardName());
 	}
 	
+	
+	
+	//REFACTOR MOVE//
 	public Card handleSuggestion(Card person, Card room, Card weapon, Player suggestor) {
-		ArrayList<Card> suggestionList = new ArrayList<Card>();
-		suggestionList.add(person);
-		suggestionList.add(room);
-		suggestionList.add(weapon);
-		Card result = null;
-		for(Map.Entry<String, Player> entry: players.entrySet()) {
-			if(entry.getValue() == suggestor) {continue;}
-			for(int suggestionIterator = 0; suggestionIterator < 3; ++suggestionIterator) {
-				for(int handIterator = 0; handIterator < 3; ++handIterator) {
-					if(entry.getValue().getHand().get(handIterator).getCardName().equals(suggestionList.get(suggestionIterator).getCardName())) {
-						result = suggestionList.get(suggestionIterator);
-						break;
-					}
-				}
-			}
-			if(result != null) {return result;}
-		} 
-		return null;
+	    List<Card> suggestionList = Arrays.asList(person, room, weapon);
+
+	    for (Player player : players.values()) {
+	        if (player.equals(suggestor)) {
+	            continue;
+	        }
+	        for (Card suggestion : suggestionList) {
+	            for (Card cardInHand : player.getHand()) {
+	                if (cardInHand.getCardName().equals(suggestion.getCardName())) {
+	                    return suggestion;
+	                }
+	            }
+	        }
+	    }
+	    return null;
 	}
 	
 	

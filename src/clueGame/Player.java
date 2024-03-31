@@ -17,8 +17,10 @@ package clueGame;
 import java.awt.Color;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public abstract class Player {
 
@@ -44,21 +46,14 @@ public abstract class Player {
 
 	// player disprove suggestion
 	public Card disproveSuggestion(ArrayList<Card> suggestion) {
-		ArrayList<Card> disproveCards = new ArrayList<Card>();
-		for(Card card: hand) {
-			if(suggestion.contains(card)) {
-				disproveCards.add(card);
-			}
-		}
+	    List<Card> disproveCards = hand.stream()
+	                                   .filter(suggestion::contains)
+	                                   .collect(Collectors.toList());
 
-		Random num = new Random();
-		if(disproveCards.size() > 0) {
-			int index = num.nextInt(disproveCards.size());
-			return disproveCards.get(index);
-		}else {
-			return null;
-		}
+	    return disproveCards.isEmpty() ? null : disproveCards.get(new Random().nextInt(disproveCards.size()));
 	}
+	
+	
 	//check if card is seen
 	public void updateSeen(Card seenCard) {
 		if(!seen.contains(seenCard)) {
