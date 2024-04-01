@@ -1,7 +1,36 @@
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C20A, dated 3/29/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C20A, dated 3/29/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C21A, dated 3/31/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C21A, dated 3/31/2024.
 
 
+commit d5f6229035ceca433ba698df7bbe2855ea814506
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 15:46:35 2024 -0600
+
+    Added comments and headers for new files AKA Finished
+
+commit 76ed892d3653217b6f62ab23cb904da470359f7a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 15:15:19 2024 -0600
+
+    Redid some tests/added tests
+
+commit 50f8077ebd40c61545a068be85c73b40b22dccaf
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 14:28:35 2024 -0600
+
+    Refactoring done, edits to test will be done soon
+
+commit f4ebe332153487ce340b5c25c8a07dd756439ad6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 30 14:34:15 2024 -0600
+
+    Tests all work, some unique read-ins cause trouble, will fix later
+
+commit 11a113fafa8d7f9b81fd3c05d9e8d840f54a5136
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 30 13:19:40 2024 -0600
+
+    Made new tests and created some implementation of new methods
 
 commit 889e839f8ea2fc95243a567449906b8aeaf5d34e
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>

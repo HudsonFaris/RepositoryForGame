@@ -39,9 +39,12 @@ public class Board {
     private Set<BoardCell> visited;
     private Map<Character, Room> roomMap;
     
+    
     Map<String, Player> players;
 
 	//Array Lists
+    Map<Card, Color> cardColor;
+    Player HumanPlayer;
 	ArrayList<Card> deck;
 	ArrayList<Card> weapons;
 	ArrayList<Card> rooms;
@@ -79,10 +82,13 @@ public class Board {
         rooms = new ArrayList<>();     
         gameCharacters = new ArrayList<>(); 
         players = new HashMap<>();  
+        cardColor = new HashMap<>();
         
     }
     
-    
+    public Map<Card, Color> getCardColor(){
+		return cardColor;
+	}
         
     
     public void setLayoutConfigFile(String layoutConfigFile) {
@@ -183,6 +189,7 @@ public class Board {
         Collections.shuffle(weapons);
         Collections.shuffle(gameCharacters);
 
+        cardColor = new HashMap<Card, Color>();
         solution = new Solution(rooms.get(0), weapons.get(0), gameCharacters.get(0));
         deck.remove(rooms.get(0));
         deck.remove(weapons.get(0));
@@ -200,6 +207,7 @@ public class Board {
             for (Player player : players.values()) {
                 if (counter < deck.size()) {
                     player.updateHand(deck.get(counter));
+                    cardColor.put(deck.get(counter), player.getColor());
                     counter++;
                 }
             }
@@ -271,8 +279,8 @@ public class Board {
     				//check if first
     				deck.add(newCard);
     				if(firstIter == true) { //Make first person human, rest comp players
-    					Player player = new HumanPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
-    					players.put(tokens[1], player);
+    					HumanPlayer = new HumanPlayer(tokens[1], color, Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]));
+    					players.put(tokens[1], HumanPlayer);
     					//Remove boolean/make false
     					firstIter = false;
     					
