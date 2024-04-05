@@ -1,6 +1,30 @@
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C21A, dated 3/31/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C21A, dated 3/31/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C22A-1, dated 4/5/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C22A-1, dated 4/5/2024.
 
+
+commit de82a95672d7c28bf7a535a801840077515398f7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 14:28:18 2024 -0600
+
+    Refactored GameControlPanel
+
+commit 716ccb9a7c7db96eacbcbc7356f3932bbe118285
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 14:17:13 2024 -0600
+
+    Checking if new classes were added
+
+commit 7325c34463897538439ef9c68cc0a20e3b9939ef
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 19:39:29 2024 -0600
+
+    Added new files for diff panels and function
+
+commit b6a23d5557dfeb18b7d55d88a5f7d0def964a7e6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 19:39:20 2024 -0600
+
+    Added new files for diff panels and function
 
 commit d5f6229035ceca433ba698df7bbe2855ea814506
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>

@@ -1,213 +1,167 @@
-/*
+
 
 package clueGame;
+
+/**
+ * CardPanel - Class for control card GUI in ClueGame
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 4/5/2024
+ * 
+ */
+
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+public class CardPanel extends JPanel {
 
-public class CardPanel extends JPanel{
-	
-	// variabels to hold the main panel and the in hand/ seen cards
-	private JPanel mainPanel, inHand, seen;
-	private JLabel handLabel, seenLabel;
-	
-	
-	// just for testing
-	Player humanPlayer = Board.getInstance().HumanPlayer;
-	private static Board board;
+    private JPanel mainPanel;
+    private static Board board;
+    private Player humanPlayer = Board.getInstance().HumanPlayer;
 
-	// creates jpanels and titles then adds them to the main panel
-	public CardPanel() {
-		mainPanel = new JPanel();
-		JPanel people = people();
-		JPanel rooms = rooms();
-		JPanel weapons = weapons();
-		
-		Border peopleTitle = BorderFactory.createTitledBorder("People");
-		people.setBorder(peopleTitle);
-		Border roomTitle = BorderFactory.createTitledBorder("Rooms");
-		rooms.setBorder(roomTitle);
-		Border weaponTitle = BorderFactory.createTitledBorder("Weapons");
-		weapons.setBorder(weaponTitle);
-		
-		mainPanel.add(people);
-		mainPanel.add(rooms);
-		mainPanel.add(weapons);
-		mainPanel.setLayout(new GridLayout(3, 1));
-		mainPanel.setBorder(new TitledBorder (new EtchedBorder()));
-		add(mainPanel);
-	}
+    
+    //Panel constructor, sets with constants. 
+    public CardPanel() {
+        mainPanel = new JPanel(new GridLayout(3, 1));
+        mainPanel.setBorder(new TitledBorder(new EtchedBorder()));
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
-	public JPanel people() {
-		JPanel knownCards = new JPanel();
-		inHand = new JPanel();
-	    seen = new JPanel();
-		handLabel = new JLabel("In Hand:");
-		seenLabel = new JLabel("Seen:");
-		
-		ArrayList<Card> hand = new ArrayList<Card>();
-		ArrayList<Card> seenList = new ArrayList<Card>();
-		hand = humanPlayer.getHand();
-		seenList = humanPlayer.getSeen();
-		if(hand.size() == 0) {
-			JTextField handText = new JTextField("None");
-			inHand.add(handText);
-		}
-		if(seenList.size() == 0) {
-			JTextField alreadySeen = new JTextField("None");
-			seen.add(alreadySeen);
-		}
-		for(Card c: hand) {
-			if(c.getCardType() == CardType.PERSON) {
-				JTextField handText = new JTextField(10); 
-				handText.setText(c.getCardName());
-				inHand.add(handText);
-			}
-		}
-		for(Card c: seenList) {
-			if(c.getCardType() == CardType.PERSON) {
-				JTextField alreadySeen = new JTextField(10);
-				alreadySeen.setText(c.getCardName());
-				Color color = board.players.get(c.getCardName()).getColor();
-				alreadySeen.setBackground(color);
-				seen.add(alreadySeen);
-			}
-		}
-		knownCards.add(handLabel);
-		knownCards.add(inHand);
-		knownCards.add(seenLabel);
-		knownCards.add(seen);
-		knownCards.setLayout(new GridLayout(0, 1)); // 4
-		inHand.setLayout(new GridLayout(0, 1)); // 3
-		seen.setLayout(new GridLayout(0, 1)); // 3
-		knownCards.setBorder(new TitledBorder (new EtchedBorder()));
-		knownCards.setBackground(Color.GRAY);
-		return knownCards;
-	}
+        JPanel people = people();
+        JPanel rooms = rooms();
+        JPanel weapons = weapons();
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
-	public JPanel rooms() {
-		JPanel roomCards = new JPanel();
-		inHand = new JPanel();
-		seen = new JPanel();
-		handLabel = new JLabel("In Hand:");
-		seenLabel = new JLabel("Seen:");
-		
-		ArrayList<Card> hand = new ArrayList<Card>();
-		ArrayList<Card> seenList = new ArrayList<Card>();
-		hand = humanPlayer.getHand();
-		seenList = humanPlayer.getSeen();
-		
-		for(Card c: hand) {
-			if(c.getCardType() == CardType.ROOM) {
-				JTextField handText = new JTextField(10);
-				handText.setText(c.getCardName());
-				inHand.add(handText);
-			}
-		}
-		for(Card c: seenList) {
-			if(c.getCardType() == CardType.ROOM) {
-				JTextField alreadySeen = new JTextField(10);
-				alreadySeen.setText(c.getCardName());
-				Color color = board.getCardColor().get(c);
-				alreadySeen.setBackground(color);
-				seen.add(alreadySeen);
-			}
-		}
-		roomCards.add(handLabel);
-		roomCards.add(inHand);
-		roomCards.add(seenLabel);
-		roomCards.add(seen);
-		roomCards.setLayout(new GridLayout(0, 1, 0, 0));
-		inHand.setLayout(new GridLayout(0, 1));
-		seen.setLayout(new GridLayout(0, 1));
-		roomCards.setBorder(new TitledBorder (new EtchedBorder()));
-		roomCards.setBackground(Color.LIGHT_GRAY);
-		return roomCards;
-	}
+        mainPanel.add(people);
+        mainPanel.add(rooms);
+        mainPanel.add(weapons);
+        
+        add(mainPanel);
+    }
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
-	public JPanel weapons() {
-		JPanel weaponCards = new JPanel();
-		inHand = new JPanel();
-		seen = new JPanel();
-		handLabel = new JLabel("In Hand:");
-		seenLabel = new JLabel("Seen:");
-		
-		ArrayList<Card> hand = new ArrayList<Card>();
-		ArrayList<Card> seenList = new ArrayList<Card>();
-		hand = humanPlayer.getHand();
-		seenList = humanPlayer.getSeen();
-		
-		for(Card c: hand) {
-			if(c.getCardType() == CardType.WEAPON) {
-				JTextField handText = new JTextField(10);
-				handText.setText(c.getCardName());
-				inHand.add(handText);
-			}
-		}
-		for(Card c: seenList) {
-			if(c.getCardType() == CardType.WEAPON) {
-				JTextField alreadySeen = new JTextField(10);
-				alreadySeen.setText(c.getCardName());
-				Color color = board.getCardColor().get(c);
-				alreadySeen.setBackground(color);
-				seen.add(alreadySeen);
-			}
-		}
-		
-		weaponCards.add(handLabel);
-		weaponCards.add(inHand);
-		weaponCards.add(seenLabel);
-		weaponCards.add(seen);
-		weaponCards.setLayout(new GridLayout(0, 1));
-		inHand.setLayout(new GridLayout(0, 1));
-		seen.setLayout(new GridLayout(0, 1));
-		weaponCards.setBorder(new TitledBorder (new EtchedBorder()));
-		weaponCards.setBackground(Color.GRAY);
-		return weaponCards;
-	}
-	
-	
-	// update display function that can be called when needed
-	// just removes everything and sets it equal to the new values
-	public void updateDisplay() {
-		mainPanel.removeAll();
-		mainPanel = new CardPanel();
-	}
+    /**
+     * Creates the people part of GUI
+     * @return
+     */
+    public JPanel people() {
+        JPanel knownCards = new JPanel(new GridLayout(0, 1));
+        knownCards.setBorder(new TitledBorder(new EtchedBorder()));
+        knownCards.setBackground(Color.LIGHT_GRAY);
+        
+        JLabel handLabel = new JLabel("In Hand:");
+        JLabel seenLabel = new JLabel("Seen:");
+        JPanel inHand = new JPanel(new GridLayout(0, 1));
+        JPanel seen = new JPanel(new GridLayout(0, 1));
 
-	public static void main(String[] args) {
-		board = Board.getInstance();
-		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
-		board.initialize();
-		CardPanel gc = new CardPanel();
-		JFrame frame = new JFrame();  // create the frame
-		frame.setContentPane(gc); // put the panel in the frame
-		frame.setSize(750, 180);  // size the frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
-		frame.setVisible(true); // make it visible
-		frame.setSize(new Dimension(200, 900));
-		// test filling in the data
-		
-		
-	}
+        populateCardPanels(humanPlayer.getHand(), inHand, CardType.PERSON);
+        populateCardPanels(humanPlayer.getSeen(), seen, CardType.PERSON);
+        
+        knownCards.add(handLabel);
+        knownCards.add(inHand);
+        knownCards.add(seenLabel);
+        knownCards.add(seen);
 
+        return knownCards;
+    }
+
+    /**
+     * Creates room part of GUI
+     * @return
+     */
+    public JPanel rooms() {
+        JPanel roomCards = new JPanel(new GridLayout(0, 1, 0, 0));
+        roomCards.setBorder(new TitledBorder(new EtchedBorder()));
+        roomCards.setBackground(Color.LIGHT_GRAY);
+
+        JLabel handLabel = new JLabel("In Hand:");
+        JLabel seenLabel = new JLabel("Seen:");
+        JPanel inHand = new JPanel(new GridLayout(0, 1));
+        JPanel seen = new JPanel(new GridLayout(0, 1));
+
+        populateCardPanels(humanPlayer.getHand(), inHand, CardType.ROOM);
+        populateCardPanels(humanPlayer.getSeen(), seen, CardType.ROOM);
+
+        roomCards.add(handLabel);
+        roomCards.add(inHand);
+        roomCards.add(seenLabel);
+        roomCards.add(seen);
+
+        return roomCards;
+    }
+
+    /**
+     * Creates weapon part of GUI
+     * @return
+     */
+    public JPanel weapons() {
+        JPanel weaponCards = new JPanel(new GridLayout(0, 1));
+        weaponCards.setBorder(new TitledBorder(new EtchedBorder()));
+        weaponCards.setBackground(Color.LIGHT_GRAY);
+
+        JLabel handLabel = new JLabel("In Hand:");
+        JLabel seenLabel = new JLabel("Seen:");
+        JPanel inHand = new JPanel(new GridLayout(0, 1));
+        JPanel seen = new JPanel(new GridLayout(0, 1));
+
+        populateCardPanels(humanPlayer.getHand(), inHand, CardType.WEAPON);
+        populateCardPanels(humanPlayer.getSeen(), seen, CardType.WEAPON);
+
+        weaponCards.add(handLabel);
+        weaponCards.add(inHand);
+        weaponCards.add(seenLabel);
+        weaponCards.add(seen);
+
+        return weaponCards;
+    }
+
+    
+    //Populates with colors
+    private void populateCardPanels(ArrayList<Card> cards, JPanel panel, CardType type) {
+        for(Card c: cards) {
+            if(c.getCardType() == type) {
+                JTextField cardText = new JTextField(10);
+                cardText.setText(c.getCardName());
+                //Color color = board.getCardColor().get(c); //CHECK
+                cardText.setBackground(Color.WHITE); //White for now, will match cards. 
+                panel.add(cardText);
+            }
+        }
+        if(panel.getComponentCount() == 0) {
+            panel.add(new JTextField("None", 10));
+        }
+    }
+
+    //Updates the display. 
+    public void updateDisplay() {
+        mainPanel.removeAll();
+        JPanel people = people();
+        JPanel rooms = rooms();
+        JPanel weapons = weapons();
+
+        mainPanel.add(people);
+        mainPanel.add(rooms);
+        mainPanel.add(weapons);
+    }
+
+    //Testing main method basically. 
+    public static void main(String[] args) {
+        board = Board.getInstance();
+        board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
+        board.initialize();
+
+        CardPanel cardPanel = new CardPanel();
+        JFrame frame = new JFrame();
+        frame.setContentPane(cardPanel);
+        frame.setSize(new Dimension(200, 900));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
 }
-
-*/

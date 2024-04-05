@@ -1,13 +1,24 @@
 package clueGame;
 
+/**
+ * GameControlPanel - Class for control panel GUI in ClueGame
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 4/5/2024
+ * 
+ */
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-@SuppressWarnings("serial")
+
+
 public class GameControlPanel extends JPanel {
-    private static final int TEXT_FIELD_LENGTH = 25; //Constanf ro text length
+    private static final int TEXT_FIELD_LENGTH = 25; //Constant for ltext length.
 
     //Instance variables for GUI components...
     private JButton nextButton, accuseButton;
@@ -46,9 +57,9 @@ public class GameControlPanel extends JPanel {
      * Buttons
      */
     private JPanel createButtonsPanel() {
-        JPanel panel = new JPanel(new GridLayout(2, 1));
+        JPanel panel= new JPanel(new GridLayout(2, 1));
         accuseButton = new JButton("Make Accusation");
-        nextButton = new JButton("NEXT!");
+        nextButton= new JButton("NEXT!");
         panel.add(accuseButton);
         panel.add(nextButton);
         stylePanel(panel);
@@ -111,6 +122,7 @@ public class GameControlPanel extends JPanel {
     public String getGuess() {
         return theGuess;
     }
+    
 
     public String getResult() {
         return guessResult;
@@ -128,13 +140,13 @@ public class GameControlPanel extends JPanel {
         JFrame frame = new JFrame();  //create the frame
         frame.setContentPane(panel); 
         frame.setSize(750, 180);  //size the frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true); // make it visible
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Test ish to match example stuff. 
         panel.setTurn(new ComputerPlayer("Col. Mustard", Color.ORANGE, 6, 5), 5);
-        panel.setGuess("I have no guess!");
         panel.setGuessResult("So you have nothing?");
+        panel.setGuess("I have no guess!");
         panel.updateDisplay();
     }
 }
