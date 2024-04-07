@@ -13,12 +13,12 @@ Room, Auditorium, A
 Space, Unused, X
 Space, Walkway, W
 // Players on board
-Player, Mike, Blue, 6, 5
-Player, Varz, Black, 7, 9
-Player, Greif, Green, 6, 16
-Player, Stoop, White, 14, 2
-Player, Owen, Yellow, 16, 22
-Player, Chip, Red, 20, 12
+Player, Mike, Blue, 4, 5
+Player, Varz, Black, 1, 14
+Player, Greif, Green, 5, 15
+Player, Stoop, White, 16, 2
+Player, Owen, Yellow, 12, 22
+Player, Chip, Red, 24, 14
 // Weapons
 Weapon, spoon
 Weapon, bat

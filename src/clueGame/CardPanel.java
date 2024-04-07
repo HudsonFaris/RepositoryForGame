@@ -1,5 +1,17 @@
 package clueGame;
 
+
+/**
+ * CardPanel Class - Component of JPanel, creates the right side card panel
+ * 
+ * @author Hudson Faris
+ * @author Sam Bangapadang
+ * 
+ * Sources: JavaDocs
+ * Date: 4/7/2024
+ * 
+ */
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -17,16 +29,16 @@ import javax.swing.border.TitledBorder;
 
 public class CardPanel extends JPanel{
 	
-	// variabels to hold the main panel and the in hand/ seen cards
+	//Holds components and aspects of components
 	private JPanel mainPanel, inHand, seen;
 	private JLabel handLabel, seenLabel;
 	
 	
-	// just for testing
+	
 	Player humanPlayer = Board.getInstance().HumanPlayer;
 	private static Board board;
 
-	// creates jpanels and titles then adds them to the main panel
+	// Creats jpanels and adds them as components 
 	public CardPanel() {
 		mainPanel = new JPanel();
 		JPanel people = people();
@@ -48,8 +60,7 @@ public class CardPanel extends JPanel{
 		add(mainPanel);
 	}
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
+	// See comments below. 
 	public JPanel people() {
 		JPanel knownCards = new JPanel();
 		inHand = new JPanel();
@@ -89,16 +100,16 @@ public class CardPanel extends JPanel{
 		knownCards.add(inHand);
 		knownCards.add(seenLabel);
 		knownCards.add(seen);
-		knownCards.setLayout(new GridLayout(0, 1)); // 4
-		inHand.setLayout(new GridLayout(0, 1)); // 3
-		seen.setLayout(new GridLayout(0, 1)); // 3
+		knownCards.setLayout(new GridLayout(0, 1)); // 
+		inHand.setLayout(new GridLayout(0, 1)); // 
+		seen.setLayout(new GridLayout(0, 1)); // 
 		knownCards.setBorder(new TitledBorder (new EtchedBorder()));
 		knownCards.setBackground(Color.GRAY);
+		
 		return knownCards;
 	}
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
+	//iterates again throygh this but for rooms
 	public JPanel rooms() {
 		JPanel roomCards = new JPanel();
 		inHand = new JPanel();
@@ -135,12 +146,11 @@ public class CardPanel extends JPanel{
 		inHand.setLayout(new GridLayout(0, 1));
 		seen.setLayout(new GridLayout(0, 1));
 		roomCards.setBorder(new TitledBorder (new EtchedBorder()));
-		roomCards.setBackground(Color.LIGHT_GRAY);
+		roomCards.setBackground(Color.GRAY);
 		return roomCards;
 	}
 
-	// after creating various panels and labels, iterates through the hands
-	// and assigns them where they need to go
+	//iterates through hands and assigns them as needed
 	public JPanel weapons() {
 		JPanel weaponCards = new JPanel();
 		inHand = new JPanel();
@@ -183,11 +193,17 @@ public class CardPanel extends JPanel{
 	}
 	
 	
-	// update display function that can be called when needed
-	// just removes everything and sets it equal to the new values
+
+	//resets and updates display
 	public void updateDisplay() {
 		mainPanel.removeAll();
 		mainPanel = new CardPanel();
+		// mainPanel.add(people());
+	    // mainPanel.add(rooms());
+	    // mainPanel.add(weapons());
+	    
+	    mainPanel.revalidate();
+	    mainPanel.repaint();
 	}
 
 	public static void main(String[] args) {

@@ -97,12 +97,12 @@ public class GameSetupTests {
     public void testLocations() {
         Map<String, Player> players = board.getPlayers();
         
-        Assert.assertEquals(board.getCell(6, 5), players.get("Mike").getLocation()); 
-        Assert.assertEquals(board.getCell(7, 9), players.get("Varz").getLocation()); 
-        Assert.assertEquals(board.getCell(6, 16), players.get("Greif").getLocation()); 
-        Assert.assertEquals(board.getCell(14, 2), players.get("Stoop").getLocation()); 
-        Assert.assertEquals(board.getCell(16, 22), players.get("Owen").getLocation()); 
-        Assert.assertEquals(board.getCell(20, 12), players.get("Chip").getLocation()); 
+        Assert.assertEquals(board.getCell(4, 5), players.get("Mike").getLocation()); 
+        Assert.assertEquals(board.getCell(1, 14), players.get("Varz").getLocation()); 
+        Assert.assertEquals(board.getCell(5, 15), players.get("Greif").getLocation()); 
+        Assert.assertEquals(board.getCell(16, 2), players.get("Stoop").getLocation()); 
+        Assert.assertEquals(board.getCell(12, 22), players.get("Owen").getLocation()); 
+        Assert.assertEquals(board.getCell(24, 14), players.get("Chip").getLocation()); 
     }
 
     // checks for the correct number of weapons
