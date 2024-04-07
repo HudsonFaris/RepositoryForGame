@@ -1,6 +1,12 @@
-I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C22A-1, dated 4/5/2024.
-I, Hudson Faris, certify that I participated equitably in the creation of assignment C22A-1, dated 4/5/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C22A-2, dated 4/5/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C22A-2, dated 4/5/2024.
 
+
+commit 054454090af4378946d9f1986655a99c5b90741f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 15:34:23 2024 -0600
+
+    Refactored CardGUI
 
 commit de82a95672d7c28bf7a535a801840077515398f7
 Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>

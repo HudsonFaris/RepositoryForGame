@@ -13,9 +13,14 @@ package clueGame;
  */
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,10 +31,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
-
-public class Board {
+public class Board extends JPanel{
 	private List<List<BoardCell>> grid;
     private int row;
     private int column;
@@ -50,6 +57,7 @@ public class Board {
 	ArrayList<Card> rooms;
 	ArrayList<Card> gameCharacters; // for the characters in the game; not calling this "players" for clarity.
 	Solution solution;
+	boolean humanPlayerTurn = true;
     
     public int i = 0;
     private static Board theInstance = new Board();
@@ -83,6 +91,7 @@ public class Board {
         gameCharacters = new ArrayList<>(); 
         players = new HashMap<>();  
         cardColor = new HashMap<>();
+        addMouseListener(new mouseListener());
         
     }
     
@@ -112,6 +121,73 @@ public class Board {
             e.printStackTrace();
         }
     }
+    
+    public void paintComponent(Graphics boardView) {
+		super.paintComponent(boardView);
+		int xOffset, yOffset;
+		int width = this.getWidth()/getNumColumns();
+		int height = this.getHeight()/getNumRows();
+		for(int heightIter = 0; heightIter < getNumRows(); heightIter++) {
+			for(int widthIter = 0; widthIter < getNumColumns(); widthIter++) {
+				xOffset = widthIter * width;
+				yOffset = heightIter * height;
+				getCell(heightIter, widthIter).drawCell(boardView, width, height, xOffset, yOffset, this);
+			}
+		}
+		Board.getInstance().repaint();
+		for(Entry<String, Player> playerIter: players.entrySet()) {
+			BoardCell playerLoc = playerIter.getValue().getLocation();
+			xOffset = width * playerLoc.getCol1();
+			yOffset = height * playerLoc.getRow();
+			boardView.setColor(playerIter.getValue().getColor());
+			boardView.fillOval(xOffset, yOffset, width, height);
+			boardView.setColor(Color.BLACK);
+			boardView.drawOval(xOffset, yOffset, width, height);
+			playerLoc.setOccupied(true);
+		}
+	}
+
+    
+    public class mouseListener implements MouseListener{
+
+		int counter = 0;
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			
+			int column = (int) e.getX()/(getWidth()/getNumColumns());
+			int row = (int) e.getY()/ (getHeight()/getNumRows());
+			BoardCell clickedCell = getCell(row, column);
+			if(targets.contains(clickedCell) && humanPlayerTurn && !clickedCell.isOccupied()) {
+				grid.get(HumanPlayer.getRow()).get(HumanPlayer.getColumn()).setOccupied(false);
+				HumanPlayer.setLocation(clickedCell);
+				grid.get(row).get(column).setOccupied(true);
+				humanPlayerTurn = false;
+				counter++;
+				return;
+			} else if(humanPlayerTurn == false) {
+				JButton ok = new JButton();
+				JOptionPane.showMessageDialog(ok, "Error: Not your turn!");
+			} else {
+				JButton ok = new JButton();
+				JOptionPane.showMessageDialog(ok, "Error in-valid move");
+			}				
+		}
+
+
+
+		public void mousePressed(MouseEvent e) {
+		}
+
+		public void mouseReleased(MouseEvent e) {
+		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+	}
     
     public void cellInfo() {
     	for (List<BoardCell> row : grid) {
@@ -361,6 +437,7 @@ public class Board {
     private BoardCell createBoardCell(int row, int column, String cellValue) {
         char initial = cellValue.charAt(0);
         char secretPassage = '0';
+        boolean isWalkway = false;
         boolean isCenterCell = cellValue.length() > 1 && cellValue.charAt(1) == '*';
         boolean isLabelCell = cellValue.length() > 1 && cellValue.charAt(1) == '#';
         DoorDirection doorDirection = DoorDirection.NONE;
@@ -368,7 +445,9 @@ public class Board {
         boolean isSecretPassage = false;
         cellValue = cellValue.trim();
         boolean isRoom = false;
-        
+        if(cellValue.charAt(0) == 'W') {
+        	isWalkway = true;
+		}
         
         if (cellValue.charAt(0) != 'W' && cellValue.charAt(0) != 'X') {
         	isRoom = true;
@@ -405,7 +484,7 @@ public class Board {
             }
         }
         
-        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom, isSecretPassage);
+        return new BoardCell(row, column, initial, doorDirection, isDoorway, isCenterCell, isLabelCell, secretPassage, isRoom, isSecretPassage, isWalkway);
     }
     
     //Other get cell for updated test methods
