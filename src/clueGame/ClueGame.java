@@ -13,7 +13,10 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
     
@@ -53,6 +56,7 @@ public class ClueGame extends JFrame {
         
         nextTurn();
         
+        showSplash();
         pack();
         setVisible(true);
     }
@@ -66,6 +70,12 @@ public class ClueGame extends JFrame {
             firstTurn = false;
         }
     }
+    
+    public void showSplash() {
+		JButton ok = new JButton();
+		JOptionPane.showMessageDialog(ok, "<html><center>You are " + Board.getInstance().HumanPlayer.getName() + 
+				"\n"+ "<br>Can you find the solution\n"+ "<br>before the computer players?");
+	}
 
     public static void main(String[] args) {
         new ClueGame();
