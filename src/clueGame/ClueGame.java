@@ -62,7 +62,7 @@ public class ClueGame extends JFrame {
     }
 
     
-    //Controls turn/ not sure if this was due or not
+    //Controls turn - starts with human player
     private void nextTurn() {
         if (firstTurn) {
             controlPanel.setTurn((HumanPlayer) board.HumanPlayer, (int) (Math.random() * 6) + 1, true);
@@ -74,7 +74,7 @@ public class ClueGame extends JFrame {
     public void showSplash() {
 		JButton ok = new JButton();
 		JOptionPane.showMessageDialog(ok, "<html><center>You are " + Board.getInstance().HumanPlayer.getName() + 
-				"\n"+ "<br>Can you find the solution\n"+ "<br>before the computer players?");
+				 "<br>Can you find the solution"+ "<br>before the computer players?");
 	}
 
     public static void main(String[] args) {

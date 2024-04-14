@@ -157,7 +157,7 @@ public class Board extends JPanel{
 			int column = (int) e.getX()/(getWidth()/getNumColumns());
 			int row = (int) e.getY()/ (getHeight()/getNumRows());
 			BoardCell clickedCell = getCell(row, column);
-			if(targets.contains(clickedCell) && humanPlayerTurn && !clickedCell.isOccupied()) {
+			if(targets.contains(clickedCell) && humanPlayerTurn && !clickedCell.isOccupied()|| clickedCell.isRoom()) {
 				grid.get(HumanPlayer.getRow()).get(HumanPlayer.getColumn()).setOccupied(false);
 				HumanPlayer.setLocation(clickedCell);
 				grid.get(row).get(column).setOccupied(true);

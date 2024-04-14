@@ -69,6 +69,8 @@ public class ComputerPlayer extends Player{
 	    }
 
 	    Map<Character, String> roomMap = new HashMap<>();
+	    //HardCoded, will change later // EASY Fix
+	    
 	    roomMap.put('M', "Mailroom");
 	    roomMap.put('S', "Supper Room");
 	    roomMap.put('B', "Break Room");
