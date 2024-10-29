@@ -1,0 +1,28 @@
+
+// Rooms and room cards
+Room, Supper Room, S
+Room, Break Room, B
+Room, Lobby, L
+Room, Mailroom, M
+Room, Garden, G
+Room, Jockey Room, J
+Room, Pantry, P
+Room, Hidden Compartment, H
+Room, Auditorium, A
+// other spaces on board
+Space, Unused, X
+Space, Walkway, W
+// Players on board
+Player, Mike, Blue, 4, 5
+Player, Varz, Black, 1, 14
+Player, Greif, Green, 5, 15
+Player, Stoop, White, 16, 2
+Player, Owen, Gray, 12, 22
+Player, Chip, Red, 24, 14
+// Weapons
+Weapon, spoon
+Weapon, bat
+Weapon, machete
+Weapon, magic
+Weapon, mac-10
+Weapon, knife

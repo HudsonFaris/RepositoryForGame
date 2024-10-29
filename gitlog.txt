@@ -1,0 +1,522 @@
+I, Sam Bangapadang, certify that I participated equitably in the creation of assignment C26A, dated 4/22/2024.
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C26A, dated 4/22/2024.
+
+commit f622645d73087dd872485a5825cd4f822138ace7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 22 24:56:47 2024 -0700
+
+    Refactored heavily. 
+
+commit 9f8a63571e3221c4551c3c1cb4006512c765f59f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 21 23:08:59 2024 -0700
+
+    Tried adding soundBackground, failed, but did add changes in overlapping, now longer occurs
+    and is easier to follow characters. 
+
+commit 84119b25a16b4a0195e213c6aa16f295b2f5f4ea
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Apr 21 17:45:35 2024 -0700
+
+    Added functionality changes to Board Class, and edited major functions iwthin it, changed some aspects
+    to computer player and human player. Changed sizing issues for each panel. 
+
+commit 068f2e65e80c5222dd49021e5b872f01cbe7e1d4
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Apr 20 21:59:26 2024 -0700
+
+    errors really fixed now, adding tests
+
+commit 4d9a523cc8ab77b9560444cc550a54ca4fb93511
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Apr 20 20:28:18 2024 -0700
+
+    Added suggestion panel
+
+commit abf1c3ed2107fab8f9568d1ed8ac65e8a2550e9c
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Apr 20 18:51:53 2024 -0700
+
+    Added Accusation Panel 
+
+commit 73ahdd84039fd803819ad82308401238497f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 12:59:20 2024 -0600
+
+	Refactored code and added comments
+	
+commit 1dahdd84039488eh84082308401238497f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 12:21:50 2024 -0600
+
+	Fixed computer players moving around in same room rather than leaving
+
+commit 417238215h6adgaw44llh56j6adkjf204f16990927e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 12:03:45 2024 -0600
+
+	Added splashscreen
+
+commit 5a26669f35bda480e5db1880d48204f16990927e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 7 14:33:55 2024 -0600
+
+    Refactored code and added header comments/comments
+
+commit a11edeb66d2dddf339572c263f37669773f85ad6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Apr 6 21:08:18 2024 -0600
+
+    Created new class and updated everything to make whole gui
+
+commit 054454090af4378946d9f1986655a99c5b90741f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 15:34:23 2024 -0600
+
+    Refactored CardGUI
+
+commit de82a95672d7c28bf7a535a801840077515398f7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 14:28:18 2024 -0600
+
+    Refactored GameControlPanel
+
+commit 716ccb9a7c7db96eacbcbc7356f3932bbe118285
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Apr 5 14:17:13 2024 -0600
+
+    Checking if new classes were added
+
+commit 7325c34463897538439ef9c68cc0a20e3b9939ef
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 19:39:29 2024 -0600
+
+    Added new files for diff panels and function
+
+commit b6a23d5557dfeb18b7d55d88a5f7d0def964a7e6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 19:39:20 2024 -0600
+
+    Added new files for diff panels and function
+
+commit d5f6229035ceca433ba698df7bbe2855ea814506
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 15:46:35 2024 -0600
+
+    Added comments and headers for new files AKA Finished
+
+commit 76ed892d3653217b6f62ab23cb904da470359f7a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 15:15:19 2024 -0600
+
+    Redid some tests/added tests
+
+commit 50f8077ebd40c61545a068be85c73b40b22dccaf
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 31 14:28:35 2024 -0600
+
+    Refactoring done, edits to test will be done soon
+
+commit f4ebe332153487ce340b5c25c8a07dd756439ad6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 30 14:34:15 2024 -0600
+
+    Tests all work, some unique read-ins cause trouble, will fix later
+
+commit 11a113fafa8d7f9b81fd3c05d9e8d840f54a5136
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 30 13:19:40 2024 -0600
+
+    Made new tests and created some implementation of new methods
+
+commit 889e839f8ea2fc95243a567449906b8aeaf5d34e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 29 15:58:45 2024 -0600
+
+    Refactored code
+
+commit 3053d3f74ae86c760308a708cf8e1f6a7b72b13b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 29 15:26:30 2024 -0600
+
+    Added color tests and implemented deal method
+
+commit ccf460b1e835ccccfd6de13477ca0be95489198b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Mar 27 18:32:55 2024 -0600
+
+    Finished making tests work
+
+commit 473391a903cc572a567f3baea0f010194b1fb3b4
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Mar 27 18:23:54 2024 -0600
+
+    Test
+
+commit 2260a4c7c336b1b9676d315af2d9f59453001073
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 21:03:52 2024 -0600
+
+    Reduced redundencies in if statements and changed calcTargets so another method was easier to follow
+
+commit 0bfdf03e02b82d2398e2ecacdebbcb8a654c673d
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 21:00:33 2024 -0600
+
+    Fixed Board class, reduced lines and removed repeat getters/setters
+
+commit c3e1cc398f55e693fdc97633e02f4a7fffa502ea
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 20:53:09 2024 -0600
+
+    Made getAdjList more dry, easier to follow and sig reduced lines
+
+commit acef39d13f70150e4c81e5c69205782c216c2e06
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 20:51:17 2024 -0600
+
+    Made calcTargets function easier to read and follow
+
+commit 75970daf0f18a2d17f12b28c95f8940e4746f2c4
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 20:48:21 2024 -0600
+
+    Made layout config more method seperable and easier to read
+
+commit c094529a9189dc77bdd9f8bb3c883d02f36998bf
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 20:46:06 2024 -0600
+
+    Made creating boardCell signifigantly easier to read
+
+commit 6c97552ef047fb55001e6b6f78e0141dea316e52
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 11 20:43:48 2024 -0600
+
+    Fixed spacing issues for braces
+
+commit b0a6e6f93c3c5e29c42740b872f067ca22aa2dd7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Mar 7 13:35:42 2024 -0700
+
+    Made our tests work
+
+commit 4f650d8107064a7999491c8400693f04148bd7c9
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 16:19:39 2024 -0700
+
+    9/9 Test passing, passed false for recursive
+
+commit 7c689fbad63aef07cbb9b73c43679dbd085691d8
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 14:25:20 2024 -0700
+
+    Added occupied logic to target calculation, 8/9 tests pass
+
+commit a82d314b04991a7a570b69a8268a85ffbb96fcd1
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Tue Mar 5 13:38:27 2024 -0700
+
+    Added passage logic and 7/9 tests pass now
+
+commit 85a7841fa6e145b8505b099cb0015c5f6a972014
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 22:07:52 2024 -0700
+
+    6 Tests Pass, added check for starting in room
+
+commit 65601f87084cdba764d9180e87c90c25c31246bb
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 21:55:39 2024 -0700
+
+    5 tests now pass
+
+commit 792cfe03ec8dada5f7983a4e560bf402a739ecb4
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 21:29:32 2024 -0700
+
+    Made 3 tests work
+
+commit bc050308444f32d06e4fce6d4cd1bdf2dc1faf5a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 17:55:47 2024 -0700
+
+    Made one test past after 5 hours
+
+commit 28496dcad5fb9ea1d5210c4202fd65c7e902e60e
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 13:11:46 2024 -0700
+
+    Updated comments
+
+commit e88002da96af0070a7764df736837ac9a22fc217
+Merge: 7813843 c5b907a
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 11:35:39 2024 -0700
+
+    TEst
+
+commit 781384305622208cdf6e72b3cf5a8c5529af039b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Mon Mar 4 11:33:29 2024 -0700
+
+    Created a reset method and implemented into instance
+
+commit c5b907a1791b4df8f5b20cc82635940b9f0af0d3
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 23:21:36 2024 -0700
+
+    exception tests fixed
+
+commit f51e6ad2b1efe98c9346c1e93402f02a35cdcd4b
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 23:00:21 2024 -0700
+
+    fixed tests for all now
+
+commit 06163cbfcd672daa02fc7a8ae6768633d42cf119
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 22:43:04 2024 -0700
+
+    okay now tests fr fail
+
+commit 1beeb2e64da203145f59a4f236b5024d6aaf902f
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 22:10:34 2024 -0700
+
+    tests fail now, no errors
+
+commit 43baeaf6838897a6ddaccaedb59a866209b963c5
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sun Mar 3 21:02:20 2024 -0700
+
+    getter for adjlist
+
+commit deb63e9caa1dc6f630544d2e39e0084b3b5a260c
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 15:42:52 2024 -0700
+
+    Added new test files and roughly made calculatetargets/adjcalculations but some stuff isn't implemented.
+
+commit 3106aa91c1a97b2880e194a77951ba74c1cbb3c3
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 15:07:33 2024 -0700
+
+    Added teardown @AfterALL to clean up board after group of tests is done to prevent complications
+
+commit 4de5e18300a6b63ba92f5d827f59bda00851f974
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:32:59 2024 -0700
+
+    Added gitrefactor.txt
+
+commit 3deed558dc059f8a0f39a1e31698cd43b7297f35
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:26:51 2024 -0700
+
+    Updated comments and refactored code
+
+commit 9ab66ce5e85a467271d637c1707490663c684eae
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Mar 3 14:19:39 2024 -0700
+
+    Added own file for txt
+
+commit f97cee993f87267b8d2e896ea61e5fea7c8d7603
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 19:59:22 2024 -0700
+
+    Fixed last test (i think... it works so who cares)
+
+commit 88e7fc03093b4e905e6474bdd422c08926248c36
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 18:03:20 2024 -0700
+
+    All tests work besides one, the last one is something small and should be easy I'll just do it later
+
+commit ce51f8126e4ba85c67aaf93f9400797479dc8b19
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 17:50:48 2024 -0700
+
+    80% with final test
+
+commit f22dd8c26c62c4769d48df22b839d65ee50abeec
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 16:48:02 2024 -0700
+
+    4/5 Tests pass on given tests
+
+commit a725bd886d6f3e5921078dddf7247bf06a4d70ce
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 15:43:52 2024 -0700
+
+    All unique tests work except CorrectNumberOfDoors (later)
+
+commit 901322d8e22c7c08313d480d081ef4dcbf996673
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Mar 2 15:07:18 2024 -0700
+
+    Passed 4/6 tests for FileInitTests
+
+commit a8976c764fc31235369a7e2cb28c9e9651dd13d8
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:36:59 2024 -0700
+
+    Updated gitlog
+
+commit 2d1e6ba04994b4ae31621de8b1bfbf0297726e2d
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:36:02 2024 -0700
+
+    Added Tests.txt
+
+commit d267cba502e044f307ad70a26a54846e0f5d7985
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:29:00 2024 -0700
+
+    Updated readme.txt
+
+commit 37df6f36a5c1d7cad4b96b47068a77fe03f2427d
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:27:43 2024 -0700
+
+    Added final comments/headers
+
+commit ae43228996f53956b2babf1edb5da018c87651cf
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Fri Mar 1 14:17:27 2024 -0700
+
+    Fixed original tests to fail by changing null methods
+
+commit dd72026e130b432d01b853668ae1c8fcf024f345
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Fri Mar 1 12:51:24 2024 -0700
+
+    rest done
+
+commit a0eded429d39c4106036cd1c99db9e7c302cedee
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 29 14:53:45 2024 -0700
+
+    Added all classes for package clueGame and coded skeleton without tests. Current tests run without error
+
+commit 48999a6e915718077d24c466a237ceb114fa09e7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 29 12:54:32 2024 -0700
+
+    Changed tests so they are possible for mixed
+
+commit 35dfd742441fafea818f44c7fd840961713f5dc7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 21:14:58 2024 -0700
+
+    Changed test on normal (possibly correct) and working on final test
+
+commit 4dc656bcbbda5bd0fccdfb4bbc47c903e2d9a773
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 20:23:18 2024 -0700
+
+    Reverted test changes for debugging
+
+commit ce321c57c4edfda2a9147bcb0c1242a7b6a6808b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 20:15:26 2024 -0700
+
+    Reverted changes, back to basic, still issue
+
+commit 1443bb641be156d89333e4ee95cbe9adb0f1d61b
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 18:15:31 2024 -0700
+
+    More debugging, issue highlighted of deleteing targets for some reason
+
+commit 548280e9f95aa120b36bf8504fdac6aafa1c1778
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 17:12:07 2024 -0700
+
+    Debugging for Normal Tests
+
+commit 622df928c529eac486988f39407ec8d8e6788ace
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 15:34:41 2024 -0700
+
+    Restructured Code (fixed issue with occupied)
+
+commit 486f5b118f04b5490ed4cb41d8337c82449d7a61
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Wed Feb 28 13:05:03 2024 -0700
+
+    Added comments to clarify new code
+
+commit fe84e97149dc3f3231c4e99244d782156d5b0a30
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 21:16:53 2024 -0700
+
+    Small checks for testTargetsNormal
+
+commit 3f96f0fa12fdab3e90e7d209e04d2f7911cc0475
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 20:38:14 2024 -0700
+
+    Changed MAX_SIZE to COLS=4 and ROWS=4 which fixed fails
+    in both testTargetOccupied() and testTargetsRoom()
+
+commit 67c40e4adcdcf114628e28f5df2e8b0c95f2feb9
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 15:32:14 2024 -0700
+
+    Trying mixed targets/w room. Current error on address of true being assigned in different areas
+
+commit f339e457cb18f6f111bed03c99ca71bd51eae705
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Feb 25 14:57:11 2024 -0700
+
+    Made testTargetsOccupied() work, included adjacency list function and added proper function to calcTargets
+
+commit f4b06fd9d79206fc98f2a8218a47662147106a61
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:21:36 2024 -0700
+
+    Added gitlog to project
+
+commit f622645d73087dd872485a5825cd4f822138ace7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:14:47 2024 -0700
+
+    Added readme to project
+
+commit 9f8a63571e3221c4551c3c1cb4006512c765f59f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sat Feb 24 23:08:59 2024 -0700
+
+    Added final comments/headers for classes
+
+commit 84119b25a16b4a0195e213c6aa16f295b2f5f4ea
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 17:45:35 2024 -0700
+
+    finished tests
+
+commit 068f2e65e80c5222dd49021e5b872f01cbe7e1d4
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 16:59:26 2024 -0700
+
+    errors really fixed now, adding tests
+
+commit 4d9a523cc8ab77b9560444cc550a54ca4fb93511
+Author: sbangapadang22 <sbangapadang@mines.edu>
+Date:   Sat Feb 24 16:28:18 2024 -0700
+
+    fixed errors, adding tests
+
+commit abf1c3ed2107fab8f9568d1ed8ac65e8a2550e9c
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 19:51:53 2024 -0700
+
+    Changed JUnit Location to be included with path
+
+commit d951fb18ff0ab0374ebc1618d6ceb5fe4edc52cc
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Thu Feb 22 16:00:58 2024 -0700
+
+    Initial Commit

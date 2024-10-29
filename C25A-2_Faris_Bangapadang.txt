@@ -1,0 +1,265 @@
+REFACTORED CODE COMMITS:
+
+I, Hudson Faris, certify that I participated equitably in the creation of assignment C25A-2, dated 4/15/2024.
+I, Sam Bangapadang, certify that I participated equitably in the creation of this assignment C25A-2, dated 4/15/2024.
+
+
+commit 05123jd883f3930ad946d9f1986655a99c5b9074
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 2:20:23 2024 -0600
+
+	Changed HumanPlayer to be barebones as extra getters/setters and info for the player constructor was not needed. 
+
+commit a11edeb66d2dddf339572c263f37669773f85ad6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 2:08:18 2024 -0600
+
+    Refactored ComputerPlayer actions to find a viable target, code was messy when originally made. 
+
+commit 054454090af4378946d9f1986655a99c5b90741f
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 1:34:23 2024 -0600
+
+    Changed listeners to be more concise and easier to follow
+
+commit de82a95672d7c28bf7a535a801840077515398f7
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 1:28:18 2024 -0600
+
+    Changed size/ability to react for CardPanel that was originally forgot
+
+commit 716ccb9a7c7db96eacbcbc7356f3932bbe118285
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 1:17:13 2024 -0600
+
+    Fixed an issue of font not rendering under certain conditions on map
+
+commit 7325c34463897538439ef9c68cc0a20e3b9939ef
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 12:39:29 2024 -0600
+
+    Added a check if buttons are pressed too fast to "reset" actions. 
+
+commit b6a23d5557dfeb18b7d55d88a5f7d0def964a7e6
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 12:20:20 2024 -0600
+
+    Improved readability/reorganized GameControlPanel "modular" code
+
+commit d5f6229035ceca433ba698df7bbe2855ea814506
+Author: HudsonFaris <118467880+HudsonFaris@users.noreply.github.com>
+Date:   Sun Apr 14 11:46:35 2024 -0600
+
+    Added comments for Cluegame, splash and turn were sparse originally
+
+
+
+
+
+
+
+
+
+
+Most signifigant change: 
+Before:
+/**
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+@SuppressWarnings("serial")
+public class GameControlPanel extends JPanel {
+
+    private static final Color LIGHT_GRAY_BACKGROUND = Color.LIGHT_GRAY;
+    private static final Color GRAY_BACKGROUND = Color.GRAY;
+    private static final int TEXT_FIELD_WIDTH = 25;
+
+    private static Board board;
+
+    // Instance variables
+    private String guessText, guessResultText, turnName;
+    private JButton nextButton, accuseButton;
+    private JTextField guessField, resultField, turnField, rollField;
+    private Player currentPlayer;
+    private int rollNumber;
+    private Color currentColor;
+
+    public GameControlPanel() {
+        setLayout(new GridLayout(2, 0));
+        add(createTurnAndRollPanel());
+        add(createButtonPanel());
+        add(createGuessPanel());
+        add(createResultPanel());
+    }
+
+    private JPanel createTurnAndRollPanel() {
+        JPanel panel = new JPanel(new GridLayout(2, 0));
+        panel.add(createSubPanel("Whose turn?", turnField, turnName));
+        panel.add(createSubPanel("Roll:", rollField, String.valueOf(rollNumber)));
+        stylePanel(panel, LIGHT_GRAY_BACKGROUND);
+        return panel;
+    }
+
+    private JPanel createButtonPanel() {
+        JPanel panel = new JPanel(new GridLayout(2, 1));
+        accuseButton = new JButton("Make Accusation");
+        nextButton = new JButton("NEXT!");
+        panel.add(accuseButton);
+        panel.add(nextButton);
+        stylePanel(panel, LIGHT_GRAY_BACKGROUND);
+        return panel;
+    }
+
+    private JPanel createGuessPanel() {
+        return createSingleFieldPanel("Guess", guessText, GRAY_BACKGROUND);
+    }
+
+    private JPanel createResultPanel() {
+        return createSingleFieldPanel("Guess Result!", guessResultText, GRAY_BACKGROUND);
+    }
+
+    private JPanel createSubPanel(String label, JTextField field, String value) {
+        JPanel subPanel = new JPanel(new GridLayout(1, 2));
+        subPanel.add(new JLabel(label));
+        field = new JTextField(value);
+        subPanel.add(field);
+        return subPanel;
+    }
+
+    private JPanel createSingleFieldPanel(String title, String text, Color backgroundColor) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JTextField field = new JTextField(text, TEXT_FIELD_WIDTH);
+        field.setBorder(BorderFactory.createTitledBorder(title));
+        panel.add(field);
+        stylePanel(panel, backgroundColor);
+        return panel;
+    }
+
+    private void stylePanel(JPanel panel, Color backgroundColor) {
+        panel.setBorder(new TitledBorder(new EtchedBorder()));
+        panel.setBackground(backgroundColor);
+    }
+
+    public void updateDisplay() {
+        guessField.setText(guessText);
+        resultField.setText(guessResultText);
+        turnField.setText(turnName);
+        turnField.setBackground(currentColor);
+        rollField.setText(String.valueOf(rollNumber));
+    }
+ **/
+ 
+ AFTER:
+ /**
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+
+public class GameControlPanel extends JPanel {
+
+    //Strings to hold value names
+    private String theGuess, guessResult, turnName;
+    private int rollNum;
+    private Color color;
+    private Player player;
+
+    //UI components
+    private JButton next, accuse;
+    private JTextField guess, result, turn, roll;
+
+    private static Board board;
+
+    public GameControlPanel() {
+        setLayout(new GridLayout(2, 0));
+        add(createTurnAndRollPanel());
+        add(createButtonPanel());
+        add(createGuessPanel());
+        add(createResultPanel());
+    }
+
+    private JPanel createTurnAndRollPanel() {
+        JPanel panel = new JPanel(new GridLayout(2, 0));
+        panel.add(createNamePanel());
+        panel.add(createRollPanel());
+        stylePanel(panel, Color.LIGHT_GRAY);
+        return panel;
+    }
+
+    private JPanel createNamePanel() {
+        JPanel namePanel = new JPanel(new GridLayout(1, 2));
+        JLabel whoseTurnLabel = new JLabel("Whose turn?");
+        turn = new JTextField(turnName);
+        namePanel.add(whoseTurnLabel);
+        namePanel.add(turn);
+        return namePanel;
+    }
+
+    private JPanel createRollPanel() {
+        JPanel rollPanel = new JPanel(new GridLayout(1, 2));
+        JLabel rollLabel = new JLabel("Roll:");
+        roll = new JTextField(String.valueOf(rollNum));
+        rollPanel.add(rollLabel);
+        rollPanel.add(roll);
+        return rollPanel;
+    }
+
+    private JPanel createButtonPanel() {
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
+        accuse = new JButton("Make Accusation");
+        next = new JButton("NEXT!");
+        buttonPanel.add(accuse);
+        buttonPanel.add(next);
+        stylePanel(buttonPanel, Color.LIGHT_GRAY);
+        return buttonPanel;
+    }
+
+    private JPanel createGuessPanel() {
+        return createSingleFieldPanel("Guess", theGuess, Color.GRAY);
+    }
+
+    private JPanel createResultPanel() {
+        return createSingleFieldPanel("Guess Result!", guessResult, Color.GRAY);
+    }
+
+    private JPanel createSingleFieldPanel(String title, String text, Color backgroundColor) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JTextField field = new JTextField(text);
+        field.setBorder(BorderFactory.createTitledBorder(title));
+        panel.add(field);
+        stylePanel(panel, backgroundColor);
+        return panel;
+    }
+
+    private void stylePanel(JPanel panel, Color backgroundColor) {
+        panel.setBorder(new TitledBorder(new EtchedBorder()));
+        panel.setBackground(backgroundColor);
+    }
+
+    //Update display function that updates the text boxes
+    public void updateDisplay() {
+        guess.setText(theGuess);
+        result.setText(guessResult);
+        turn.setText(turnName);
+        turn.setBackground(color);
+        roll.setText(String.valueOf(rollNum));
+    }
+**/

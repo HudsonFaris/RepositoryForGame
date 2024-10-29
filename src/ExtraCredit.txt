@@ -1,0 +1,9 @@
+Extra Credit Info::
+
+
+Created a way to move the characters in the same slightly apart by a few pixels to get rid of overlapping confusion.
+This will attempt to stay in the room, and will move to the other side if the character people go outside room border for a 
+thereoetically smaller room. 
+
+//IGNORE
+Attempted to create an executable jar file, it didn't agree with the class version so forget it. 
